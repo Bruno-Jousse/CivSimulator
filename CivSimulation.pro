@@ -26,9 +26,11 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-    main.cpp
+    main.cpp \
+    world.cpp
 
-HEADERS +=
+HEADERS += \
+    world.hpp
 
 FORMS +=
 
