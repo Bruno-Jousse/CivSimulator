@@ -1,12 +1,9 @@
 #include <QApplication>
 #include <QtWidgets>
-
+#include <string>
+#include <iostream>
+#include "Model/World.h"
 using namespace std;
-
-mt19937 generator (123);
-uniform_real_distribution<double> distribReal(0.0, 1.0);
-uniform_int_distribution<int> distribInt(0, RAND_MAX);
-//double randomRealBetweenZeroAndOne = distrib(generator);
 
 int main(int argc, char *argv[])
 {
@@ -15,7 +12,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    int nbCivs = boost::lexical_cast<int>(argv[1]);
+    int nbCivs = stoi(argv[1]);
 
     QApplication a(argc, argv);
 
