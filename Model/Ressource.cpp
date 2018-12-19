@@ -16,3 +16,17 @@ Ressource::Ressource(int amount, QColor color, int x, int y, int w, int h) : amo
 Ressource::~Ressource(){
 
 }
+
+QRectF Ressource::boundingRect() const{
+    return QRectF(x, y, w, h);
+}
+
+QPainterPath Ressource::shape() const{
+    QPainterPath qPP();
+    qPP->addRect(x, y, w, h);
+    return qPP;
+}
+
+void Ressource::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+
+}

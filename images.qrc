@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/grass_texture.jpg</file>
+        <file>images/Metal_Ingot.png</file>
     </qresource>
 </RCC>

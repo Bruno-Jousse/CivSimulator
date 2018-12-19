@@ -31,6 +31,8 @@ public:
     vector<Soldier> getSoldiers() const;
     vector<Worker> getWorkers() const;
     vector<Machine> getProductionLine() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
 };
 
 #endif //_HEADQUARTER_H

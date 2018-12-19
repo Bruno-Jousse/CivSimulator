@@ -5,6 +5,7 @@
 #include "Ressource.h"
 #include "Headquarter.h"
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ protected:
     int length;
     vector<Ressource> ressources;
     vector<Headquarter> factions;
+    int months;
 
 public:
     World(int nbCivs=0, int width=20, int length=20);

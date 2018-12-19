@@ -17,16 +17,19 @@ Agent::~Agent(){
 
 }
 
-
 QRectF Machine::boundingRect() const{
-    return QRectF();
+    return QRectF(x, y, w, h);
 }
+
 QPainterPath Machine::shape() const{
-    return QPainterPath();
+    QPainterPath qPP();
+    qPP->addRect(x, y, w, h);
+    return qPP;
 }
 
 void Machine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-
+    painter->setBrush(color);
+    painter->drawEllipse(x, y, w, h);
 }
 
 /**

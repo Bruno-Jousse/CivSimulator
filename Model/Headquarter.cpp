@@ -17,10 +17,6 @@ Headquarter::~Headquarter(){
 
 }
 
-
-/**
- * @return void
- */
 int Headquarter::getMetalAmount() const
 {
     return MetalAmount;
@@ -50,17 +46,16 @@ void Headquarter::workerProduction() {
     return;
 }
 
-/**
- * @return void
- */
+void Headquarter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    Building::paint(painter, option, widget);
+
+    painter->drawText(x, y, w, h, Qt::AlignCenter, tr("HQ"));
+}
+
 void Headquarter::soldierProduction() {
     return;
 }
 
-/**
- * @param Machine
- * @return void
- */
 void Headquarter::sendOrder(Machine m) {
     return;
 }

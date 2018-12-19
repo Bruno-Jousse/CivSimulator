@@ -17,11 +17,12 @@ Worker::~Worker(){
 
 }
 
+void Worker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    Machine::paint(painter, option, widget);
 
-/**
- * @param Metal
- * @return void
- */
+    painter->drawText(x, y, w, h, Qt::AlignHCenter, tr("W"));
+}
+
 void Worker::mine(Ressource rs) {
     return;
 }
