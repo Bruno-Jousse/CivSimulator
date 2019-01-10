@@ -13,6 +13,10 @@ Machine::Machine(int hp, int ms, int wearMax, QColor color, int x, int y, int w,
     wear=0;
 }
 
+void Machine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    painter->setBrush(color);
+    painter->drawEllipse(body);
+}
 
 /**
  * @param int

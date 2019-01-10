@@ -10,6 +10,7 @@
 #include "QGraphicsScene"
 #include "QPainter"
 #include "QVector"
+#include "QImage"
 using namespace std;
 
 /****** Portée globale ******/

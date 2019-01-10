@@ -22,6 +22,7 @@ protected:
 public:
     Machine(int hp=10, int ms=1, int wear=0, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
     void action() override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     int getHp();
 private:
 void moveTo(int, int);

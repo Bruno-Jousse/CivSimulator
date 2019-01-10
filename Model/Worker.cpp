@@ -13,10 +13,11 @@ Worker::Worker(int metalStockMax, bool mustMine, int hp, int ms, int wearMax, QC
 
 }
 
-/**
- * @param Metal
- * @return void
- */
 void Worker::mine(Ressource& rs) {
-    return;
+}
+
+void Worker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    Machine::paint(painter, option, widget);
+
+    painter->drawText(body, Qt::AlignHCenter,"W");
 }

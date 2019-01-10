@@ -4,9 +4,10 @@
 #include <random>
 #include "Metal.h"
 #include "Headquarter.h"
-#include <vector>
 #include "QGraphicsScene"
 #include "QGraphicsItem"
+#include <cmath>
+
 using namespace std;
 
 static mt19937 generator (123);

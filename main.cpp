@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     QGraphicsView view(&scene);
     view.setRenderHint(QPainter::Antialiasing);
     view.setBackgroundBrush(QPixmap(":/images/grass_texture.jpg"));
-    view.setCacheMode(QGraphicsView::CacheBackground);
+    view.setCacheMode(QGraphicsView::CacheBackground    );
     view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
     view.setDragMode(QGraphicsView::ScrollHandDrag);
     view.setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Civilisation Simulator"));
