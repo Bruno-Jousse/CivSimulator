@@ -9,58 +9,101 @@
  * Headquarter implementation
  */
 
-Headquarter::Headquarter(int aggressivity, int hp, QColor color, int x, int y, int w, int h) : aggressivity(aggressivity), Building(hp, color, x, y, w, h){
-
+Headquarter::Headquarter(int metalAmount, int aggressivity, int hp, QColor color, int x, int y, int w, int h) : metalAmount(metalAmount), aggressivity(aggressivity), Building(hp, color, x, y, w, h){
 }
 
-Headquarter::~Headquarter(){
-
+void Headquarter::action(){
+    if(frame%60==0){
+        spawnMachine();
+    }
+    while(metalAmount>=10){
+        createASoldier();
+    }
 }
-
 
 /**
  * @return void
  */
 int Headquarter::getMetalAmount() const
 {
-    return MetalAmount;
+    return metalAmount;
 }
 
 void Headquarter::setMetalAmount(int value)
 {
-    MetalAmount = value;
+    metalAmount = value;
 }
 
-vector<Soldier> Headquarter::getSoldiers() const
+QVector<Soldier*> Headquarter::getSoldiers() const
 {
     return soldiers;
 }
 
-vector<Worker> Headquarter::getWorkers() const
+QVector<Worker*> Headquarter::getWorkers() const
 {
     return workers;
 }
 
-vector<Machine> Headquarter::getProductionLine() const
+QVector<pair<int, int> > Headquarter::getProductionLine() const
 {
     return productionLine;
 }
 
-void Headquarter::workerProduction() {
-    return;
+
+void Headquarter::createAWorker(){
+    if(metalAmount>=10){
+        metalAmount-=10;
+        productionLine.push_back(make_pair(3,0));
+    }
 }
 
-/**
- * @return void
- */
-void Headquarter::soldierProduction() {
-    return;
+void Headquarter::createASoldier(){
+    if(metalAmount>=25){
+        metalAmount-=25;
+        productionLine.push_back(make_pair(5,1));
+    }
+}
+
+void Headquarter::spawnMachine(){
+    for(auto it=productionLine.begin(); it!=productionLine.end(); it++){
+        it->first--;
+
+        if(it->first == 0){
+            pair<int, int> pos;
+            switch(it->second){
+                case 0:{
+                    Worker w(5, false, 5, 1, 10, color, 1, 1, 1, 1);
+                    pos=searchAvailablePlaceAround(w);
+                    if(pos.first==-1 || pos.second == -1){
+                        it->first++;
+                    }
+                    else{
+                        childItems().push_back(&w);
+                        workers.push_back(&w);
+                    }
+                    break;
+                }
+                case 1:{
+                    Soldier s(1, false, 10, 1, 10, color, 1, 1, 1, 1);
+                    pos=searchAvailablePlaceAround(s);
+                    if(pos.first==-1 || pos.second == -1){
+                        it->first++;
+                    }
+                    else{
+                        childItems().push_back(&s);
+                        soldiers.push_back(&s);
+                    }
+                    break;
+                }
+            }
+        }
+    }
 }
 
 /**
  * @param Machine
  * @return void
  */
-void Headquarter::sendOrder(Machine m) {
+void Headquarter::sendOrder(Machine& m) {
     return;
 }

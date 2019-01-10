@@ -13,24 +13,28 @@
 
 class Headquarter: public Building {
 private: 
-    int MetalAmount;
+
+    int metalAmount;
     int aggressivity;
-    vector<Soldier> soldiers;
-    vector<Worker> workers;
-    vector<Machine> productionLine;
+    QVector<Soldier*> soldiers;
+    QVector<Worker*> workers;
+    //1st int is number of month to wait, 2nd int represent: 0=worker, 1=soldier
+    QVector< pair<int, int> > productionLine;
     
-    void workerProduction();
-    void soldierProduction();
-    void sendOrder(Machine);
+    void createAWorker();
+    void createASoldier();
+    void sendOrder(Machine&);
 
 public:
-    Headquarter(int aggressivity=1, int hp=100, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
-    ~Headquarter();
+    Headquarter(int metalAmount=100, int aggressivity=1, int hp=100, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
     int getMetalAmount() const;
     void setMetalAmount(int value);
-    vector<Soldier> getSoldiers() const;
-    vector<Worker> getWorkers() const;
-    vector<Machine> getProductionLine() const;
+    QVector<Soldier*> getSoldiers() const;
+    QVector<Worker*> getWorkers() const;
+    QVector< pair<int, int> > getProductionLine() const;
+
+    void spawnMachine();
+    void action() override;
 };
 
 #endif //_HEADQUARTER_H

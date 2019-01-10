@@ -16,48 +16,112 @@ void Figure::setColor(const QColor &value)
 
 int Figure::getX() const
 {
-    return x;
+    return body.x();
 }
 
 void Figure::setX(int value)
 {
-    x = value;
+    body.setX(value);
 }
 
 int Figure::getY() const
 {
-    return y;
+    return body.y();
 }
 
 void Figure::setY(int value)
 {
-    y = value;
+    body.setY(value);
 }
 
 int Figure::getW() const
 {
-    return w;
+    return body.width();
 }
 
 void Figure::setW(int value)
 {
-    w = value;
+    body.setWidth(value);
 }
 
 int Figure::getH() const
 {
-    return h;
+    return body.height();
 }
 
 void Figure::setH(int value)
 {
-    h = value;
+    body.setHeight(value);
 }
 
-Figure::Figure(QColor color, int x, int y, int w, int h) : color(color), x(x), y(y), w(w), h(h) {
+QRect Figure::getBody() const{
+    return body;
+}
 
+void Figure::setBody(QRect r){
+    body = r;
+}
+
+Figure::Figure(QColor color, int x, int y, int w, int h) : color(color){
+    body.setX(x);
+    body.setY(y);
+    body.setWidth(w);
+    body.setHeight(h);
+}
+
+void Figure::suppression(){
+    if(scene()){
+        scene()->removeItem(this);
+    }
 }
 
 Figure::~Figure(){
+    suppression();
+    QGraphicsItem::~QGraphicsItem();
+}
 
+QRectF Figure::boundingRect() const{
+    return QRectF(body);
+}
+
+QPainterPath Figure::shape() const{
+    QPainterPath path;
+    path.addRect(body);
+    return path;
+}
+
+void Figure::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    painter->setBrush(color);
+    painter->drawRect(body);
+}
+
+pair<int, int> Figure::searchAvailablePlaceAround(Figure &r){
+    pair<int, int> pos;
+
+    if( (pos=searchAvailableOnLine(getX()-1, getY()-r.getH(), getX()+getW()+1, r)) == make_pair(-1, -1)){
+        if( (pos=searchAvailableOnLine(getX()-1, getY()+getH()+1, getX()+getW()+1, r)) == make_pair(-1, -1)){
+            if( (pos=searchAvailableOnLine(getY()-1, getX()-r.getW(), getY()+getH()+1, r)) == make_pair(-1, -1)){
+                pos=searchAvailableOnLine(getY()-1, getX()+getW()+1, getY()+getH()+1, r);
+            }
+        }
+    }
+
+    return pos;
+}
+
+pair<int, int> Figure::searchAvailableOnLine(int xSource, int y, int xDestination, Figure &r){
+    pair<int, int> pos(make_pair(-1, -1));
+    bool isPlaced=false;
+    r.setY(y);
+    while(!isPlaced && xSource<=xDestination){
+        r.setX(xSource);
+        if(scene()->collidingItems(&r).isEmpty()){
+            pos.first=xSource;
+            pos.second=y;
+            isPlaced=true;
+        }
+        xSource+=1;
+    }
+
+    return pos;
 }

@@ -16,6 +16,10 @@ Soldier::Soldier(int dmg, bool mustAttack, int hp, int ms, int wearMax, QColor c
  * @param Agent
  * @return void
  */
-void Soldier::attack(Agent){
+void Soldier::attack(Machine&){
+    return;
+}
+
+void Soldier::attack(Building&){
     return;
 }

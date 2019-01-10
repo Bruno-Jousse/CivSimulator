@@ -12,22 +12,8 @@ Agent::~Agent(){
 
 }
 
-
-QRectF Agent::boundingRect() const{
-    return QRectF();
-}
-QPainterPath Agent::shape() const{
-    return QPainterPath();
-}
-
-void Agent::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-
-}
-
-
-/**
- * @return void
- */
-void Agent::action() {
-    return;
+void Agent::advance(int phase){
+    if(phase!=0){
+        action();
+    }
 }

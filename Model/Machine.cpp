@@ -13,21 +13,6 @@ Machine::Machine(int hp, int ms, int wearMax, QColor color, int x, int y, int w,
     wear=0;
 }
 
-Agent::~Agent(){
-
-}
-
-
-QRectF Machine::boundingRect() const{
-    return QRectF();
-}
-QPainterPath Machine::shape() const{
-    return QPainterPath();
-}
-
-void Machine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-
-}
 
 /**
  * @param int
@@ -36,4 +21,8 @@ void Machine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
  */
 void Machine::moveTo(int x, int y) {
     return;
+}
+
+int Machine::getHp(){
+    return hp;
 }

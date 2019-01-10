@@ -13,15 +13,10 @@ Worker::Worker(int metalStockMax, bool mustMine, int hp, int ms, int wearMax, QC
 
 }
 
-Worker::~Worker(){
-
-}
-
-
 /**
  * @param Metal
  * @return void
  */
-void Worker::mine(Ressource rs) {
+void Worker::mine(Ressource& rs) {
     return;
 }

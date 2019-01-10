@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
     main.cpp \
     Model/World.cpp \ Model/Agent.cpp Model/Building.cpp \ Model/Figure.cpp \ Model/Headquarter.cpp \ Model/Machine.cpp \ Model/Metal.cpp \ Model/Ressource.cpp \ Model/Soldier.cpp \ Model/Worker.cpp
 
