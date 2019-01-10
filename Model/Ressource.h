@@ -7,7 +7,7 @@
 #define _RESSOURCE_H
 
 #include "Figure.h"
-
+#include "QImage"
 
 class Ressource: public Figure {
 protected:

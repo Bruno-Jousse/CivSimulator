@@ -21,12 +21,6 @@ void Headquarter::action(){
     }
 }
 
-<<<<<<< HEAD
-/**
- * @return void
- */
-=======
->>>>>>> e9f090a953c88cb5cf5557a83f6cd9da213acc28
 int Headquarter::getMetalAmount() const
 {
     return metalAmount;
@@ -60,7 +54,6 @@ void Headquarter::createAWorker(){
     }
 }
 
-<<<<<<< HEAD
 void Headquarter::createASoldier(){
     if(metalAmount>=25){
         metalAmount-=25;
