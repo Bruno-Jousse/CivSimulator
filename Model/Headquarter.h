@@ -23,7 +23,6 @@ private:
     
     void createAWorker();
     void createASoldier();
-    void sendOrder(Machine&);
 
 public:
     Headquarter(int metalAmount=100, int aggressivity=1, int hp=100, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);

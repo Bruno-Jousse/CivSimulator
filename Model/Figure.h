@@ -17,7 +17,7 @@ using namespace std;
 //One month = 60 frames
 static int frame=0;
 
-int getMonth(){
+static int getMonth(){
     return static_cast<int>(frame/60);
 }
 
@@ -33,10 +33,10 @@ public:
     ~Figure() override;
 
     //Collider
-    QRectF boundingRect() const override;
-    QPainterPath shape() const override;
+    virtual QRectF boundingRect() const override;
+    virtual QPainterPath shape() const override;
     //Draw the object
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     virtual void suppression();
     pair<int, int> searchAvailablePlaceAround(Figure &r);

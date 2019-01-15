@@ -199,12 +199,12 @@ bool World::collider(QRect r1, QRect r2){
       );
 }
 
-QRectF boundingRect(){
+QRectF World::boundingRect() const{
     return QRectF();
 }
-QPainterPath shape() {
+QPainterPath World::shape() const{
     return QPainterPath();
 }
 
-void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+void World::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
 }

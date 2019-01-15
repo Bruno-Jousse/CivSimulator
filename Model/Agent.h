@@ -18,7 +18,7 @@ public:
     //Method called every times the QGraphicsScene decide to advance by a frame
     void advance(int phase) final;
     //Our method called every frames to interact
-    virtual void action();
+    virtual void action() =0;
 };
 
 #endif //_AGENT_H

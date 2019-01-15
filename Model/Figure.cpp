@@ -75,9 +75,9 @@ void Figure::suppression(){
     }
 }
 
+
 Figure::~Figure(){
     suppression();
-    QGraphicsItem::~QGraphicsItem();
 }
 
 QRectF Figure::boundingRect() const{

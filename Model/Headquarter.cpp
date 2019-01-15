@@ -97,14 +97,6 @@ void Headquarter::spawnMachine(){
     }
 }
 
-/**
- * @param Machine
- * @return void
- */
-void Headquarter::sendOrder(Machine& m) {
-
-}
-
 void Headquarter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     Figure::paint(painter, option, widget);
     painter->setBrush(Qt::black);
