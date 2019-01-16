@@ -9,7 +9,7 @@
  * Ressource implementation
  */
 
-Ressource::Ressource(int amount, QColor color, int x, int y, int w, int h) : amount(amount), Figure(color, x, y, w, h){
+Ressource::Ressource(int amount, QColor color, int x, int y, int w, int h) : Figure(color, x, y, w, h), amount(amount){
 
 }
 
@@ -24,4 +24,8 @@ int Ressource::takeRessources(int amount){
 
 int Ressource::getAmount(){
     return amount;
+}
+
+Ressource::~Ressource(){
+
 }

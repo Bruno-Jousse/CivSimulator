@@ -206,5 +206,5 @@ QPainterPath World::shape() const{
     return QPainterPath();
 }
 
-void World::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+void World::paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *){
 }

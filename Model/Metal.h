@@ -13,7 +13,7 @@ public:
     Metal(int amount=50, QColor color=Qt::gray, int x=0, int y=0, int w=0, int h=0);
 
 private:
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 };
 

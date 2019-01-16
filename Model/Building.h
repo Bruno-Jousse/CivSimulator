@@ -16,11 +16,10 @@ protected:
 
 public:
     Building(int hp=100, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
+    virtual ~Building()=0;
 
     int getHp() const;
     void setHp(int value);
-
-    virtual void action() =0;
 };
 
 #endif //_BUILDING_H

@@ -14,6 +14,10 @@ void Building::setHp(int value)
     hp = value;
 }
 
-Building::Building(int hp, QColor color, int x, int y, int w, int h) : hp(hp), Agent(color, x, y, w, h){
+Building::Building(int hp, QColor color, int x, int y, int w, int h) : Agent(color, x, y, w, h),  hp(hp){
     hpMax=hp;
+}
+
+Building::~Building(){
+
 }

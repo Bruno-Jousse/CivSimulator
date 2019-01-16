@@ -30,15 +30,22 @@ protected:
 
 public:
     Figure(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
-    ~Figure() override;
+    virtual ~Figure() override{
+
+    }
 
     //Collider
     virtual QRectF boundingRect() const override;
     virtual QPainterPath shape() const override;
     //Draw the object
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
-    virtual void suppression();
+    virtual void suppression(){
+        /*if(scene()){
+            scene()->removeItem(this);
+        }*/
+    }
+
     pair<int, int> searchAvailablePlaceAround(Figure &r);
     pair<int, int> searchAvailableOnLine(int xSource, int y, int xDestination, Figure &r);
 

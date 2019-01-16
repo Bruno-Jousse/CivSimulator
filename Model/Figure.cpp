@@ -69,17 +69,6 @@ Figure::Figure(QColor color, int x, int y, int w, int h) : color(color){
     body.setHeight(h);
 }
 
-void Figure::suppression(){
-    if(scene()){
-        scene()->removeItem(this);
-    }
-}
-
-
-Figure::~Figure(){
-    suppression();
-}
-
 QRectF Figure::boundingRect() const{
     return QRectF(body);
 }
@@ -90,7 +79,7 @@ QPainterPath Figure::shape() const{
     return path;
 }
 
-void Figure::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+void Figure::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     painter->setBrush(color);
     painter->drawRect(body);
 }

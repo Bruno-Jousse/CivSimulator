@@ -29,7 +29,7 @@ public:
 
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;
 
     bool isOccupiedByHQ(QRect obj);
     bool collider(QRect r1, QRect r2);

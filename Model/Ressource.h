@@ -16,7 +16,7 @@ protected:
 
 public:
     Ressource(int amount=10, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
-
+    virtual ~Ressource() = 0;
     int getAmount();
     int takeRessources(int amount);
 };

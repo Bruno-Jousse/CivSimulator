@@ -12,8 +12,7 @@
 class Agent: public Figure {
 public:
     Agent(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
-    ~Agent();
-
+    virtual ~Agent()=0;
 
     //Method called every times the QGraphicsScene decide to advance by a frame
     void advance(int phase) final;

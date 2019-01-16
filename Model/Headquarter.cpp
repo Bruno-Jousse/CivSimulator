@@ -9,7 +9,7 @@
  * Headquarter implementation
  */
 
-Headquarter::Headquarter(int metalAmount, int aggressivity, int hp, QColor color, int x, int y, int w, int h) : metalAmount(metalAmount), aggressivity(aggressivity), Building(hp, color, x, y, w, h){
+Headquarter::Headquarter(int metalAmount, int aggressivity, int hp, QColor color, int x, int y, int w, int h) : Building(hp, color, x, y, w, h), metalAmount(metalAmount), aggressivity(aggressivity){
 }
 
 void Headquarter::action(){
