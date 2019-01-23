@@ -18,10 +18,13 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     QGraphicsScene scene;
-    scene.setSceneRect(0, 0, 1000, 1000);
+    scene.setSceneRect(0, 0, width, length);
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
+    cout << "Application creation." <<endl;
 
     World world(nbCivs, length, width);
+    scene.addItem(&world);
+    world.init();
 
     QGraphicsView view(&scene);
     view.setRenderHint(QPainter::Antialiasing);

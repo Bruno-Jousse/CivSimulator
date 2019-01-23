@@ -9,7 +9,11 @@
  * Soldier implementation
  */
 
-Soldier::Soldier(int dmg, bool mustAttack, int hp, int ms, int wearMax, QColor color, int x, int y, int w, int h) : Machine(hp, ms, wearMax, color, x, y, w, h), dmg(dmg), mustAttack(mustAttack){
+Soldier::Soldier(QColor color, int x, int y, int w, int h, int dmg, bool mustAttack, int hp, int ms, int wearMax) : Machine(color, x, y, w, h, hp, ms, wearMax), dmg(dmg), mustAttack(mustAttack){
+
+}
+
+Soldier::Soldier(int dmg, bool mustAttack, int hp, int ms, int wearMax) : Machine(hp, ms, wearMax), dmg(dmg), mustAttack(mustAttack){
 
 }
 

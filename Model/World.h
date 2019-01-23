@@ -7,7 +7,8 @@
 #include "QGraphicsScene"
 #include "QGraphicsItem"
 #include <cmath>
-
+#include <iostream>
+#include "Figure.h"
 using namespace std;
 
 static mt19937 generator (123);
@@ -15,9 +16,10 @@ static uniform_real_distribution<double> distribReal(0.0, 1.0);
 static uniform_int_distribution<int> distribInt(0, RAND_MAX);
 //double randomRealBetweenZeroAndOne = distrib(generator);
 
-class World : QGraphicsItem
+class World : public QGraphicsItem
 {
 protected:
+    int nbCivs;
     int width;
     int length;
     QVector<Ressource*> ressources;
@@ -34,9 +36,8 @@ public:
     bool isOccupiedByHQ(QRect obj);
     bool collider(QRect r1, QRect r2);
     bool isOccupied(QRect obj);
+    void init();
 
-private:
-    void init(int nbCivs);
 };
 
 #endif // WORLD_H

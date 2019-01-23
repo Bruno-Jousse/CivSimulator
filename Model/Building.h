@@ -15,7 +15,9 @@ protected:
     int hpMax;
 
 public:
-    Building(int hp=100, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
+    Building(QColor color, int x, int y, int w, int h, int hp=100);
+    Building(int hp=100);
+
     virtual ~Building()=0;
 
     int getHp() const;

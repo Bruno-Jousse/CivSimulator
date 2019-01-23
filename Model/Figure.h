@@ -11,6 +11,8 @@
 #include "QPainter"
 #include "QVector"
 #include "QImage"
+#include <iostream>
+
 using namespace std;
 
 /****** Portée globale ******/
@@ -29,9 +31,9 @@ protected:
     QRect body;
 
 public:
-    Figure(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
+    Figure(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=30, int h=30);
     virtual ~Figure() override{
-
+        suppression();
     }
 
     //Collider
@@ -40,11 +42,7 @@ public:
     //Draw the object
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
-    virtual void suppression(){
-        /*if(scene()){
-            scene()->removeItem(this);
-        }*/
-    }
+    virtual void suppression();
 
     pair<int, int> searchAvailablePlaceAround(Figure &r);
     pair<int, int> searchAvailableOnLine(int xSource, int y, int xDestination, Figure &r);

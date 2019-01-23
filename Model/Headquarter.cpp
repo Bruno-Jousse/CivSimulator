@@ -9,15 +9,19 @@
  * Headquarter implementation
  */
 
-Headquarter::Headquarter(int metalAmount, int aggressivity, int hp, QColor color, int x, int y, int w, int h) : Building(hp, color, x, y, w, h), metalAmount(metalAmount), aggressivity(aggressivity){
+Headquarter::Headquarter(QColor color, int x, int y, int w, int h, int metalAmount, int aggressivity, int hp) : Building(color, x, y, w, h, hp), metalAmount(metalAmount), aggressivity(aggressivity){
 }
+
+Headquarter::Headquarter(int metalAmount, int aggressivity, int hp) : Building(hp), metalAmount(metalAmount), aggressivity(aggressivity){
+}
+
 
 void Headquarter::action(){
     if(frame%60==0){
         spawnMachine();
     }
     while(metalAmount>=10){
-        createASoldier();
+        createAWorker();
     }
 }
 
@@ -69,7 +73,7 @@ void Headquarter::spawnMachine(){
             pair<int, int> pos;
             switch(it->second){
                 case 0:{
-                    Worker w(5, false, 5, 1, 10, color, 1, 1, 1, 1);
+                    Worker w(color, 1, 1, 1, 1, 5, false, 5, 1, 10);
                     pos=searchAvailablePlaceAround(w);
                     if(pos.first==-1 || pos.second == -1){
                         it->first++;
@@ -81,7 +85,7 @@ void Headquarter::spawnMachine(){
                     break;
                 }
                 case 1:{
-                    Soldier s(1, false, 10, 1, 10, color, 1, 1, 1, 1);
+                    Soldier s(color, 1, 1, 1, 1, 1, false, 10, 1, 10);
                     pos=searchAvailablePlaceAround(s);
                     if(pos.first==-1 || pos.second == -1){
                         it->first++;

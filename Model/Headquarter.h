@@ -25,7 +25,8 @@ private:
     void createASoldier();
 
 public:
-    Headquarter(int metalAmount=100, int aggressivity=1, int hp=100, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
+    Headquarter(QColor color, int x, int y, int w, int h, int metalAmount=100, int aggressivity=1, int hp=100);
+    Headquarter(int metalAmount=100, int aggressivity=1, int hp=100);
 
     int getMetalAmount() const;
     void setMetalAmount(int value);

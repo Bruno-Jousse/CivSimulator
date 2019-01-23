@@ -9,7 +9,11 @@
  * Worker implementation
  */
 
-Worker::Worker(int metalStockMax, bool mustMine, int hp, int ms, int wearMax, QColor color, int x, int y, int w, int h) : Machine(hp, ms, wearMax, color, x, y, w, h), metalStockMax(metalStockMax), mustMine(mustMine) {
+Worker::Worker(QColor color, int x, int y, int w, int h, int metalStockMax, bool mustMine, int hp, int ms, int wearMax) : Machine(color, x, y, w, h, hp, ms, wearMax), metalStockMax(metalStockMax), mustMine(mustMine) {
+
+}
+
+Worker::Worker(int metalStockMax, bool mustMine, int hp, int ms, int wearMax) : Machine(hp, ms, wearMax), metalStockMax(metalStockMax), mustMine(mustMine) {
 
 }
 

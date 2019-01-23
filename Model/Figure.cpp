@@ -4,6 +4,12 @@
  * Figure implementation
  */
 
+void Figure::suppression(){
+    if(scene()){
+        scene()->removeItem(this);
+     }
+}
+
 QColor Figure::getColor() const
 {
     return color;

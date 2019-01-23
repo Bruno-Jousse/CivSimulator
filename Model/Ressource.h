@@ -15,7 +15,8 @@ protected:
     QImage img;
 
 public:
-    Ressource(int amount=10, QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=0, int h=0);
+    Ressource(QColor color, int x, int y, int w, int h, int amount=10);
+    Ressource(int amount=10);
     virtual ~Ressource() = 0;
     int getAmount();
     int takeRessources(int amount);

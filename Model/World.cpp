@@ -1,12 +1,12 @@
 #include "World.h"
 
-World::World(int nbCiv, int width, int length) :  width(width), length(length){
-    init(nbCiv);
+World::World(int nbCivs, int width, int length) :  nbCivs(nbCivs), width(width), length(length){
+
 }
 
 
-void World::init(int nbCivs){
-    factions.resize(nbCivs);
+void World::init(){
+    cout << "World initialisation.";
     int r=0, g =0, b=0;
     Headquarter* hq;
     Metal* ress;
@@ -25,12 +25,14 @@ void World::init(int nbCivs){
         }
         else{
             hq->setColor(QColor(r, g, 255, 255));
-            r+=50; g+=50; b+=50;
+            r=(r+50)%256; g=(g+50)%256; b=(b+50)%256;
         }
 
         scene()->addItem(hq);
         factions.push_back(hq);
     }
+
+    cout << ".";
 
     for(int i=0; i <nbCivs*3; i++){
         ress = new Metal();
@@ -42,6 +44,7 @@ void World::init(int nbCivs){
         scene()->addItem(ress);
         ressources.push_back(ress);
     }
+    cout << "." << endl;
 }
 
 /* init2
@@ -116,8 +119,11 @@ void World::init(int nbCivs){
 
 
 void World::advance(int phase){
-    //Suppresion of all dead units
     if(phase != 1){
+        if(frame%60 == 0){
+            cout << "One more month pasted. This is the " << getMonth() << "th month.";
+        }
+        cout << "Suppression of all dead units.";
         auto it = factions.begin();
         while(it!=factions.end()){
             if((*it)->getHp() <= 0){
@@ -135,9 +141,20 @@ void World::advance(int phase){
                         it2++;
                     }
                 }
+                auto it3 = (*it)->getSoldiers().begin();
+                while(it3!=(*it)->getSoldiers().end()){
+                    if((*it3)->getHp() <=0){
+                        (*it3)->suppression();
+                        it3=(*it)->getSoldiers().erase(it3);
+                    }
+                    else{
+                        it3++;
+                    }
+                }
                 it++;
             }
         }
+        cout << ".";
         auto it3 = ressources.begin();
         while(it3!=ressources.end()){
             if((*it3)->getAmount() <= 0){
@@ -148,6 +165,8 @@ void World::advance(int phase){
                 it3++;
             }
         }
+        cout << "." << endl;
+        frame+=1;
     }
 }
 

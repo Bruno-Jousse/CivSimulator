@@ -8,6 +8,10 @@ Agent::Agent(QColor color, int x, int y, int w, int h) : Figure(color, x, y, w, 
 
 }
 
+Agent::Agent() : Figure(){
+
+}
+
 Agent::~Agent(){
 
 }

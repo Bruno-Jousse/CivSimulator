@@ -10,8 +10,7 @@
 
 class Metal: public Ressource {
 public:
-    Metal(int amount=50, QColor color=Qt::gray, int x=0, int y=0, int w=0, int h=0);
-
+    Metal(QColor color=Qt::gray, int x=0, int y=0, int w=30, int h=30, int amount=50);
 private:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
