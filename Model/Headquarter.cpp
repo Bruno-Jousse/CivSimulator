@@ -73,7 +73,7 @@ void Headquarter::spawnMachine(){
             pair<int, int> pos;
             switch(it->second){
                 case 0:{
-                    Worker w(color, 1, 1, 1, 1, 5, false, 5, 1, 10);
+                    Worker w(color, 1, 1, 30, 30, 5, false, 5, 1, 10);
                     pos=searchAvailablePlaceAround(w);
                     if(pos.first==-1 || pos.second == -1){
                         it->first++;
@@ -85,7 +85,7 @@ void Headquarter::spawnMachine(){
                     break;
                 }
                 case 1:{
-                    Soldier s(color, 1, 1, 1, 1, 1, false, 10, 1, 10);
+                    Soldier s(color, 1, 1, 30, 30, 1, false, 10, 1, 10);
                     pos=searchAvailablePlaceAround(s);
                     if(pos.first==-1 || pos.second == -1){
                         it->first++;
