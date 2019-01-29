@@ -12,5 +12,5 @@ if [ $# -eq 3 ]
 	larg=$3
 fi
 
-g++  -o CivSimulation $buildPath/main.o $buildPath/World.o  $buildPath/Agent.o $buildPath/Building.o  $buildPath/Figure.o  $buildPath/Headquarter.o  $buildPath/Machine.o  $buildPath/Metal.o  $buildPath/Ressource.o  $buildPath/Soldier.o  $buildPath/Worker.o $buildPath/qrc_images.o   -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread -g
-$buildPath/CivSimulation $nbCivs $long $larg
+g++ -o CivSimulation "$buildPath/main.o" $buildPath/World.o  $buildPath/Agent.o $buildPath/Building.o  $buildPath/Figure.o  $buildPath/Headquarter.o  $buildPath/Machine.o  $buildPath/Metal.o  $buildPath/Ressource.o  $buildPath/Soldier.o  $buildPath/Worker.o $buildPath/qrc_images.o   -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread -g
+./$buildPath/CivSimulation $nbCivs $long $larg

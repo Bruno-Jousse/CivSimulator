@@ -7,14 +7,17 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    if(argc < 4){
-        cout << "You must give following parameters: number of civilisations | length of the world | width of the world." << endl;
-        return 0;
+    int nbCivs = 2;
+    int length = 1000;
+    int width = 1000;
+    if(argc >= 4){
+        nbCivs = stoi(argv[1]);
+        length = stoi(argv[2]);
+        width = stoi(argv[3]);
     }
-
-    int nbCivs = stoi(argv[1]);
-    int length = stoi(argv[2]);
-    int width = stoi(argv[3]);
+    else{
+        cout << "You can give following parameters: number of civilisations | length of the world | width of the world." << endl;
+    }
 
     QApplication a(argc, argv);
     QGraphicsScene scene;
