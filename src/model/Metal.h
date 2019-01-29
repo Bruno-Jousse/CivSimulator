@@ -6,8 +6,10 @@
 class Metal: public Resource
 {
 public:
-    Metal(int quantity);
+    Metal(int x, int y, int quantity);
     virtual ~Metal();
+
+    void simulate(unsigned date) override;
 
 protected:
 

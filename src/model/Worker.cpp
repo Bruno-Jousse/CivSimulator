@@ -1,15 +1,16 @@
 #include "Worker.h"
 
+#include <cmath>
+
+#include "../controller/RandomManager.h"
+
 // init constant
-int Worker::STOCK_MAX = 5;
-int Worker::STARTING_HP = 5;
+const int Worker::STOCK_MAX = 5;
+const int Worker::STARTING_HP = 5;
 
 Worker::Worker(int x, int y, unsigned date, Headquarter* creator):
-    Agent(x, y, date, creator), hp(Worker::STARTING_HP), stock(0)
-{
-    // TODO : init deathDate with the PRNG following N(100, 10)
-    deathDate = 100;
-}
+    Agent(x, y, (int)round(RandomManager::getInstance().getGaussian(100, 10)), Worker::STARTING_HP, creator), stock(0)
+{}
 
 Worker::~Worker()
 {}

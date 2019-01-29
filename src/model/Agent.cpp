@@ -1,6 +1,7 @@
 #include "Agent.h"
 
-Agent::Agent(int x, int y, unsigned date, Headquarter* creator): Entity(x, y), hq(creator)
+Agent::Agent(int x, int y, unsigned deathDate, int hp, Headquarter* creator):
+ Entity(x, y), deathDate(deathDate), hp(hp), hq(creator)
 {}
 
 Agent::~Agent()

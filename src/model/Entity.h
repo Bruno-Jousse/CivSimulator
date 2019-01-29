@@ -4,6 +4,9 @@
 class Entity
 {
 public:
+    Entity() = delete;
+    Entity(Entity const&) = delete;
+    
     Entity(int x, int y);
     virtual ~Entity();
 

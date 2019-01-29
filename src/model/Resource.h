@@ -6,8 +6,14 @@
 class Resource: public Entity
 {
 public:
-    Resource(int quantity);
+    Resource() = delete;
+    Resource(Resource const&) = delete;
+
+    Resource(int x, int y, int quantity);
     virtual ~Resource();
+    // simulate = 0;
+
+    bool isEmpty() { return quantity<=0; }
 
 protected:
     int quantity;

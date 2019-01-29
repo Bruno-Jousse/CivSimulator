@@ -7,7 +7,7 @@
 class Agent: public Entity
 {
 public:
-    Agent(int x, int y, unsigned date, Headquarter* creator);
+    Agent(int x, int y, unsigned deathDate, int hp, Headquarter* creator);
     virtual ~Agent();
 
     // virtual void simulate(unsigned date) = 0;

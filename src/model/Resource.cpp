@@ -1,6 +1,6 @@
 #include "Resource.h"
 
-Resource::Resource(int quantity): quantity(quantity)
+Resource::Resource(int x, int y, int quantity): Entity(x,y), quantity(quantity)
 {}
 
 Resource::~Resource()
