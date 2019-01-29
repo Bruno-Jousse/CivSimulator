@@ -14,6 +14,8 @@ against each other for the domination of the world.
 While not fixed, in order to compile the project you must use the building fonction of QT Creator, there will be an error. Then you must compute in the terminal under the directory build-CivSimulation-Desktop-Debug the following command line:
 g++  -o CivSimulation main.o World.o  Agent.o Building.o  Figure.o  Headquarter.o  Machine.o  Metal.o  Ressource.o  Soldier.o  Worker.o qrc_images.o   -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread
 
-## TODOs
-
-- CMakeLists.txt
+Now, use cmake
+```sh
+$ cmake -G "Unix Makefiles"
+$ cmake --build .
+```

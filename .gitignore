@@ -1,1 +1,10 @@
 CivSimaltion.pro.*
+
+# ignore cmake stuff
+CMakeFiles/
+*.cmake
+*Cache*
+Makefile
+
+# ignore binary
+civsimul
