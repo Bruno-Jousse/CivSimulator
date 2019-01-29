@@ -25,14 +25,14 @@ static int getMonth(){
 
 /****************************/
 
-class Figure : public QGraphicsItem {
+class Entity : public QGraphicsItem {
 protected:
     QColor color;
-    QRect body;
+    QSizeF size;
 
 public:
-    Figure(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=30, int h=30);
-    virtual ~Figure() override{
+    Entity(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=30, int h=30);
+    virtual ~Entity() override{
         suppression();
     }
 
@@ -44,8 +44,8 @@ public:
 
     virtual void suppression();
 
-    pair<int, int> searchAvailablePlaceAround(Figure &r);
-    pair<int, int> searchAvailableOnLine(int xSource, int y, int xDestination, Figure &r);
+    pair<int, int> searchAvailablePlaceAround(Entity &r);
+    pair<int, int> searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r);
 
 
     QColor getColor() const;
@@ -58,8 +58,8 @@ public:
     void setW(int value);
     int getH() const;
     void setH(int value);
-    QRect getBody() const;
-    void setBody(QRect r);
+    QSizeF getSize() const;
+    void setSize(QSizeF r);
 
 };
 #endif //_FIGURE_H

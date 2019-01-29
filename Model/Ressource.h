@@ -6,10 +6,10 @@
 #ifndef _RESSOURCE_H
 #define _RESSOURCE_H
 
-#include "Figure.h"
+#include "Entity.h"
 #include "QImage"
 
-class Ressource: public Figure {
+class Ressource: public Entity {
 protected:
     int amount;
     QImage img;

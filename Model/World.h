@@ -8,12 +8,13 @@
 #include "QGraphicsItem"
 #include <cmath>
 #include <iostream>
-#include "Figure.h"
+#include "Entity.h"
+#include <time.h>
 using namespace std;
 
-static mt19937 generator (123);
-static uniform_real_distribution<double> distribReal(0.0, 1.0);
-static uniform_int_distribution<int> distribInt(0, RAND_MAX);
+static mt19937::result_type seed = time(0);
+static auto distribReal = std::bind(uniform_real_distribution<double> (0.0, 1.0), mt19937(seed));
+static auto distribInt = std::bind(uniform_int_distribution<int> (0, 100000), mt19937(seed));
 //double randomRealBetweenZeroAndOne = distrib(generator);
 
 class World : public QGraphicsItem

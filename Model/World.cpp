@@ -14,8 +14,8 @@ void World::init(){
     for(int i=0; i<nbCivs; i++){
         hq = new Headquarter();
         do{
-            hq->setX(distribInt(generator)%(width-hq->getW()));
-            hq->setY(distribInt(generator)%(length-hq->getH()));
+            hq->setX(distribInt()%(width-hq->getW()));
+            hq->setY(distribInt()%(length-hq->getH()));
         }while(!scene()->collidingItems(hq).isEmpty());
         if(i%3==0){
             hq->setColor(QColor(255, g, b, 255));
@@ -33,90 +33,20 @@ void World::init(){
     }
 
     cout << ".";
-
+/*
     for(int i=0; i <nbCivs*3; i++){
         ress = new Metal();
         do{
-            ress->setX(distribInt(generator)%(width-ress->getW()));
-            ress->setY(distribInt(generator)%(length-ress->getH()));
+            cout << ress->getW() << " " << ress->getH() << " " << width << " " << length << endl;
+            ress->setX(distribInt()%(width-ress->getW()));
+            ress->setY(distribInt()%(length-ress->getH()));
         }while(!scene()->collidingItems(ress).isEmpty());
 
         scene()->addItem(ress);
         ressources.push_back(ress);
-    }
+    }*/
     cout << "." << endl;
 }
-
-/* init2
- * void World::init(int nbFactions){
-    factions.resize(size_t(nbFactions));
-    int r=0, g =0, b=0, x, y, cpt=0;
-    Headquarter hq;
-    int nbFactBySide = (int)(ceil(nbFactions/4.0));
-    int distX = (int)(width/nbFactBySide+1);
-    int distY = (int)(length/nbFactBySide+1);
-    vector< vector<int> > positions(nbFactions);
-
-    //Set position North side
-    x=distX;
-    y=0;
-    for(int i=0; i<nbFactBySide; i++, cpt++){
-        positions[cpt].push_back(x);
-        positions[cpt].push_back(y);
-        x += distX;
-    }
-
-    //Set position South Side
-    x=distX;
-    y=length-1;
-    for(int i=0; i<nbFactBySide && cpt<nbFactions; cpt++, i++){
-        positions[cpt].push_back(x);
-        positions[cpt].push_back(y);
-        x += distX;
-    }
-
-    //Set position East Side
-    x=0;
-    y=distY;
-    for(int i=0; i<nbFactBySide && cpt<nbFactions; cpt++, i++){
-        positions[cpt].push_back(x);
-        positions[cpt].push_back(y);
-        y += distY;
-    }
-
-    //Set position West Side
-    x=width-1;
-    y=distY;
-    for(int i=0; i<nbFactBySide && cpt<nbFactions; cpt++, i++){
-        positions[cpt].push_back(x);
-        positions[cpt].push_back(y);
-        y += distY;
-    }
-
-    for(int i=0; i<=nbFactions && r<=255; i++){
-        hq.setX(positions[i][0]);
-        hq.setY(positions[i][1]);
-        //Set color
-        if(i%3==0){
-            hq.setColor(QColor(255, g, b, 255));
-        }
-        else if(i%3==1){
-            hq.setColor(QColor(r, 255, b, 255));
-
-            ...
-
-    //Generate ressources
-    Metal metal();
-
-    for(int i=0; i<5*(nbFactions); i++){
-        do{
-            metal.setX(distribInt(generator)%width);
-            metal.setY(distribInt(generator)%length);
-
-        }while(Pas de conflit avec un autre objet);
-    }
-*/
-
 
 void World::advance(int phase){
     if(phase != 1){
@@ -171,6 +101,7 @@ void World::advance(int phase){
 }
 
 //Use scene()->collidingItems(&QGraphicsItem).isEmpty() instead
+/*
 bool World::isOccupied(QRect obj){
     int i=0, j;
     bool isOccupied=false;
@@ -217,6 +148,7 @@ bool World::collider(QRect r1, QRect r2){
               || r2.y() + r2.height() < r1.y()
       );
 }
+*/
 
 QRectF World::boundingRect() const{
     return QRectF();

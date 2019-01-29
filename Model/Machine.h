@@ -7,17 +7,15 @@
 #define _MACHINE_H
 
 #include "Agent.h"
-
+#include "Healthbar.h"
 
 class Machine: public Agent {
 protected:
-    int hp;
-    int hpMax;
+    Healthbar healthbar;
+    //Usure de la machine
+    Healthbar wearbar;
     int ms;
-    //Usure
-    int wear;
-    //Usure maximale avant destruction
-    int wearMax;
+
     void moveTo(int, int);
 
 public:
@@ -26,6 +24,14 @@ public:
     //virtual ~Machine() = 0;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
     int getHp();
+    void setHp(int hp);
+
+    void setX(int x);
+    void setY(int y);
+    void setBody(QRect b);
+    int getWear();
+    void setWear(int hp);
+
 };
 
 #endif //_MACHINE_H

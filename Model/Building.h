@@ -7,12 +7,11 @@
 #define _BUILDING_H
 
 #include "Agent.h"
-
+#include "Healthbar.h"
 
 class Building: public Agent {
 protected:
-    int hp;
-    int hpMax;
+    Healthbar healthbar;
 
 public:
     Building(QColor color, int x, int y, int w, int h, int hp=100);
@@ -20,8 +19,11 @@ public:
 
     virtual ~Building()=0;
 
-    int getHp() const;
+    int getHp();
     void setHp(int value);
+    void setX(int x);
+    void setY(int y);
+    void setBody(QRect b);
 };
 
 #endif //_BUILDING_H

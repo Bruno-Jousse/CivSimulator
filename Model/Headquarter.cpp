@@ -79,7 +79,8 @@ void Headquarter::spawnMachine(){
                         it->first++;
                     }
                     else{
-                        childItems().push_back(&w);
+                        //childItems().push_back(&w);
+                        scene()->addItem(&w);
                         workers.push_back(&w);
                     }
                     break;
@@ -91,7 +92,8 @@ void Headquarter::spawnMachine(){
                         it->first++;
                     }
                     else{
-                        childItems().push_back(&s);
+                        //childItems().push_back(&s);
+                        scene()->addItem(&s);
                         soldiers.push_back(&s);
                     }
                     break;
@@ -102,8 +104,7 @@ void Headquarter::spawnMachine(){
 }
 
 void Headquarter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-    Figure::paint(painter, option, widget);
+    Entity::paint(painter, option, widget);
     painter->setBrush(Qt::black);
-    painter->drawText(body, Qt::AlignCenter, "HQ");
+    painter->drawText(QRectF(mapFromParent(pos()), size), Qt::AlignCenter, "HQ");
 }
-

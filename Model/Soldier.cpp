@@ -33,5 +33,5 @@ void Soldier::action(){
 void Soldier::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     Machine::paint(painter, option, widget);
 
-    painter->drawText(body, Qt::AlignHCenter, "S");
+    painter->drawText(QRectF(mapFromParent(pos()), size), Qt::AlignHCenter, "S");
 }

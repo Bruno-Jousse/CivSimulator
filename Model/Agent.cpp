@@ -4,11 +4,11 @@
  * Agent implementation
  */
 
-Agent::Agent(QColor color, int x, int y, int w, int h) : Figure(color, x, y, w, h){
+Agent::Agent(QColor color, int x, int y, int w, int h) : Entity(color, x, y, w, h){
 
 }
 
-Agent::Agent() : Figure(){
+Agent::Agent() : Entity(){
 
 }
 

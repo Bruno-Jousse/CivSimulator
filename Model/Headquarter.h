@@ -27,7 +27,15 @@ private:
 public:
     Headquarter(QColor color, int x, int y, int w, int h, int metalAmount=100, int aggressivity=1, int hp=100);
     Headquarter(int metalAmount=100, int aggressivity=1, int hp=100);
-
+    void suppression() override{
+        Entity::suppression();
+        for(int i=0; i<soldiers.size(); i++){
+            soldiers.at(i)->suppression();
+        }
+        for(int i=0; i<workers.size(); i++){
+            workers.at(i)->suppression();
+        }
+    }
     int getMetalAmount() const;
     void setMetalAmount(int value);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;

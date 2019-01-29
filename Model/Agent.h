@@ -6,11 +6,12 @@
 #ifndef _AGENT_H
 #define _AGENT_H
 
-#include "Figure.h"
+#include "Entity.h"
 #include <QColor>
 
-class Agent: public Figure {
+class Agent: public Entity {
 public:
+
     Agent(QColor color, int x, int y, int w, int h);
     Agent();
     virtual ~Agent()=0;
