@@ -5,12 +5,12 @@
 
 #include "Entity.h"
 
-class World
+class World final
 {
 public:
     World();
     World(const World& w) = delete;
-    virtual ~World();
+    ~World();
 
     void simulateOneTurn(unsigned date);
 

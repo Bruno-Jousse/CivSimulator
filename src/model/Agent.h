@@ -7,6 +7,9 @@
 class Agent: public Entity
 {
 public:
+    Agent() = delete;
+    Agent(Agent const&) = delete;
+    
     Agent(int x, int y, unsigned deathDate, int hp, Headquarter* creator);
     virtual ~Agent();
 

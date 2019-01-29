@@ -3,7 +3,7 @@
 // global constants
 const int Headquarter::STARTING_HP = 50;
 
-Headquarter::Headquarter(): hp(Headquarter::STARTING_HP)
+Headquarter::Headquarter(int x, int y): Entity(x, y), hp(Headquarter::STARTING_HP)
 {}
 
 Headquarter::~Headquarter()

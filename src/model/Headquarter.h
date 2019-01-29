@@ -3,10 +3,13 @@
 
 #include "Entity.h"
 
-class Headquarter
+class Headquarter final: public Entity
 {
 public:
-    Headquarter();
+    Headquarter() = delete;
+    Headquarter(Headquarter const&) = delete;
+    
+    Headquarter(int x, int y);
     virtual ~Headquarter();
 
     // global constant
