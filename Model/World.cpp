@@ -11,7 +11,7 @@ void World::init(){
     Headquarter* hq;
     Metal* ress;
 
-    for(int i=0; i<=nbCivs && r<=255; i++){
+    for(int i=0; i<nbCivs; i++){
         hq = new Headquarter();
         do{
             hq->setX(distribInt(generator)%(width-hq->getW()));
