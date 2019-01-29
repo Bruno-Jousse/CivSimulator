@@ -1,4 +1,6 @@
+# IDE conf files
 CivSimaltion.pro.*
+.vscode/
 
 # ignore cmake stuff
 CMakeFiles/
