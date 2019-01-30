@@ -24,14 +24,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
-SOURCES += main.cpp Model/World.cpp Model/Agent.cpp Model/Building.cpp Model/Machine.cpp Model/Metal.cpp Model/Ressource.cpp Model/Soldier.cpp Model/Worker.cpp \
-    Model/Entity.cpp \
-    Model/Headquarter.cpp \
-    Model/Healthbar.cpp
+SOURCES +=  main.cpp \
+            src/model/World.cpp src/model/Agent.cpp src/model/Headquarter.cpp src/model/Metal.cpp src/model/Resource.cpp src/model/Soldier.cpp src/model/Worker.cpp src/model/Entity.cpp \
+            src/controller/RandomManager.cpp src/controller/Simulator.cpp \
+            src/view/Agent.cpp src/view/Healthbar.cpp src/view/Soldier.cpp src/view/Building.cpp src/view/Machine.cpp src/view/Worker.cpp src/view/Entity.cpp src/view/Metal.cpp src/view/World.cpp src/view/Headquarter.cpp src/view/Resource.cpp
 
-HEADERS += Model/World.h Model/Agent.h Model/Building.h Model/Headquarter.h Model/Machine.h Model/Metal.h Model/Ressource.h Model/Soldier.h Model/Worker.h \
-    Model/Entity.h \
-    Model/Healthbar.h
+
+HEADERS +=  src/model/World.h src/model/Agent.h src/model/Headquarter.h src/model/Metal.h src/model/Resource.h src/model/Soldier.h src/model/Worker.h src/model/Entity.h \
+            src/controller/Simulator.h src/controller/RandomManager.h \
+            src/view/Agent.h src/view/Healthbar.h src/view/Soldier.h src/view/Building.h src/view/Machine.h src/view/Worker.h src/view/Entity.h src/view/Metal.h src/view/World.h src/view/Headquarter.h src/view/Resource.h \
 
 FORMS +=
 
