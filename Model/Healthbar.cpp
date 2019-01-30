@@ -1,6 +1,6 @@
 #include "Healthbar.h"
 
-Healthbar::Healthbar(QColor color, int x, int y, int w, int h, int hpMax, bool isActive) : Entity (color, x, y, w, h), hpMax(hpMax), hp(hp), isActive(isActive){
+Healthbar::Healthbar(QColor color, int x, int y, int w, int h, int hpMax, bool isActive) : Entity (color, x, y, w, h), hpMax(hpMax), hp(hpMax), isActive(isActive){
 }
 
 Healthbar::Healthbar(QColor color, int hpMax, bool isActive) : Entity(color), hpMax(hpMax), hp(hpMax), isActive(isActive){

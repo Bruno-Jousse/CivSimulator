@@ -1,6 +1,6 @@
 #include "World.h"
 
-World::World(int nbCivs, int width, int length) :  nbCivs(nbCivs), width(width), length(length){
+World::World(int nbCivs, int w, int h) :  Entity(Qt::transparent, 0, 0, w, h), nbCivs(nbCivs){
 
 }
 
@@ -14,8 +14,9 @@ void World::init(){
     for(int i=0; i<nbCivs; i++){
         hq = new Headquarter();
         do{
-            hq->setX(distribInt()%(width-hq->getW()));
-            hq->setY(distribInt()%(length-hq->getH()));
+            hq->setX(distribInt()%(getW()-hq->getW()));
+            hq->setY(distribInt()%(getH()-hq->getH()));
+            cout << distribInt() << " " << hq->getX() << " " << hq->getY() << endl;
         }while(!scene()->collidingItems(hq).isEmpty());
         if(i%3==0){
             hq->setColor(QColor(255, g, b, 255));
@@ -28,23 +29,24 @@ void World::init(){
             r=(r+50)%256; g=(g+50)%256; b=(b+50)%256;
         }
 
-        scene()->addItem(hq);
+        hq->setParentItem(this);
+        //scene()->addItem(hq);
         factions.push_back(hq);
     }
 
     cout << ".";
-/*
+
     for(int i=0; i <nbCivs*3; i++){
         ress = new Metal();
         do{
-            cout << ress->getW() << " " << ress->getH() << " " << width << " " << length << endl;
-            ress->setX(distribInt()%(width-ress->getW()));
-            ress->setY(distribInt()%(length-ress->getH()));
+            ress->setX(distribInt()%(getW()-ress->getW()));
+            ress->setY(distribInt()%(getH()-ress->getH()));
         }while(!scene()->collidingItems(ress).isEmpty());
 
-        scene()->addItem(ress);
+        ress->setParentItem(this);
+        //scene()->addItem(ress);
         ressources.push_back(ress);
-    }*/
+    }
     cout << "." << endl;
 }
 

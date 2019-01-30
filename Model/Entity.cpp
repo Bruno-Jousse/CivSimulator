@@ -10,7 +10,7 @@ void Entity::suppression(){
      }
 }
 
-QColor Entity::getColor() const
+QColor Entity::getColor()
 {
     return color;
 }
@@ -20,28 +20,30 @@ void Entity::setColor(const QColor &value)
     color = value;
 }
 
-int Entity::getX() const
+int Entity::getX()
 {
-    return scenePos().x();
+    return pos().x();
 }
 
 void Entity::setX(int value)
 {
-    pos().setX(value);
+    cout << "x=" << value << endl;
+    setPos(value, pos().y());
+    cout << "pos().x()=" << getX()<<endl;
 }
 
-int Entity::getY() const
+int Entity::getY()
 {
-    return scenePos().y();
+    return pos().y();
 }
 
 void Entity::setY(int value)
 {
-    pos().setY(value);
+    setPos(pos().x(), value);
     //scenePos().setY(value);
 }
 
-int Entity::getW() const
+int Entity::getW()
 {
     return (int) size.width();
 }
@@ -51,7 +53,7 @@ void Entity::setW(int value)
     size.setWidth(value);
 }
 
-int Entity::getH() const
+int Entity::getH()
 {
     return size.height();
 }
@@ -61,7 +63,7 @@ void Entity::setH(int value)
     size.setHeight(value);
 }
 
-QSizeF Entity::getSize() const{
+QSizeF Entity::getSize(){
     return size;
 }
 
@@ -91,21 +93,21 @@ void Entity::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     painter->drawRect(QRectF(mapFromParent(pos()), size));
 }
 
-pair<int, int> Entity::searchAvailablePlaceAround(Entity &r){
-    pair<int, int> pos;
+QPoint Entity::searchAvailablePlaceAround(Entity &r){
+    QPoint pos, cmp(-1,-1);
     int tmp;
-    if( (pos=searchAvailableOnLine(getX()-r.getW(), getY()-r.getH()-1, getX()+getW()+r.getW(), r)) == make_pair(-1, -1)){
-        if( (pos=searchAvailableOnLine(getX()-r.getW(), getY()+getH()+1, getX()+getW()+r.getW(), r)) == make_pair(-1, -1)){
-            if( (pos=searchAvailableOnLine(getY()-r.getH(), getX()-r.getW()-1, getY()+getH()+r.getH(), r)) == make_pair(-1, -1)){
+    if( (pos=searchAvailableOnLine(getX()-r.getW(), getY()-r.getH()-1, getX()+getW()+r.getW(), r)) == cmp){
+        if( (pos=searchAvailableOnLine(getX()-r.getW(), getY()+getH()+1, getX()+getW()+r.getW(), r)) == cmp){
+            if( (pos=searchAvailableOnLine(getY()-r.getH(), getX()-r.getW()-1, getY()+getH()+r.getH(), r)) == cmp){
                 pos=searchAvailableOnLine(getY()-r.getH(), getX()+getW()+1, getY()+getH()+r.getH(), r);
-                tmp = pos.first;
-                pos.first = pos.second;
-                pos.second = tmp;
+                tmp = pos.x();
+                pos.setX(pos.y());
+                pos.setY(tmp);
             }
             else{
-                tmp = pos.first;
-                pos.first = pos.second;
-                pos.second = tmp;
+                tmp = pos.x();
+                pos.setX(pos.y());
+                pos.setY(tmp);
             }
         }
     }
@@ -113,15 +115,15 @@ pair<int, int> Entity::searchAvailablePlaceAround(Entity &r){
     return pos;
 }
 
-pair<int, int> Entity::searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r){
-    pair<int, int> pos(make_pair(-1, -1));
+QPoint Entity::searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r){
+    QPoint pos(-1, -1);
     bool isPlaced=false;
     r.setY(y);
     while(!isPlaced && xSource<=xDestination){
         r.setX(xSource);
         if(scene()->collidingItems(&r).isEmpty()){
-            pos.first=xSource;
-            pos.second=y;
+            pos.setX(xSource);
+            pos.setY(y);
             isPlaced=true;
         }
         xSource+=1;

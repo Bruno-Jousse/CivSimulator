@@ -21,9 +21,6 @@ public:
 
     int getHp();
     void setHp(int value);
-    void setX(int x);
-    void setY(int y);
-    void setBody(QRect b);
 };
 
 #endif //_BUILDING_H

@@ -17,17 +17,15 @@ static auto distribReal = std::bind(uniform_real_distribution<double> (0.0, 1.0)
 static auto distribInt = std::bind(uniform_int_distribution<int> (0, 100000), mt19937(seed));
 //double randomRealBetweenZeroAndOne = distrib(generator);
 
-class World : public QGraphicsItem
+class World : public Entity
 {
 protected:
     int nbCivs;
-    int width;
-    int length;
     QVector<Ressource*> ressources;
     QVector<Headquarter*> factions;
 
 public:
-    World(int nbCivs=0, int width=20, int length=20);
+    World(int nbCivs, int w, int h);
     void advance(int phase) override;
 
     QRectF boundingRect() const override;

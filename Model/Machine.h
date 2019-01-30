@@ -25,10 +25,6 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
     int getHp();
     void setHp(int hp);
-
-    void setX(int x);
-    void setY(int y);
-    void setBody(QRect b);
     int getWear();
     void setWear(int hp);
 

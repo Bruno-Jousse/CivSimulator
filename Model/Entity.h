@@ -44,21 +44,21 @@ public:
 
     virtual void suppression();
 
-    pair<int, int> searchAvailablePlaceAround(Entity &r);
-    pair<int, int> searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r);
+    QPoint searchAvailablePlaceAround(Entity &r);
+    QPoint searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r);
 
 
-    QColor getColor() const;
+    QColor getColor() ;
     void setColor(const QColor &value);
-    int getX() const;
+    int getX();
     void setX(int value);
-    int getY() const;
+    int getY() ;
     void setY(int value);
-    int getW() const;
+    int getW() ;
     void setW(int value);
-    int getH() const;
+    int getH() ;
     void setH(int value);
-    QSizeF getSize() const;
+    QSizeF getSize() ;
     void setSize(QSizeF r);
 
 };

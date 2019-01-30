@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
     cout << "Application creation." <<endl;
 
     World world(nbCivs, length, width);
+    world.setPos(0,0);
     scene.addItem(&world);
     world.init();
 

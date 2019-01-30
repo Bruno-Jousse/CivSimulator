@@ -70,31 +70,31 @@ void Headquarter::spawnMachine(){
         it->first--;
 
         if(it->first == 0){
-            pair<int, int> pos;
+            QPoint pos;
             switch(it->second){
                 case 0:{
-                    Worker w(color, 1, 1, 30, 30, 5, false, 5, 1, 10);
-                    pos=searchAvailablePlaceAround(w);
-                    if(pos.first==-1 || pos.second == -1){
+                    Worker *w = new Worker(color, 1, 1, 30, 30, 5, false, 5, 1, 10);
+                    pos=searchAvailablePlaceAround(*w);
+                    if(pos.x()==-1 || pos.y()== -1){
                         it->first++;
                     }
                     else{
-                        //childItems().push_back(&w);
-                        scene()->addItem(&w);
-                        workers.push_back(&w);
+                        w->setPos(pos);
+                        w->setParentItem(parentItem());
+                        workers.push_back(w);
                     }
                     break;
                 }
                 case 1:{
-                    Soldier s(color, 1, 1, 30, 30, 1, false, 10, 1, 10);
-                    pos=searchAvailablePlaceAround(s);
-                    if(pos.first==-1 || pos.second == -1){
+                    Soldier* s = new Soldier(color, 1, 1, 30, 30, 1, false, 10, 1, 10);
+                    pos=searchAvailablePlaceAround(*s);
+                    if(pos.x()==-1 || pos.y()== -1){
                         it->first++;
                     }
                     else{
-                        //childItems().push_back(&s);
-                        scene()->addItem(&s);
-                        soldiers.push_back(&s);
+                        s->setParentItem(parentItem());
+                        //scene()->addItem(&s);
+                        soldiers.push_back(s);
                     }
                     break;
                 }
