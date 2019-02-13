@@ -20,10 +20,8 @@ public:
 
     virtual bool isDead(unsigned date);
 
-    //Method called every times the QGraphicsScene decide to advance by a frame
-    void advance(int phase);
     //Our method called every frames to interact
-    virtual void action() =0;
+    virtual void action(int phase) =0;
 
 protected:
     unsigned deathDate;

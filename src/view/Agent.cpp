@@ -18,4 +18,10 @@ Agent::~Agent(){
 
 }
 
+//Method called every times the QGraphicsScene decide to advance by a frame
+void Agent::advance(int phase){
+    data.action(phase);
 }
+
+}
+

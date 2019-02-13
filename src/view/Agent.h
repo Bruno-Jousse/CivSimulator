@@ -21,6 +21,8 @@ public:
     Agent();
     virtual ~Agent()=0;
 
+    //Method called every times the QGraphicsScene decide to advance by a frame
+    void advance(int phase);
 
 };
 }

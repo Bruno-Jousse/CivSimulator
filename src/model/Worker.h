@@ -26,7 +26,11 @@ public:
 protected:
     int stock;
 
+    int metalStock;
+    int metalStockMax;
+
 private:
+
 
 };
 }

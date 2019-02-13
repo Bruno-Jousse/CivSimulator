@@ -15,15 +15,6 @@
 
 using namespace std;
 
-/****** Portée globale ******/
-//One month = 60 frames
-static int frame=0;
-
-static int getMonth(){
-    return static_cast<int>(frame/60);
-}
-
-/****************************/
 namespace view{
 
 

@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Entity.h"
 #include "../model/RandomManager.h"
+#include "../model/World.h"
 using namespace std;
 
 namespace view{
@@ -16,9 +17,9 @@ namespace view{
 class World : public Entity
 {
 protected:
-    int nbCivs;
     QVector<Resource*> ressources;
     QVector<Headquarter*> factions;
+    model::World *data;
 
 public:
     World(int nbCivs, int w, int h);

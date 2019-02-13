@@ -2,8 +2,15 @@
 
 namespace view{
 
-World::World(int nbCivs, int w, int h) :  Entity(Qt::transparent, 0, 0, w, h), nbCivs(nbCivs){
-
+World::World(int nbCivs, int w, int h) :  Entity(Qt::transparent){
+    data = new model::World(int nbCivs, int w, int h);
+    data.init(&factions, &ressources);
+    for(Headquarter* h : factions){
+        h->setParentItem(this);
+    }
+    for(Resource* r : ressources){
+        r->setParentItem(this);
+    }
 }
 
 //Use scene()->collidingItems(&QGraphicsItem).isEmpty() instead

@@ -4,6 +4,9 @@
 #include <vector>
 
 #include "Entity.h"
+#include "Resource.h"
+#include "Headquarter.h"
+#include "RandomManager.h"
 
 namespace model{
 
@@ -25,6 +28,10 @@ protected:
 
 private:
     std::vector<Entity*> entities;
+
+    int nbCivs;
+    std::vector<Resource*> ressources;
+    std::vector<Headquarter*> factions;
 
 };
 }
