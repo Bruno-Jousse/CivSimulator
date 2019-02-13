@@ -4,6 +4,9 @@
 #include "Entity.h"
 #include "Headquarter.h"
 
+namespace model{
+
+
 class Agent: public Entity
 {
 public:
@@ -17,6 +20,11 @@ public:
 
     virtual bool isDead(unsigned date);
 
+    //Method called every times the QGraphicsScene decide to advance by a frame
+    void advance(int phase);
+    //Our method called every frames to interact
+    virtual void action() =0;
+
 protected:
     unsigned deathDate;
     int hp; // number of shot until it dies
@@ -26,4 +34,5 @@ private:
 
 };
 
+}
 #endif // Agent_HPP

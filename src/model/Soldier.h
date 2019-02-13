@@ -2,6 +2,7 @@
 #define Soldier_HPP
 
 #include "Agent.h"
+namespace model{
 
 class Soldier: public Agent
 {
@@ -19,6 +20,7 @@ public:
     static const int AVG_LIVING;
     static const int STDDEV_LIVING;
     static const int RANGE_SHOOT;
+    void action() override;
 
 private:
     // nested classes
@@ -64,5 +66,5 @@ protected:
     friend class StrategyAttack;
     friend class StrategyKamikaze;
 };
-
+}
 #endif // Soldier_HPP

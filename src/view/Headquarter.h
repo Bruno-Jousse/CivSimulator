@@ -11,6 +11,8 @@
 #include "Worker.h"
 #include <vector>
 
+namespace view{
+
 class Headquarter: public Building {
 private: 
 
@@ -20,9 +22,6 @@ private:
     QVector<Worker*> workers;
     //1st int is number of month to wait, 2nd int represent: 0=worker, 1=soldier
     QVector< pair<int, int> > productionLine;
-    
-    void createAWorker();
-    void createASoldier();
 
 public:
     Headquarter(QColor color, int x, int y, int w, int h, int metalAmount=100, int aggressivity=1, int hp=100);
@@ -43,9 +42,8 @@ public:
     QVector<Worker*> getWorkers() const;
     QVector< pair<int, int> > getProductionLine() const;
 
-    void spawnMachine();
-    void action() override;
+
 
 };
-
+}
 #endif //_HEADQUARTER_H

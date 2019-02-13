@@ -5,6 +5,8 @@
 
 #include "Entity.h"
 
+namespace model{
+
 class World final
 {
 public:
@@ -17,11 +19,13 @@ public:
     // global constants
     static const int NB_ROW;
     static const int NB_COL;
+    void init();
+
 protected:
 
 private:
     std::vector<Entity*> entities;
 
 };
-
+}
 #endif // World_HPP

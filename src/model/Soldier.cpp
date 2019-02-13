@@ -3,6 +3,8 @@
 #include <cmath>
 #include "../controller/RandomManager.h"
 
+namespace model{
+
 // init constants
 const int Soldier::STARTING_HP = 10;
 const int Soldier::AVG_LIVING = 150;
@@ -45,3 +47,10 @@ void Soldier::StrategyKamikaze::simulate(unsigned date)
     // TODO : check my notes
     // move or shoot at an enemy is close enough
 }
+
+void Soldier::action(){
+
+}
+}
+
+

@@ -9,6 +9,8 @@
 #include "Entity.h"
 #include "QImage"
 
+namespace view{
+
 class Resource: public Entity {
 protected:
     int amount;
@@ -19,7 +21,6 @@ public:
     Resource(int amount=10);
     virtual ~Resource() = 0;
     int getAmount();
-    int takeRessources(int amount);
 };
-
+}
 #endif //_RESSOURCE_H

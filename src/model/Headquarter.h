@@ -3,6 +3,8 @@
 
 #include "Entity.h"
 
+namespace model{
+
 class Headquarter final: public Entity
 {
 public:
@@ -15,13 +17,17 @@ public:
     // global constant
     static const int STARTING_HP;
 
+    void spawnMachine();
+    void action() override;
 protected:
     int hp;
     // the grids TODO
     // the state TODO
 
 private:
-
+    void createAWorker();
+    void createASoldier();
 };
 
+}
 #endif // Headquarter_HPP

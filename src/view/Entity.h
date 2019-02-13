@@ -24,6 +24,8 @@ static int getMonth(){
 }
 
 /****************************/
+namespace view{
+
 
 class Entity : public QGraphicsItem {
 protected:
@@ -44,10 +46,6 @@ public:
 
     virtual void suppression();
 
-    QPoint searchAvailablePlaceAround(Entity &r);
-    QPoint searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r);
-
-
     QColor getColor() ;
     void setColor(const QColor &value);
     int getX();
@@ -62,4 +60,5 @@ public:
     void setSize(QSizeF r);
 
 };
+}
 #endif //_FIGURE_H

@@ -2,9 +2,13 @@
 
 #include <cmath>
 
+namespace model{
+
 RandomManager::RandomManager()
 {
-    // TODO : init the PRNG
+    seed = time(0);
+    distribReal = std::bind(uniform_real_distribution<double> (0.0, 1.0), mt19937(seed));
+    distribInt = std::bind(uniform_int_distribution<int> (0, VAL_MAX), mt19937(seed));
 }
 
 RandomManager::~RandomManager()
@@ -16,6 +20,14 @@ RandomManager& RandomManager::getInstance()
     return instance;
 }
 
+int RandomManager::getRandomInt(int max){
+    return distribInt()%max;
+}
+
+double RandomManager::getRandomDouble(){
+    return distribReal();
+}
+
 double RandomManager::getUniform01() const
 {
     // TODO : use the PRNG
@@ -25,7 +37,7 @@ double RandomManager::getUniform01() const
 double RandomManager::getGaussian(double mu, double sigma) const
 {
     static bool needToGenerate = true;
-    static double x1 = 0;0;
+    static double x1 = 0.0;
     static double x2 = 0.0;
 
     if(needToGenerate)
@@ -44,4 +56,5 @@ double RandomManager::getGaussian(double mu, double sigma) const
     }
     needToGenerate = true;
     return nb2;
+}
 }

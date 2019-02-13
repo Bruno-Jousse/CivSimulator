@@ -8,6 +8,7 @@
 /**
  * Metal implementation
  */
+namespace view{
 
 Metal::Metal(QColor color, int x, int y, int w, int h, int amount) : Resource(color, x, y, w, h, amount){
     img.load(":/images/Metal_Ingot.png");
@@ -17,4 +18,5 @@ Metal::Metal(QColor color, int x, int y, int w, int h, int amount) : Resource(co
 void Metal::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
 
     painter->drawImage(QRectF(mapFromParent(pos()), size), img);
+}
 }

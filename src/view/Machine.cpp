@@ -8,6 +8,7 @@
 /**
  * Machine implementation
  */
+namespace view{
 
 Machine::Machine(QColor color, int x, int y, int w, int h, int hp, int ms, int wearMax) : Agent(color, x, y, w, h), healthbar(Qt::green, 0, 0, w, 5, hp, true), wearbar(Qt::gray, 0, h-5, w, 5, wearMax, true), ms(ms){
     healthbar.setParentItem(this);
@@ -43,4 +44,5 @@ int Machine::getWear(){
 
 void Machine::setWear(int hp){
     wearbar.setHp(hp);
+}
 }

@@ -3,6 +3,8 @@
 
 #include "Resource.h"
 
+namespace model{
+
 class Metal: public Resource
 {
 public:
@@ -17,4 +19,5 @@ private:
 
 };
 
+}
 #endif // Metal_HPP

@@ -7,6 +7,8 @@
 
 using namespace std;
 
+namespace view{
+
 class Healthbar: public Entity{
 private:
 
@@ -27,5 +29,6 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 */
 };
+}
 
 #endif // HEALTHBAR_H

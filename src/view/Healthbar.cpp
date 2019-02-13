@@ -1,4 +1,5 @@
 #include "Healthbar.h"
+namespace view{
 
 Healthbar::Healthbar(QColor color, int x, int y, int w, int h, int hpMax, bool isActive) : Entity (color, x, y, w, h), hpMax(hpMax), hp(hpMax), isActive(isActive){
 }
@@ -42,3 +43,4 @@ void Healthbar::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidg
     }
 }
 */
+}

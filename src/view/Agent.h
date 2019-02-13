@@ -8,18 +8,20 @@
 
 #include "Entity.h"
 #include <QColor>
+#include "model.Agent.h"
+
+namespace view{
 
 class Agent: public Entity {
-public:
+private:
+    model::Agent data;
 
+public:
     Agent(QColor color, int x, int y, int w, int h);
     Agent();
     virtual ~Agent()=0;
 
-    //Method called every times the QGraphicsScene decide to advance by a frame
-    void advance(int phase) final;
-    //Our method called every frames to interact
-    virtual void action() =0;
-};
 
+};
+}
 #endif //_AGENT_H

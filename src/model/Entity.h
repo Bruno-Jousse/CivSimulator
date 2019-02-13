@@ -1,5 +1,8 @@
 #ifndef Entity_HPP
 #define Entity_HPP
+#include "QPoint"
+
+namespace model{
 
 class Entity
 {
@@ -11,7 +14,8 @@ public:
     virtual ~Entity();
 
     virtual void simulate(unsigned date) = 0;
-
+    QPoint searchAvailablePlaceAround(Entity &r);
+    QPoint searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r);
     // inline getters
     int getX() const { return x; };
     int getY() const { return y; };
@@ -23,5 +27,7 @@ protected:
 private:
 
 };
+
+}
 
 #endif // Entity_HPP

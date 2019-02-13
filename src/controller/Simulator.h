@@ -3,6 +3,8 @@
 
 #include "../model/World.h"
 
+namespace controller{
+
 class Simulator
 {
 public:
@@ -14,8 +16,9 @@ public:
 protected:
 
 private:
-    World world;
+    model::World world;
     unsigned date; // the simulator simulate the time
 };
 
+}
 #endif // Simulator_HPP

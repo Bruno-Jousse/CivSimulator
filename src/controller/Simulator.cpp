@@ -3,6 +3,9 @@
 
 using namespace std;
 
+namespace controller{
+
+
 Simulator::Simulator(): world(), date(0)
 {}
 
@@ -18,4 +21,5 @@ void Simulator::simulateOneTurn()
 void Simulator::display()
 {
     // TODO : call the DisplayManager
+}
 }

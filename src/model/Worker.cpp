@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "../controller/RandomManager.h"
+namespace model{
 
 // init constant
 const int Worker::STOCK_MAX = 5;
@@ -23,4 +24,9 @@ void Worker::simulate(unsigned date)
     if(isDead(date)) // simulate only for living agents
         return;
     // TODO
+}
+
+void Worker::action(){
+
+}
 }

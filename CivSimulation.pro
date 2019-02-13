@@ -26,12 +26,12 @@ CONFIG += c++11
 
 SOURCES +=  main.cpp \
             src/model/World.cpp src/model/Agent.cpp src/model/Headquarter.cpp src/model/Metal.cpp src/model/Resource.cpp src/model/Soldier.cpp src/model/Worker.cpp src/model/Entity.cpp \
-            src/controller/RandomManager.cpp src/controller/Simulator.cpp \
+            src/model/RandomManager.cpp src/controller/Simulator.cpp \
             src/view/Agent.cpp src/view/Healthbar.cpp src/view/Soldier.cpp src/view/Building.cpp src/view/Machine.cpp src/view/Worker.cpp src/view/Entity.cpp src/view/Metal.cpp src/view/World.cpp src/view/Headquarter.cpp src/view/Resource.cpp
 
 
 HEADERS +=  src/model/World.h src/model/Agent.h src/model/Headquarter.h src/model/Metal.h src/model/Resource.h src/model/Soldier.h src/model/Worker.h src/model/Entity.h \
-            src/controller/Simulator.h src/controller/RandomManager.h \
+            src/controller/Simulator.h src/model/RandomManager.h \
             src/view/Agent.h src/view/Healthbar.h src/view/Soldier.h src/view/Building.h src/view/Machine.h src/view/Worker.h src/view/Entity.h src/view/Metal.h src/view/World.h src/view/Headquarter.h src/view/Resource.h \
 
 FORMS +=

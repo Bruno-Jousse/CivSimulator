@@ -9,6 +9,8 @@
 #include "Agent.h"
 #include "Healthbar.h"
 
+namespace view{
+
 class Machine: public Agent {
 protected:
     Healthbar healthbar;
@@ -29,5 +31,6 @@ public:
     void setWear(int hp);
 
 };
+}
 
 #endif //_MACHINE_H

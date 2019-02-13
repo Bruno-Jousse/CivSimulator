@@ -9,6 +9,8 @@
 #include "Agent.h"
 #include "Healthbar.h"
 
+namespace view{
+
 class Building: public Agent {
 protected:
     Healthbar healthbar;
@@ -22,5 +24,5 @@ public:
     int getHp();
     void setHp(int value);
 };
-
+}
 #endif //_BUILDING_H

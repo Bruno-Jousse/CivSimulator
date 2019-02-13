@@ -3,6 +3,8 @@
 
 #include "Entity.h"
 
+namespace model{
+
 class Resource: public Entity
 {
 public:
@@ -15,10 +17,12 @@ public:
 
     bool isEmpty() { return quantity<=0; }
 
+    int takeRessources(int amount);
+
 protected:
     int quantity;
 private:
 
 };
-
+}
 #endif // Resource_HPP

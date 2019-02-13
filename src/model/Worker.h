@@ -3,6 +3,8 @@
 
 #include "Agent.h"
 
+namespace model{
+
 class Worker: public Agent
 {
 public:
@@ -20,11 +22,12 @@ public:
     static const int AVG_LIVING;
     static const int STDDEV_LIVING;
 
+    void action();
 protected:
     int stock;
 
 private:
 
 };
-
+}
 #endif // Worker_HPP

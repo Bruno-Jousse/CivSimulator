@@ -3,6 +3,7 @@
 /**
  * Building implementation
  */
+namespace view{
 
 int Building::getHp()
 {
@@ -25,4 +26,5 @@ Building::Building(int hp) : Agent(),  healthbar(Qt::green, 0, 0, 30, 5, hp, tru
 
 Building::~Building(){
 
+}
 }
