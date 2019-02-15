@@ -12,8 +12,8 @@ private:
 public:
     TimeManager();
     //One month = 60 frames
-    static int getFrame();
-    static int getMonth();
+    int getFrame();
+    int getMonth();
 };
 }
 #endif // TIMEMANAGER_H

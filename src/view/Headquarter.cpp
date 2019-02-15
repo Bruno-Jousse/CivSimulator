@@ -12,20 +12,8 @@
 namespace view{
 
 
-Headquarter::Headquarter(QColor color, int x, int y, int w, int h, int metalAmount, int aggressivity, int hp) : Building(color, x, y, w, h, hp), metalAmount(metalAmount), aggressivity(aggressivity){
-}
-
-Headquarter::Headquarter(int metalAmount, int aggressivity, int hp) : Building(hp), metalAmount(metalAmount), aggressivity(aggressivity){
-}
-
-
-void Headquarter::action(){
-    if(frame%60==0){
-        spawnMachine();
-    }
-    while(metalAmount>=10){
-        createAWorker();
-    }
+Headquarter::Headquarter(QColor color, int x, int y, int w, int h) : Building(color){
+    data = new model::Headquarter(x, y, w, h);
 }
 
 int Headquarter::getMetalAmount() const

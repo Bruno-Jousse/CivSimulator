@@ -6,6 +6,15 @@
 
 namespace view{
 
+Entity::Entity(QColor color) : color(color){
+    //data = new model::Entity(x, y, w, h);
+    /*setX(x);
+    setY(y);
+    setH(h);
+    setW(w);*/
+}
+
+
 void Entity::suppression(){
     if(scene()){
         scene()->removeItem(this);
@@ -71,13 +80,6 @@ QSizeF Entity::getSize(){
 
 void Entity::setSize(QSizeF r){
     size = r;
-}
-
-Entity::Entity(QColor color, int x, int y, int w, int h) : color(color){
-    setX(x);
-    setY(y);
-    setH(h);
-    setW(w);
 }
 
 QRectF Entity::boundingRect() const{

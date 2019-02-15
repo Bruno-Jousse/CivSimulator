@@ -7,12 +7,13 @@
 #define _METAL_H
 
 #include "Resource.h"
+#include "../model/Metal.h"
 
 namespace view{
 
 class Metal: public Resource {
 public:
-    Metal(QColor color=Qt::gray, int x=0, int y=0, int w=30, int h=30, int amount=50);
+    Metal(int x=0, int y=0, int w=30, int h=30);
 private:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 

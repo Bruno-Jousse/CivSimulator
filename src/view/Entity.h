@@ -12,6 +12,7 @@
 #include "QVector"
 #include "QImage"
 #include <iostream>
+#include "../model/Entity.h"
 
 using namespace std;
 
@@ -21,10 +22,11 @@ namespace view{
 class Entity : public QGraphicsItem {
 protected:
     QColor color;
-    QSizeF size;
+    model::Entity *data;
+    //QSizeF size;
 
 public:
-    Entity(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=30, int h=30);
+    Entity(QColor color=QColor(0,0,0,255));
     virtual ~Entity() override{
         suppression();
     }

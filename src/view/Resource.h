@@ -13,12 +13,10 @@ namespace view{
 
 class Resource: public Entity {
 protected:
-    int amount;
     QImage img;
 
 public:
-    Resource(QColor color, int x, int y, int w, int h, int amount=10);
-    Resource(int amount=10);
+    Resource(int x=0, int y=0, int w=30, int h=30);
     virtual ~Resource() = 0;
     int getAmount();
 };

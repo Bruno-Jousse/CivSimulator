@@ -21,6 +21,9 @@ public:
     void action() override;
 protected:
     int hp;
+
+    int metalAmount;
+    int aggressivity;
     // the grids TODO
     // the state TODO
 

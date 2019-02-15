@@ -2,6 +2,7 @@
 #define TIMEMANAGER_H
 
 #include "QGraphicsItem"
+#include "../model/TimeManager.h"
 
 namespace view{
 
@@ -16,7 +17,7 @@ public:
     TimeManager(TimeManager const& r) = delete;
 
     void advance(int phase) override;
-
+    int getFrame();
 };
 
 }

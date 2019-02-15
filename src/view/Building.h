@@ -17,7 +17,7 @@ protected:
 
 public:
     Building(QColor color, int x, int y, int w, int h, int hp=100);
-    Building(int hp=100);
+    Building(QColor color=Qt::gray);
 
     virtual ~Building()=0;
 

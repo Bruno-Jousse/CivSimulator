@@ -10,16 +10,8 @@
  */
 namespace view{
 
-Resource::Resource(QColor color, int x, int y, int w, int h, int amount) : Entity(color, x, y, w, h), amount(amount){
+Resource::Resource(QColor color, int x, int y, int w, int h) : Entity(color){
 
-}
-
-Resource::Resource(int amount) : Entity(), amount(amount){
-
-}
-
-int Resource::getAmount(){
-    return amount;
 }
 
 Resource::~Resource(){

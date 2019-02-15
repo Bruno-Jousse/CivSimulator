@@ -21,6 +21,8 @@ public:
 
 protected:
     int quantity;
+    int amount;
+
 private:
 
 };

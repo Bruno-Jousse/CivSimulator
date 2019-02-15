@@ -10,9 +10,10 @@
  */
 namespace view{
 
-Metal::Metal(QColor color, int x, int y, int w, int h, int amount) : Resource(color, x, y, w, h, amount){
+Metal::Metal(int x, int y, int w, int h) {
     img.load(":/images/Metal_Ingot.png");
     img = img.scaled(w, h, Qt::KeepAspectRatio);
+    data = new model::Metal(x, y, w, h);
 }
 
 void Metal::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){

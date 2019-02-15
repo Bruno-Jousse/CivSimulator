@@ -10,12 +10,8 @@
  */
 namespace view{
 
-Soldier::Soldier(QColor color, int x, int y, int w, int h, int dmg, bool mustAttack, int hp, int ms, int wearMax) : Machine(color, x, y, w, h, hp, ms, wearMax), dmg(dmg), mustAttack(mustAttack){
-
-}
-
-Soldier::Soldier(int dmg, bool mustAttack, int hp, int ms, int wearMax) : Machine(hp, ms, wearMax), dmg(dmg), mustAttack(mustAttack){
-
+Soldier::Soldier(QColor color, int x, int y, int w, int h) : Machine(color){
+    data = new model::Soldier(x, y, w, h);
 }
 
 void Soldier::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){

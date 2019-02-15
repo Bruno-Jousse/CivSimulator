@@ -64,4 +64,13 @@ void Headquarter::spawnMachine(){
     }
 }
 
+void Headquarter::action(){
+    if(frame%60==0){
+        spawnMachine();
+    }
+    while(metalAmount>=10){
+        createAWorker();
+    }
+}
+
 }
