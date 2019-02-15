@@ -10,7 +10,7 @@ public:
     Soldier() = delete;
     Soldier(const Soldier & copy) = delete;
 
-    Soldier(int x, int y, Headquarter* creator);
+    Soldier(int x, int y, Headquarter* creator, unsigned currentDate);
     virtual ~Soldier();
 
     void simulate(unsigned date) override;

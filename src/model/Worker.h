@@ -11,7 +11,7 @@ public:
     Worker() = delete;
     Worker(const Worker & copy) = delete;
 
-    Worker(int x, int y, Headquarter* creator);
+    Worker(int x, int y, Headquarter* creator, unsigned currentDate);
     virtual ~Worker();
 
     void simulate(unsigned date) override;
