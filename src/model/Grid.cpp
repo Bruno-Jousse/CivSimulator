@@ -25,6 +25,12 @@ double& Grid::operator()(int x, int y)
     return grid[x][y];
 }
 
+Grid& operator+=(const Grid& other)
+{
+    grid += other.grid;
+    return this;
+}
+
 void Grid::propagate(int x, int y, double coef)
 {
     int xt=x-1, yt=y;
@@ -76,8 +82,8 @@ double Grid::maxNeighbor(int x, int y)
 
 Grid operator+(const Grid& a, const Grid& b)
 {
-    Grid res;
-    res.grid = a.grid + b.grid;
+    Grid res(a);
+    res += b;
     return res;
 }
 

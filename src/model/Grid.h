@@ -16,6 +16,7 @@ public:
     Grid(double seed, int x, int y, double coef = 0.8);
 
     double& operator()(int x, int y);
+    Grid& operator+=(const Grid& other);
 
 private:
     std::valarray<std::valarray<double>> grid;
