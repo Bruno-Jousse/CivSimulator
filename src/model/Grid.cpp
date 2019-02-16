@@ -29,10 +29,11 @@ Grid::Grid(double seed, int x, int y, double coef)
 
     // fill the grid
     grid[x][y] = seed;
-    propagate(x, y, coef);
+    if(coef != 0)
+        propagate(x, y, coef);
 }
 
-double Grid::operator()(int x, int y) const
+double& Grid::operator()(int x, int y)
 {
     return grid[x][y];
 }
@@ -69,6 +70,19 @@ void Grid::tryDiffuse(int x, int y, int xt, int yt, double coef)
         grid[xt][yt] = coef*grid[x][y];
         propagate(xt, yt, coef);
     }
+}
+
+Grid operator+(const Grid& a, const Grid& b)
+{
+    Grid res;
+    for(int i=0; i<World::NB_ROW; i++)
+    {
+        for(int j=0; j<World::NB_COL; j++)
+        {
+            res.grid[i][j] = a.grid[i][j] + b.grid[i][j]; 
+        }
+    }
+    return res;
 }
 
 Grid operator*(const double& scalar, const Grid& g)
