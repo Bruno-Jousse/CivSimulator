@@ -1,6 +1,9 @@
 #ifndef Grid_HPP
 #define Grid_HPP
 
+#include <valarray>
+#include <queue>
+
 #include "World.h"
 
 namespace model{
@@ -10,17 +13,19 @@ class Grid final
 public:
     Grid();
     Grid(const Grid& g);
-    Grid(int seed, int x, int y);
+    Grid(double seed, int x, int y, double coef = 0.8);
 
     double& operator()(int x, int y);
 
 private:
-    double grid[World::NB_ROW][World::NB_COL];
+    std::valarray<std::valarray<double>> grid;
+    std::queue<std::pair<std::pair<int, int>, std::pair<int, int>>> fifo;
 
     // private methods
     void propagate(int x, int y, double coef);
     bool isInGrid(int x, int y);
-    void tryDiffuse(int x, int y, int xt, int yt, double coef);
+    void tryDiffuse(int xt, int yt, double coef);
+    double maxNeighbor(int x, int y);
 
     // friendship
     friend Grid operator+(const Grid& a, const Grid& b);
