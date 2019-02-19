@@ -27,6 +27,11 @@ void World::simulateOneTurn(unsigned date)
     // TODO : if there is new entities add them here and remove the dead ones
 }
 
+int distanceBetween(const Entity& a, const Entity& b)
+{
+    return abs(a.getX() - b.getX()) + abs(a.getY() - b.getY());
+}
+
 
 void World::init(){
     cout << "World initialisation.";

@@ -19,6 +19,9 @@ public:
 
     void simulateOneTurn(unsigned date);
 
+    // Chess distance
+    int distanceBetween(const Entity& a, const Entity& b);
+
     // global constants
     static const int NB_ROW;
     static const int NB_COL;
