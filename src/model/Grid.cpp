@@ -20,6 +20,11 @@ Grid::Grid(double seed, int x, int y, double coef): grid(valarray<double>(0.0, W
     }
 }
 
+Grid& Grid::operator=(const Grid& other)
+{
+    grid = other.grid;
+}
+
 double& Grid::operator()(int x, int y)
 {
     return grid[x][y];
