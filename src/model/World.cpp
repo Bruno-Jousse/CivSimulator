@@ -32,6 +32,16 @@ int distanceBetween(const Entity& a, const Entity& b)
     return abs(a.getX() - b.getX()) + abs(a.getY() - b.getY());
 }
 
+bool isNextToResource(const Entity& e)
+{
+    for(const Resource& r: resources)
+    {
+        if(distanceBetween(r, e) == 1)
+            return true;
+    }
+    return false;
+}
+
 
 void World::init(){
     cout << "World initialisation.";
@@ -72,7 +82,7 @@ void World::init(){
 
         ress->setParentItem(this);
         //scene()->addItem(ress);
-        ressources.push_back(ress);
+        resources.push_back(ress);
     }
     cout << "." << endl;
 }
@@ -114,11 +124,11 @@ void World::advance(int phase){
             }
         }
         cout << ".";
-        auto it3 = ressources.begin();
-        while(it3!=ressources.end()){
+        auto it3 = resources.begin();
+        while(it3!=resources.end()){
             if((*it3)->getAmount() <= 0){
                 (*it3)->suppression();
-                it3=ressources.erase(it3);
+                it3=resources.erase(it3);
             }
             else{
                 it3++;

@@ -8,7 +8,29 @@ Headquarter::Headquarter(int x, int y): Entity(x, y), hp(Headquarter::STARTING_H
 {}
 
 Headquarter::~Headquarter()
-{}
+{
+}
+
+void Headquarter::simulate(unsigned date, World& world)
+{
+    // TODO
+}
+
+void updateGrids(World world)
+{
+    gridAllyHeadquarter = Grid(100, x, y);
+    
+    Grid tmpGridEnemies = Grid();
+    // TODO : ask all units which enemies they see
+
+    // TODO update resources 
+
+}
+void deleteGrids()
+{
+    delete gridAllyHeadquarter;
+    delete gridEnnemies;
+}
 
 
 

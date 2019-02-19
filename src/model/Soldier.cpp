@@ -19,7 +19,7 @@ Soldier::Soldier(int x, int y, Headquarter* creator, unsigned currentDate):
 Soldier::~Soldier()
 {}
 
-void Soldier::simulate(unsigned date)
+void Soldier::simulate(unsigned date, World& world)
 {
     if(isDead(date)) // simulate only for living agents
         return;
@@ -32,17 +32,17 @@ Soldier::StrategyProtection::~StrategyProtection() {}
 Soldier::StrategyAttack::~StrategyAttack() {}
 Soldier::StrategyKamikaze::~StrategyKamikaze() {}
 
-void Soldier::StrategyProtection::simulate(unsigned date)
+void Soldier::StrategyProtection::simulate(unsigned date, World& world)
 {
     // TODO : check my notes
     // move or shoot at an enemy if close enough
 }
-void Soldier::StrategyAttack::simulate(unsigned date)
+void Soldier::StrategyAttack::simulate(unsigned date, World& world)
 {
     // TODO : check my notes
     // move or shoot at an enemy if close enough
 }
-void Soldier::StrategyKamikaze::simulate(unsigned date)
+void Soldier::StrategyKamikaze::simulate(unsigned date, World& world)
 {
     // TODO : check my notes
     // move or shoot at an enemy if close enough

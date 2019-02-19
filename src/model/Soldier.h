@@ -13,7 +13,7 @@ public:
     Soldier(int x, int y, Headquarter* creator, unsigned currentDate);
     virtual ~Soldier();
 
-    void simulate(unsigned date) override;
+    void simulate(unsigned date, World& world) override;
 
     // global constants
     static const int STARTING_HP;
@@ -31,7 +31,7 @@ private:
         StrategySoldier(StrategySoldier const&) = delete;
         virtual ~StrategySoldier();
 
-        virtual void simulate(unsigned date) = 0;
+        virtual void simulate(unsigned date, World& world) = 0;
     };
     class StrategyProtection: public Soldier::StrategySoldier
     {
@@ -39,7 +39,7 @@ private:
         StrategyProtection(StrategyProtection const&) = delete;
         virtual ~StrategyProtection();
 
-        void simulate(unsigned date) override;
+        void simulate(unsigned date, World& world) override;
     };
     class StrategyAttack: public Soldier::StrategySoldier
     {
@@ -47,7 +47,7 @@ private:
         StrategyAttack(StrategyAttack const&) = delete;
         virtual ~StrategyAttack();
 
-        void simulate(unsigned date) override;
+        void simulate(unsigned date, World& world) override;
     };
     class StrategyKamikaze: public Soldier::StrategySoldier
     {
@@ -55,7 +55,7 @@ private:
         StrategyKamikaze(StrategyKamikaze const&) = delete;
         virtual ~StrategyKamikaze();
 
-        void simulate(unsigned date) override;
+        void simulate(unsigned date, World& world) override;
     };
 
 protected:

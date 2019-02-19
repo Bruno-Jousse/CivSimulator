@@ -1,4 +1,5 @@
 #include "Worker.h"
+#include "Grid.h"
 
 #include <cmath>
 
@@ -19,11 +20,35 @@ Worker::Worker(int x, int y, Headquarter* creator, unsigned currentDate):
 Worker::~Worker()
 {}
 
-void Worker::simulate(unsigned date)
+void Worker::simulate(unsigned date, World& world)
 {
     if(isDead(date)) // simulate only for living agents
         return;
-    // TODO
+
+    // the AI of the worker
+    willHarvest = false;
+    Grid decisionGrid;
+    if(stock >= STOCK_MAX)
+    {
+        decisionGrid =  hq.getGridAllyHeadquarter() - hq.getGridEnemies();
+    }
+    else if(deathDate - date == world.distance(*this, hq) && stock!=0)
+    {
+        decisionGrid = hq.getGridAllyHeadquarter();
+    }
+    else if(world.isNextToResource(*this))
+    {
+        willHarvest = true;
+    }
+    else
+    {
+        double ratio = 1.0*stock/STOCK_MAX;
+        decisionGrid = ratio*hq.getGridAllyHeadquarter() + (1-ratio)*hq.getGridResources()
+            - hq.getGridEnemies();
+    }
+
+    if(!willHarvest)
+        Agent::chooseBestNeighbor(decisionGrid, x, y, nextX, nextY);
 }
 
 void Worker::action(){

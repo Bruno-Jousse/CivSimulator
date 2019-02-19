@@ -19,12 +19,13 @@ public:
     double& operator()(int x, int y);
     Grid& operator+=(const Grid& other);
 
+    bool isInGrid(int x, int y);
+
 private:
     std::valarray<std::valarray<double>> grid;
 
     // private methods
     void propagate(int x, int y, double coef);
-    bool isInGrid(int x, int y);
     void tryDiffuse(int xt, int yt, double coef);
     double maxNeighbor(int x, int y);
 

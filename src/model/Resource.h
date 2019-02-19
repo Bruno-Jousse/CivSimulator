@@ -13,7 +13,8 @@ public:
 
     Resource(int x, int y, int quantity);
     virtual ~Resource();
-    // simulate = 0;
+    
+    void simulate(unsigned date, World& world) override;
 
     bool isEmpty() { return quantity<=0; }
 

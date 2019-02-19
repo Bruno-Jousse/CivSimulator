@@ -19,8 +19,10 @@ public:
 
     void simulateOneTurn(unsigned date);
 
-    // Chess distance
+    // Manhattan distance
     int distanceBetween(const Entity& a, const Entity& b);
+
+    bool isNextToResource(const Entity& e);
 
     // global constants
     static const int NB_ROW;
@@ -33,7 +35,7 @@ private:
     std::vector<Entity*> entities;
 
     int nbCivs;
-    std::vector<Resource*> ressources;
+    std::vector<Resource*> resources;
     std::vector<Headquarter*> factions;
 
 };
