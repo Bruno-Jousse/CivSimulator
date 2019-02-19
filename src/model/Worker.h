@@ -22,7 +22,7 @@ public:
     static const int AVG_LIVING;
     static const int STDDEV_LIVING;
 
-    void action();
+    void action(int phase) override;
 protected:
     int stock;
 

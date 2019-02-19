@@ -6,8 +6,8 @@
 
 namespace view{
 
-Agent::Agent(QColor color, int x, int y, int w, int h) : Entity(color){
-    data = new model::Agent(x, y, w, h);
+Agent::Agent(QColor color) : Entity (color){
+
 }
 
 Agent::Agent(QColor color) : Entity(color){

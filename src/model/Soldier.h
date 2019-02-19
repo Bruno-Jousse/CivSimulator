@@ -20,7 +20,7 @@ public:
     static const int AVG_LIVING;
     static const int STDDEV_LIVING;
     static const int RANGE_SHOOT;
-    void action() override;
+    void action(int phase) override;
 
 private:
     // nested classes

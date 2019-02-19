@@ -16,7 +16,7 @@ protected:
     QImage img;
 
 public:
-    Resource(int x=0, int y=0, int w=30, int h=30);
+    Resource(int w, int h, QString path);
     virtual ~Resource() = 0;
     int getAmount();
 };

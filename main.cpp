@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
     cout << "Application creation." <<endl;
 
+    FactoryViewItem::getInstance(scene);
     view::World world(nbCivs, length, width);
     world.setPos(0,0);
     scene.addItem(&world);

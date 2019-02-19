@@ -10,18 +10,20 @@
  */
 namespace view{
 
-Worker::Worker(QColor color, int x, int y, int w, int h, int metalStockMax, bool mustMine, int hp, int ms, int wearMax) : Machine(color, x, y, w, h, hp, ms, wearMax), metalStockMax(metalStockMax), mustMine(mustMine) {
-    metalStock = 0;
+Worker::Worker(QColor color, int x, int y, int w, int h) : Machine(color) {
+    data = new model::Worker();
 }
 
-Worker::Worker(int metalStockMax, bool mustMine, int hp, int ms, int wearMax) : Machine(hp, ms, wearMax), metalStockMax(metalStockMax), mustMine(mustMine) {
-    metalStock = 0;
-}
 
 void Worker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     Machine::paint(painter, option, widget);
 
     painter->drawText(QRectF(mapFromParent(pos()), size), Qt::AlignHCenter,"W");
 }
+
+model::Worker Worker::getData(){
+    return data;
+}
+
 
 }

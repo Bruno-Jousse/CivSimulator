@@ -57,7 +57,7 @@ void World::init(){
     cout << ".";
 
     for(int i=0; i <nbCivs*3; i++){
-        ress = new Metal();
+        view::Metal* vRess = (view::Metal) view::FactoryViewItem::getInstance().create("metal", Qt::white);
         do{
             ress->setX(model::RandomManager::getInstance().getRandomInt(getW()-ress->getW()));
             ress->setY(model::RandomManager::getInstance().getRandomInt(getH()-ress->getH()));

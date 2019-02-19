@@ -10,10 +10,10 @@
  */
 namespace view{
 
-Machine::Machine(QColor color) : Agent(color), healthbar(Qt::green, 0, 0, w, 5, hp, true), wearbar(Qt::gray, 0, h-5, w, 5, wearMax, true){
-    healthbar.setParentItem(this);
+Machine::Machine(QColor color) : Agent(color){
+    /*healthbar.setParentItem(this);
     wearbar.setParentItem(this);
-
+    */
 }
 
 

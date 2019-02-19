@@ -16,5 +16,7 @@ int TimeManager::getMonth(){
 }
 
 void TimeManager::advance(int phase){
-
+    if(phase==0){
+        frame++;
+    }
 }

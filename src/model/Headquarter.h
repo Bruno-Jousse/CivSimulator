@@ -18,7 +18,7 @@ public:
     static const int STARTING_HP;
 
     void spawnMachine();
-    void action() override;
+    void action(int phase) override;
 protected:
     int hp;
 

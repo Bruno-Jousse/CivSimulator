@@ -5,8 +5,7 @@
  */
 namespace view{
 
-Building::Building(QColor color, int x, int y, int w, int h) : Agent(color, x, y, w, h),  healthbar(Qt::green, 0, 0, w, 5, hp, true){
-    healthbar.setParentItem(this);
+Building::Building(QColor color) : Agent(color){
 }
 
 int Building::getHp()

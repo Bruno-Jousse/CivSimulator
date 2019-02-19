@@ -7,13 +7,14 @@
 #include "Resource.h"
 #include "Headquarter.h"
 #include "RandomManager.h"
+#include "../view/FactoryViewItem.h"
 
 namespace model{
 
 class World final
 {
 public:
-    World();
+    World(int nbCiv, int length, int width);
     World(const World& w) = delete;
     ~World();
 
@@ -23,6 +24,7 @@ public:
     static const int NB_ROW;
     static const int NB_COL;
     void init();
+    void action(int phase) override;
 
 protected:
 
@@ -30,6 +32,8 @@ private:
     std::vector<Entity*> entities;
 
     int nbCivs;
+    int width;
+    int height;
     std::vector<Resource*> ressources;
     std::vector<Headquarter*> factions;
 

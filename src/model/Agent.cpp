@@ -14,10 +14,4 @@ bool Agent::isDead(unsigned date)
     return (date>=deathDate) || (hp<=0);
 }
 
-void Agent::advance(int phase){
-    if(phase!=0){
-        action();
-    }
-}
-
 }

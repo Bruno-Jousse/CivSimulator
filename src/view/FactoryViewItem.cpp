@@ -2,9 +2,10 @@
 
 namespace view{
 
-Entity* create(string name, QColor color, int x, int y, int w, int h){
+/*
+Entity* FactoryViewItem::create(string name, QColor color, int x, int y, int w, int h){
     Entity *e;
-    switch(stoi(boost::algorithm::to_lower(name))){
+    switch(stoi(boost::algorithm::to_lower_copy(name))){
     case stoi("worker"):
         e = new Worker(color, x, y, w, h);
         break;
@@ -15,11 +16,41 @@ Entity* create(string name, QColor color, int x, int y, int w, int h){
         e = new Headquarter(color, x, y, w, h);
         break;
     case stoi("metal"):
-        e = new Metal(color, x, y, w, h);
+        e = new Metal(x, y, w, h);
         break;
     default:
         e = nullptr;
     }
+}*/
+
+Worker* FactoryViewItem::createWorker(QColor color, int x, int y, int w, int h){
+    Worker *a = new Worker(color, x, y ,w , h);
+    scene->addItem(a);
+    return a;
+}
+
+Headquarter* FactoryViewItem::createHeadquarter(QColor color, int x, int y, int w, int h){
+    Headquarter *a = new Headquarter(color, x, y ,w , h);
+    scene->addItem(a);
+    return a;
+}
+
+Metal* FactoryViewItem::createMetal(int x, int y, int w, int h){
+    Metal *a = new Metal(x, y ,w , h);
+    scene->addItem(a);
+    return a;
+}
+
+Soldier* FactoryViewItem::createSoldier(QColor color, int x, int y, int w, int h){
+    Soldier *a = new Soldier(color, x, y ,w , h);
+    scene->addItem(a);
+    return a;
+}
+
+Healthbar* FactoryViewItem::createHealthbar(QColor color, int hpMax, int x, int y, int w, int h){
+    Healthbar *a = new Healthbar(color, hpMax, x, y ,w , h);
+    scene->addItem(a);
+    return a;
 }
 
 FactoryViewItem& FactoryViewItem::getInstance(QGraphicsScene* scene)

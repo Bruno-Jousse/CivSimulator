@@ -23,7 +23,6 @@ protected:
 
 public:
     World(int nbCivs, int w, int h);
-    void advance(int phase) override;
 
     QRectF boundingRect() const override;
     QPainterPath shape() const override;

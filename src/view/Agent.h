@@ -15,8 +15,7 @@ namespace view{
 class Agent: public Entity {
 
 public:
-    Agent(QColor color, int x, int y, int w, int h);
-    Agent(QColor color = Qt::blue);
+    Agent(QColor color);
     virtual ~Agent()=0;
 
     //Method called every times the QGraphicsScene decide to advance by a frame

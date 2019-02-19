@@ -16,11 +16,10 @@ namespace view{
 class Headquarter: public Building {
 private: 
 
-
+/*
     QVector<Soldier*> soldiers;
     QVector<Worker*> workers;
-    //1st int is number of month to wait, 2nd int represent: 0=worker, 1=soldier
-
+*/
 
 public:
     Headquarter(QColor color, int x=0, int y=0, int w=30, int h=30);
