@@ -13,10 +13,12 @@ Headquarter::~Headquarter()
 
 void Headquarter::simulate(unsigned date, World& world)
 {
+    updateGrids(world);
     // TODO : Bruno, your algo to create agent with a factory
+    // TODO : choose a strategy for the soldiers (with defineStrategy())
 }
 
-void updateGrids(World world)
+void Headquarter::updateGrids(World& world)
 {
     gridAllyHeadquarter = Grid(100, x, y);
     
@@ -34,12 +36,12 @@ void updateGrids(World world)
     }
     gridResources = tmpGridResources;
 
-    // TODO update other grids
-}
-void deleteGrids()
-{
-    delete gridAllyHeadquarter;
-    delete gridEnnemies;
+    Grid tmpGridAllyAgents;
+    for(Agent* a: world.getAgentOf(this))
+    {
+        tmpGridAllyAgents += Grid(100, a->getX(), a->getY());
+    }
+    gridAllyAgents = tmpGridAllyAgents;
 }
 
 

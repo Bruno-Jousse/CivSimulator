@@ -31,7 +31,6 @@ private:
     double maxNeighbor(int x, int y);
 
     // friendship
-    friend Grid operator+(const Grid& a, const Grid& b);
     friend Grid operator*(const double& scalar, const Grid& g);
 };
 

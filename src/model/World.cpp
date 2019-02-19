@@ -104,6 +104,18 @@ std::vector<Resource*> World::getResourcesVisibleBy(Headquarter* hq)
     return res;
 }
 
+vector<Agent*> World::getAgentsTargetableBy(const Soldier& soldier)
+{
+    vector<Agent*> possibleTargets;
+    for(Agent* a: agents)
+    {
+        int dist = distanceBetween(*a, soldier);
+        if(dist != 0 && dist <= Soldier::RANGE_SHOOT && !a->doesBelongTo(Soldier.getHeadquarter()))
+            possibleTargets.push_back(a);
+    }
+    return possibleTargets;
+}
+
 void World::init(){
     cout << "World initialisation.";
     int r=0, g =0, b=0;

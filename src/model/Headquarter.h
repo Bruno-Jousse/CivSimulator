@@ -18,9 +18,10 @@ public:
     // create agent and choose a strategy
     void simulate(unsigned date, World& world) override;
 
-    void updateGrids(World world);
+    void updateGrids(World& world);
     // inline grid getters
     const Grid& getGridAllyHeadquarter() const { return gridAllyHeadquarter; }
+    const Grid& getGridAllyAgents() const { return gridAllyAgents; }
     const Grid& getGridEnemies() const { return gridEnemies; }
     const Grid& getGridResources() const { return gridResources; }
 
@@ -33,6 +34,7 @@ protected:
     int hp;
     // the grids
     Grid gridAllyHeadquarter;
+    Grid gridAllyAgents;
     Grid gridEnemies;
     Grid gridResources;
     // the state TODO

@@ -13,6 +13,8 @@ public:
     Soldier(int x, int y, Headquarter* creator, unsigned currentDate);
     virtual ~Soldier();
 
+    void defineStrategy(StrategyEnum type);
+
     void simulate(unsigned date, World& world) override;
 
     // global constants
@@ -20,6 +22,10 @@ public:
     static const int AVG_LIVING;
     static const int STDDEV_LIVING;
     static const int RANGE_SHOOT;
+
+    // global enum to choose a strategy
+    enum StrategyEnum { PROTECTION, ATTACK, KAMIKAZE };
+
     void action() override;
 
 private:
@@ -60,6 +66,7 @@ private:
 
 protected:
     StrategySoldier* strategy;
+    Agent* attackTarget; // either it is nullptr when the soldier moves or it points at the target
 
     // friendship with strategies
     friend class StrategyProtection;

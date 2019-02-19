@@ -30,11 +30,11 @@ void Worker::simulate(unsigned date, World& world)
     Grid decisionGrid;
     if(stock >= STOCK_MAX)
     {
-        decisionGrid =  hq.getGridAllyHeadquarter() - hq.getGridEnemies();
+        decisionGrid =  hq->getGridAllyHeadquarter() - hq->getGridEnemies();
     }
-    else if(deathDate - date == world.distance(*this, hq) && stock!=0)
+    else if(deathDate - date == world.distanceBetween(*this, *hq) && stock!=0)
     {
-        decisionGrid = hq.getGridAllyHeadquarter();
+        decisionGrid = hq->getGridAllyHeadquarter();
     }
     else if(world.isNextToResource(*this))
     {
@@ -43,8 +43,8 @@ void Worker::simulate(unsigned date, World& world)
     else
     {
         double ratio = 1.0*stock/STOCK_MAX;
-        decisionGrid = ratio*hq.getGridAllyHeadquarter() + (1-ratio)*hq.getGridResources()
-            - hq.getGridEnemies();
+        decisionGrid = ratio*hq->getGridAllyHeadquarter() + (1-ratio)*hq->getGridResources()
+            - hq->getGridEnemies();
     }
 
     if(!willHarvest)

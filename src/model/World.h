@@ -29,6 +29,7 @@ public:
     std::vector<Agent*> getEnemiesVisibleBy(Headquarter* hq);
     std::vector<Headquarter*> getHeadquartersVisibleBy(Headquarter* hq);
     std::vector<Resource*> getResourcesVisibleBy(Headquarter* hq);
+    std::vector<Agent*> getAgentsTargetableBy(const Soldier& soldier);
 
     // global constants
     static const int NB_ROW;

@@ -20,6 +20,10 @@ public:
     virtual bool isDead(unsigned date);
     bool doesBelongTo(Headquarter* headquarter);
 
+    // inline getters
+    const int& getHp() const { return hp; }
+    Headquarter* getHeadquarter() const { return hq; }
+
     //Our method called every frames to interact
     virtual void action(int phase) =0;
 
