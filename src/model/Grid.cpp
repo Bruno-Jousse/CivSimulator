@@ -30,9 +30,14 @@ double& Grid::operator()(int x, int y)
     return grid[x][y];
 }
 
-Grid& operator+=(const Grid& other)
+Grid& Grid::operator+=(const Grid& other)
 {
     grid += other.grid;
+    return this;
+}
+Grid& Grid::operator-=(const Grid& other)
+{
+    grid -= other.grid;
     return this;
 }
 
@@ -89,6 +94,13 @@ Grid operator+(const Grid& a, const Grid& b)
 {
     Grid res(a);
     res += b;
+    return res;
+}
+
+Grid operator-(const Grid& a, const Grid& b)
+{
+    Grid res(a);
+    res -= b;
     return res;
 }
 

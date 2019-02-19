@@ -18,6 +18,7 @@ public:
     virtual ~Agent();
 
     virtual bool isDead(unsigned date);
+    bool doesBelongTo(Headquarter* headquarter);
 
     //Our method called every frames to interact
     virtual void action(int phase) =0;

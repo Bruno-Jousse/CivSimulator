@@ -7,8 +7,9 @@ namespace model{
 
 const int World::NB_ROW = 20;
 const int World::NB_COL = 20;
+const int World::VISIBILITY_RANGE = 3;
 
-World::World(): entities()
+World::World()
 {
     // TODO : (Bruno) paste your code of random initialisation here
 }
@@ -18,21 +19,23 @@ World::~World()
 
 void World::simulateOneTurn(unsigned date)
 {
-    // TODO : construct a grid (2D array) of the unit to have acces to them quicker
-    random_shuffle(entities.begin(), entities.end()); // TODO : if we still use the PRNG from std use it as third argument
-    for(auto & entity: entities)
-    {
-        entity->simulate(date);
-    }
+    random_shuffle(headquarters.begin(), headquarters.end());
+    for(auto& hq: headquarters)
+        hq->simulate(date, *this);
+
+    random_shuffle(agents.begin(), agents.end()); // TODO : if we still use the PRNG from std use it as third argument
+    for(auto & a: agents)
+        a->simulate(date, *this);
+
     // TODO : if there is new entities add them here and remove the dead ones
 }
 
-int distanceBetween(const Entity& a, const Entity& b)
+int World::distanceBetween(const Entity& a, const Entity& b)
 {
     return abs(a.getX() - b.getX()) + abs(a.getY() - b.getY());
 }
 
-bool isNextToResource(const Entity& e)
+bool World::isNextToResource(const Entity& e)
 {
     for(const Resource& r: resources)
     {
@@ -42,6 +45,64 @@ bool isNextToResource(const Entity& e)
     return false;
 }
 
+vector<Agent*> World::getEntitiesOf(Headquarter* hq)
+{
+    vector<Agent*> ret;
+    for(Agent* e: agents)
+    {
+        if(e.doesBelongTo(hq))
+            ret.push_back(e);
+    }
+    return ret;
+}
+
+int World::distanceMin(Entity* e, vector<Agent*>& vect)
+{
+    int minDist = 100000;
+    for(Agent* a: vect)
+    {
+        int dist = distanceBetween(*a, *e);
+        if(dist < minDist)
+            minDist = dist;
+    }
+    return minDist;
+}
+
+vector<Agent*> World::getEnemiesVisibleBy(Headquarter* hq)
+{
+    vector<Agent*> enemies;
+    vector<Agent*> ally = getEntitiesOf(hq);
+    for(Agent* a: agents)
+    {
+        if(!a.doesBelongTo(hq) && distanceMin(a, ally) <= VISIBILITY_RANGE)
+            enemies.push_back(a);
+    }
+    return enemies;
+}
+
+std::vector<Headquarter*> World::getHeadquartersVisibleBy(Headquarter* hq)
+{
+    vector<Headquarter*> enemyHq;
+    vector<Agent*> ally = getEntitiesOf(hq);
+    for(Headquarter* h: headquarters)
+    {
+        if(distanceMin(h, ally) <= VISIBILITY_RANGE)
+            enemyHq.push_back(h);
+    }
+    return enemyHq;
+}
+
+std::vector<Resource*> World::getResourcesVisibleBy(Headquarter* hq)
+{
+    vector<Resource*> res;
+    vector<Agent*> ally = getEntitiesOf(hq);
+    for(Resource* r: resources)
+    {
+        if(distanceMin(r, ally) <= VISIBILITY_RANGE)
+            res.push_back(r);
+    }
+    return res;
+}
 
 void World::init(){
     cout << "World initialisation.";

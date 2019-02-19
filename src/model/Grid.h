@@ -18,6 +18,7 @@ public:
 
     double& operator()(int x, int y);
     Grid& operator+=(const Grid& other);
+    Grid& operator-=(const Grid& other);
 
     bool isInGrid(int x, int y);
 
@@ -35,6 +36,7 @@ private:
 };
 
 Grid operator+(const Grid& a, const Grid& b);
+Grid operator-(const Grid& a, const Grid& b);
 Grid operator*(const double& scalar, const Grid& g);
 
 }

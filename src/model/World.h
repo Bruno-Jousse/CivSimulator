@@ -24,15 +24,24 @@ public:
 
     bool isNextToResource(const Entity& e);
 
+    std::vector<Agent*> getAgentOf(Headquarter* hq);
+    int distanceMin(Entity* e, std::vector<Agent*>& vect);
+    std::vector<Agent*> getEnemiesVisibleBy(Headquarter* hq);
+    std::vector<Headquarter*> getHeadquartersVisibleBy(Headquarter* hq);
+    std::vector<Resource*> getResourcesVisibleBy(Headquarter* hq);
+
     // global constants
     static const int NB_ROW;
     static const int NB_COL;
+    static const int VISIBILITY_RANGE;
+
     void init();
 
 protected:
 
 private:
-    std::vector<Entity*> entities;
+    std::vector<Agent*> agents;
+    std::vector<Headquarter*> headquarters;
 
     int nbCivs;
     std::vector<Resource*> resources;

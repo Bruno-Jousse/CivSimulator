@@ -13,18 +13,28 @@ Headquarter::~Headquarter()
 
 void Headquarter::simulate(unsigned date, World& world)
 {
-    // TODO
+    // TODO : Bruno, your algo to create agent with a factory
 }
 
 void updateGrids(World world)
 {
     gridAllyHeadquarter = Grid(100, x, y);
     
-    Grid tmpGridEnemies = Grid();
-    // TODO : ask all units which enemies they see
+    Grid tmpGridEnemies;
+    for(Agent* a: world.getEnemiesVisibleBy(this))
+    {
+        tmpGridEnemies += Grid(100, a->getX(), a->getY());
+    }
+    gridEnemies = tmpGridEnemies;
 
-    // TODO update resources 
+    Grid tmpGridResources;
+    for(Resource* r: world.getResourcesVisibleBy(this))
+    {
+        tmpGridResources += Grid(100, r->getX(), r->getY());
+    }
+    gridResources = tmpGridResources;
 
+    // TODO update other grids
 }
 void deleteGrids()
 {

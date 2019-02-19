@@ -14,6 +14,11 @@ bool Agent::isDead(unsigned date)
     return (date>=deathDate) || (hp<=0);
 }
 
+bool doesBelongTo(Headquarter* headquarter)
+{
+    return headquarter == hq;
+}
+
 void Agent::chooseBestNeighbor(const Grid& decisionGrid, int x, int y, int& nextX, int& nextY)
 {
     double maxValue = -1000000;
