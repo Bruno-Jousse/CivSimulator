@@ -34,12 +34,8 @@ public:
             workers.at(i)->suppression();
         }
     }
-    int getMetalAmount() const;
-    void setMetalAmount(int value);
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    QVector<Soldier*> getSoldiers() const;
-    QVector<Worker*> getWorkers() const;
-    QVector< pair<int, int> > getProductionLine() const;
 
 };
 }

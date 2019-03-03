@@ -10,11 +10,11 @@ model::Healthbar* Healthbar::getData(){
 }
 
 int Healthbar::getHp(){
-    return hp;
+    return data->getHp();
 }
 
 void Healthbar::setHp(int hp){
-    this->hp = hp;
+    data->setHp(hp);
 }
 
 bool Healthbar::getIsActive(){
@@ -23,9 +23,9 @@ bool Healthbar::getIsActive(){
 void Healthbar::setIsActive(bool a){
     isActive = a;
 }
-/*
+
 QRectF Healthbar::boundingRect() const{
-    return QRectF(QRectF(mapFromParent(pos()), size));
+    return getQRectF();
 }
 
 QPainterPath Healthbar::shape() const{
@@ -35,12 +35,12 @@ QPainterPath Healthbar::shape() const{
 void Healthbar::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     if(isActive){
         painter->setBrush(Qt::black);
-        painter->drawRect(QRectF(mapFromParent(pos()), size));
-        QRect r(QRectF(mapFromParent(pos()), size));
-        r.setWidth(r.width()*hp/hpMax);
+        painter->drawRect(getQRectF());
+        QRectF r = getQRectF();
+        r.setWidth(r.width()*getHp()/data->getHpMax()));
         painter->setBrush(color);
         painter->drawRect(r);
     }
 }
-*/
+
 }

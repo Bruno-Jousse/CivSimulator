@@ -17,6 +17,6 @@ Metal::Metal(int x, int y, int w, int h) : Resource(w, h, ":/images/Metal_Ingot.
 
 void Metal::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
 
-    painter->drawImage(QRectF(mapFromParent(pos()), size), img);
+    painter->drawImage(getQRectF()), img);
 }
 }

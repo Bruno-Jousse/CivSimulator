@@ -22,7 +22,7 @@ Soldier::Soldier(QColor color, int x, int y, int w, int h) : Machine(color){
 void Soldier::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     Machine::paint(painter, option, widget);
 
-    painter->drawText(QRectF(mapFromParent(pos()), size), Qt::AlignHCenter, "S");
+    painter->drawText(QRectF(getQRectF(), Qt::AlignHCenter, "S");
 }
 
 }

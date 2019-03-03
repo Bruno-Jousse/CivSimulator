@@ -15,12 +15,4 @@ void Healthbar::setHp(int hp){
     this->hp = hp;
 }
 
-/*
-bool Healthbar::getIsActive(){
-    return isActive;
-}
-void Healthbar::setIsActive(bool a){
-    isActive = a;
-}
-*/
 }

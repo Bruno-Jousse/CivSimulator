@@ -41,16 +41,9 @@ public:
 
     QColor getColor() ;
     void setColor(const QColor &value);
-    int getX();
-    void setX(int value);
-    int getY() ;
-    void setY(int value);
-    int getW() ;
-    void setW(int value);
-    int getH() ;
-    void setH(int value);
-    QSizeF getSize() ;
-    void setSize(QSizeF r);
+    QRectF getQRectF() const{
+        return QRectF(QPoint(data->getPosX(), data->getPosY()), QSize(data->getWidth(), data->getHeight()));
+    }
 
     model::Entity* getData();
 

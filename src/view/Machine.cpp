@@ -19,7 +19,7 @@ Machine::Machine(QColor color) : Agent(color){
 
 void Machine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     painter->setBrush(color);
-    painter->drawEllipse(QRectF(mapFromParent(pos()), size));
+    painter->drawEllipse(getQRectF());
 }
 
 int Machine::getHp(){

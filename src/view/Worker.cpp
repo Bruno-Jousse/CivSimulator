@@ -27,7 +27,7 @@ Worker::Worker(QColor color, int x, int y, int w, int h) : Machine(color) {
 void Worker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
     Machine::paint(painter, option, widget);
 
-    painter->drawText(QRectF(mapFromParent(pos()), size), Qt::AlignHCenter,"W");
+    painter->drawText(getQRectF(), size), Qt::AlignHCenter,"W");
 }
 
 
