@@ -14,4 +14,46 @@ bool Agent::isDead(unsigned date)
     return (date>=deathDate) || (hp<=0);
 }
 
+bool doesBelongTo(Headquarter* headquarter)
+{
+    return headquarter == hq;
+}
+
+void Agent::chooseBestNeighbor(const Grid& decisionGrid, int x, int y, int& nextX, int& nextY)
+{
+    double maxValue = -1000000;
+    nextX = x;
+    nextY = y;
+
+    if(decisionGrid.isInGrid(x-1, y) && decisionGrid(x-1, y) > maxValue)
+    {
+        maxValue = decisionGrid(x-1, y);
+        nextX = x-1;
+    }
+    if(decisionGrid.isInGrid(x+1, y) && decisionGrid(x+1, y) > maxValue)
+    {
+        maxValue = decisionGrid(x+1, y);
+        nextX = x+1;
+    }
+    if(decisionGrid.isInGrid(x, y-1) && decisionGrid(x, y-1) > maxValue)
+    {
+        maxValue = decisionGrid(x, y-1);
+        nextX = x;
+        nextY = y-1;
+    }
+    if(decisionGrid.isInGrid(x, y+1) && decisionGrid(x, y+1) > maxValue)
+    {
+        maxValue = decisionGrid(x, y+1);
+        nextX = x;
+        nextY = y+1;
+    }
+}
+
+void Agent::advance(int phase){
+    if(phase!=0){
+        action();
+    }
+}
+
+
 }

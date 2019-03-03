@@ -8,7 +8,41 @@ Headquarter::Headquarter(int x, int y): Entity(x, y), hp(Headquarter::STARTING_H
 {}
 
 Headquarter::~Headquarter()
-{}
+{
+}
+
+void Headquarter::simulate(unsigned date, World& world)
+{
+    updateGrids(world);
+    // TODO : Bruno, your algo to create agent with a factory
+    // TODO : choose a strategy for the soldiers (with defineStrategy())
+}
+
+void Headquarter::updateGrids(World& world)
+{
+    gridAllyHeadquarter = Grid(100, x, y);
+    
+    Grid tmpGridEnemies;
+    for(Agent* a: world.getEnemiesVisibleBy(this))
+    {
+        tmpGridEnemies += Grid(100, a->getX(), a->getY());
+    }
+    gridEnemies = tmpGridEnemies;
+
+    Grid tmpGridResources;
+    for(Resource* r: world.getResourcesVisibleBy(this))
+    {
+        tmpGridResources += Grid(100, r->getX(), r->getY());
+    }
+    gridResources = tmpGridResources;
+
+    Grid tmpGridAllyAgents;
+    for(Agent* a: world.getAgentOf(this))
+    {
+        tmpGridAllyAgents += Grid(100, a->getX(), a->getY());
+    }
+    gridAllyAgents = tmpGridAllyAgents;
+}
 
 
 

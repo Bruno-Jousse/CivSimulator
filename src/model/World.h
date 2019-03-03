@@ -20,21 +20,36 @@ public:
 
     void simulateOneTurn(unsigned date);
 
+    // Manhattan distance
+    int distanceBetween(const Entity& a, const Entity& b);
+
+    bool isNextToResource(const Entity& e);
+
+    std::vector<Agent*> getAgentOf(Headquarter* hq);
+    int distanceMin(Entity* e, std::vector<Agent*>& vect);
+    std::vector<Agent*> getEnemiesVisibleBy(Headquarter* hq);
+    std::vector<Headquarter*> getHeadquartersVisibleBy(Headquarter* hq);
+    std::vector<Resource*> getResourcesVisibleBy(Headquarter* hq);
+    std::vector<Agent*> getAgentsTargetableBy(const Soldier& soldier);
+
     // global constants
     static const int NB_ROW;
     static const int NB_COL;
+    static const int VISIBILITY_RANGE;
+
     void init();
     void action(int phase) override;
 
 protected:
 
 private:
-    std::vector<Entity*> entities;
+    std::vector<Agent*> agents;
+    std::vector<Headquarter*> headquarters;
 
     int nbCivs;
     int width;
     int height;
-    std::vector<Resource*> ressources;
+    std::vector<Resource*> resources;
     std::vector<Headquarter*> factions;
 
 };

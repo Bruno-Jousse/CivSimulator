@@ -10,10 +10,12 @@ public:
     Soldier() = delete;
     Soldier(const Soldier & copy) = delete;
 
-    Soldier(int x, int y, Headquarter* creator);
+    Soldier(int x, int y, Headquarter* creator, unsigned currentDate);
     virtual ~Soldier();
 
-    void simulate(unsigned date) override;
+    void defineStrategy(StrategyEnum type);
+
+    void simulate(unsigned date, World& world) override;
 
     // global constants
     static const int STARTING_HP;
@@ -21,6 +23,9 @@ public:
     static const int STDDEV_LIVING;
     static const int RANGE_SHOOT;
     void action(int phase) override;
+
+    // global enum to choose a strategy
+    enum StrategyEnum { PROTECTION, ATTACK, KAMIKAZE };
 
 private:
     // nested classes
@@ -31,7 +36,7 @@ private:
         StrategySoldier(StrategySoldier const&) = delete;
         virtual ~StrategySoldier();
 
-        virtual void simulate(unsigned date) = 0;
+        virtual void simulate(unsigned date, World& world) = 0;
     };
     class StrategyProtection: public Soldier::StrategySoldier
     {
@@ -39,7 +44,7 @@ private:
         StrategyProtection(StrategyProtection const&) = delete;
         virtual ~StrategyProtection();
 
-        void simulate(unsigned date) override;
+        void simulate(unsigned date, World& world) override;
     };
     class StrategyAttack: public Soldier::StrategySoldier
     {
@@ -47,7 +52,7 @@ private:
         StrategyAttack(StrategyAttack const&) = delete;
         virtual ~StrategyAttack();
 
-        void simulate(unsigned date) override;
+        void simulate(unsigned date, World& world) override;
     };
     class StrategyKamikaze: public Soldier::StrategySoldier
     {
@@ -55,11 +60,12 @@ private:
         StrategyKamikaze(StrategyKamikaze const&) = delete;
         virtual ~StrategyKamikaze();
 
-        void simulate(unsigned date) override;
+        void simulate(unsigned date, World& world) override;
     };
 
 protected:
     StrategySoldier* strategy;
+    Agent* attackTarget; // either it is nullptr when the soldier moves or it points at the target
 
     // friendship with strategies
     friend class StrategyProtection;

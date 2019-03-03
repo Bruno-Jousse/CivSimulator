@@ -11,10 +11,10 @@ public:
     Worker() = delete;
     Worker(const Worker & copy) = delete;
 
-    Worker(int x, int y, Headquarter* creator);
+    Worker(int x, int y, Headquarter* creator, unsigned currentDate);
     virtual ~Worker();
 
-    void simulate(unsigned date) override;
+    void simulate(unsigned date, World& world) override;
 
     // global constants
     static const int STOCK_MAX;
@@ -25,9 +25,7 @@ public:
     void action(int phase) override;
 protected:
     int stock;
-
-    int metalStock;
-    int metalStockMax;
+    bool willHarvest;
 
 private:
 
