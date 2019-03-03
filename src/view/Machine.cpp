@@ -30,11 +30,4 @@ void Machine::setHp(int hp){
     healthbar.setHp(hp);
 }
 
-int Machine::getWear(){
-    return wearbar.getHp();
-}
-
-void Machine::setWear(int hp){
-    wearbar.setHp(hp);
-}
 }

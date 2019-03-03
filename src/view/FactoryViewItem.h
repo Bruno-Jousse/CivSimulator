@@ -6,8 +6,10 @@
 #include "Worker.h"
 #include "Metal.h"
 #include "Headquarter.h"
+#include "Healthbar.h"
 #include <boost/algorithm/string.hpp>
 #include "QGraphicsScene"
+#include "QGraphicsItem"
 #include <string>
 
 namespace view{

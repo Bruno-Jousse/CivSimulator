@@ -2,7 +2,7 @@
 
 namespace model{
 
-Entity::Entity(int x, int y): x(x), y(y)
+Entity::Entity(int x, int y, int w, int h): x(x), y(y), w(w), h(h)
 {}
 
 Entity::~Entity()

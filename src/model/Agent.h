@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Headquarter.h"
 #include "Grid.h"
+#include "../view/Healthbar.h"
 
 namespace model{
 
@@ -21,18 +22,17 @@ public:
     bool doesBelongTo(Headquarter* headquarter);
 
     // inline getters
-    const int& getHp() const { return hp; }
+    const int& getHp() const { return healthbar.getHp(); }
     Headquarter* getHeadquarter() const { return hq; }
 
-    //Our method called every frames to interact
-    virtual void action(int phase) =0;
-
+    void setHealthbar(Healthbar a){ healthbar = a; }
+    int getHp(){ return healthbar.getHp();}
     static void chooseBestNeighbor(const Grid& decisionGrid, int x, int y, int& nextX, int& nextY);
 
 protected:
     unsigned deathDate;
-    int hp; // number of shot until it dies
     Headquarter* hq;
+    Healthbar* healthbar;
 
     // next coordinates
     int nextX;

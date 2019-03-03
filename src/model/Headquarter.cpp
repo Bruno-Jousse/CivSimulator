@@ -3,9 +3,11 @@ namespace model{
 
 // global constants
 const int Headquarter::STARTING_HP = 50;
+const int Headquarter::MAX_STOCK_METAL = 1000;
 
 Headquarter::Headquarter(int x, int y): Entity(x, y), hp(Headquarter::STARTING_HP)
-{}
+{
+}
 
 Headquarter::~Headquarter()
 {

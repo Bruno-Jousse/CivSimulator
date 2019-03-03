@@ -38,7 +38,9 @@ public:
     static const int VISIBILITY_RANGE;
 
     void init();
-    void action(int phase) override;
+    void action(int phase);
+    int getWidth(){ return NB_COL*30; }
+    int getHeight(){ return NB_ROW*30;}
 
 protected:
 
@@ -47,8 +49,6 @@ private:
     std::vector<Headquarter*> headquarters;
 
     int nbCivs;
-    int width;
-    int height;
     std::vector<Resource*> resources;
     std::vector<Headquarter*> factions;
 

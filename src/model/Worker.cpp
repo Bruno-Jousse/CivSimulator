@@ -14,8 +14,10 @@ const int Worker::STDDEV_LIVING = 10;
 
 Worker::Worker(int x, int y, Headquarter* creator, unsigned currentDate):
     Agent(x, y, currentDate + (int)round(RandomManager::getInstance().getGaussian(Worker::AVG_LIVING,
-    Worker::STDDEV_LIVING)), Worker::STARTING_HP, creator), stock(0)
-{}
+    Worker::STDDEV_LIVING)), Worker::STARTING_HP, creator)
+{
+    health = view::FactoryViewItem::getInstance().createHealthbar(Qt::green, STARTING_HP);
+}
 
 Worker::~Worker()
 {}

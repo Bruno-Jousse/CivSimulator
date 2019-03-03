@@ -14,6 +14,9 @@ Entity::Entity(QColor color) : color(color){
     setW(w);*/
 }
 
+model::Entity* Entity::getData(){
+    return data;
+}
 
 void Entity::suppression(){
     if(scene()){

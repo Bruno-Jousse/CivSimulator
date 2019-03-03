@@ -3,18 +3,20 @@
 namespace model{
 
 Agent::Agent(int x, int y, unsigned deathDate, int hp, Headquarter* creator):
- Entity(x, y), deathDate(deathDate), hp(hp), hq(creator)
-{}
+ Entity(x, y), deathDate(deathDate), hq(creator)
+{
+    healthbar.setHp(hp);
+}
 
 Agent::~Agent()
 {}
 
 bool Agent::isDead(unsigned date)
 {
-    return (date>=deathDate) || (hp<=0);
+    return (date>=deathDate) || (getHp()<=0);
 }
 
-bool doesBelongTo(Headquarter* headquarter)
+bool Agent::doesBelongTo(Headquarter* headquarter)
 {
     return headquarter == hq;
 }
@@ -46,12 +48,6 @@ void Agent::chooseBestNeighbor(const Grid& decisionGrid, int x, int y, int& next
         maxValue = decisionGrid(x, y+1);
         nextX = x;
         nextY = y+1;
-    }
-}
-
-void Agent::advance(int phase){
-    if(phase!=0){
-        action();
     }
 }
 

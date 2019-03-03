@@ -10,16 +10,18 @@
 #include "Soldier.h"
 #include "Worker.h"
 #include <vector>
+#include "../model/Headquarter.h"
 
 namespace view{
 
 class Headquarter: public Building {
 private: 
-
 /*
     QVector<Soldier*> soldiers;
     QVector<Worker*> workers;
 */
+    model::Headquarter* data;
+    Healthbar metalStockBar;
 
 public:
     Headquarter(QColor color, int x=0, int y=0, int w=30, int h=30);
@@ -38,8 +40,6 @@ public:
     QVector<Soldier*> getSoldiers() const;
     QVector<Worker*> getWorkers() const;
     QVector< pair<int, int> > getProductionLine() const;
-
-
 
 };
 }

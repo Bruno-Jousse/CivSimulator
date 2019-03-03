@@ -16,10 +16,13 @@ namespace view{
 
 class World : public Entity
 {
+private:
+    //model::World isn't derived from entity
+    model::World* data;
 protected:
+
     QVector<Resource*> ressources;
     QVector<Headquarter*> factions;
-    model::World *data;
 
 public:
     World(int nbCivs, int w, int h);
@@ -31,6 +34,7 @@ public:
     bool isOccupiedByHQ(QRect obj);
     bool collider(QRect r1, QRect r2);
     bool isOccupied(QRect obj);
+    model::World* getData();
 };
 }
 #endif // WORLD_H

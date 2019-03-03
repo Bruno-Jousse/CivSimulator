@@ -13,6 +13,8 @@
 namespace view{
 
 class Agent: public Entity {
+protected:
+    Healthbar healthbar;
 
 public:
     Agent(QColor color);

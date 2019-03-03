@@ -14,6 +14,16 @@ namespace view{
 
 Headquarter::Headquarter(QColor color, int x, int y, int w, int h) : Building(color){
     data = new model::Headquarter(x, y, w, h);
+
+    healthbar.getData()->setHp(data->STARTING_HP);
+    healthbar.getData()->setW(w);
+    data->setHealthbar(healthbar.getData());
+    healthbar.setParentItem(this);
+
+    metalStockBar = Healthbar(Qt::gray, data->MAX_STOCK_METAL, 0, h-10, w);
+    data->setMetalStockBar(metalStockBar.getData());
+    metalStockBar.setParentItem(this);
+
 }
 
 int Headquarter::getMetalAmount() const

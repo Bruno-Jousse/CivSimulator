@@ -13,10 +13,6 @@ World::World(int nbCivs, int width, int height): entities(), nbCivs(nbCivs), wid
 	init();
 }
 
-World::World()
-{
-    init();
-}
 
 World::~World()
 {}
@@ -127,9 +123,9 @@ void World::init(){
     Metal* ress;
 
     for(int i=0; i<nbCivs; i++){
-        view::Headquarter* vHq = (view::Headquarter) view::FactoryViewItem::getInstance().create("headquarter", Qt::white);
+        view::Headquarter* vHq = view::FactoryViewItem::getInstance().createHeadquarter(Qt::white);
         do{
-            vHq->setX(model::RandomManager::getInstance().getRandomInt(getW()-hq->getW()));
+            vHq->getData()->setX(model::RandomManager::getInstance().getRandomInt(getW()-hq->getW()));
             vHq->setY(model::RandomManager::getInstance().getRandomInt(getH()-hq->getH()));
         }while(!vHq->scene()->collidingItems(vHq).isEmpty());
         if(i%3==0){

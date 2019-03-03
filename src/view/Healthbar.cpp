@@ -1,8 +1,12 @@
 #include "Healthbar.h"
 namespace view{
 
-Healthbar::Healthbar(QColor color, int x, int y, int w, int h, int hpMax, bool isActive) : Entity(color), isActive(isActive){
+Healthbar::Healthbar(QColor color, int hpMax, int x, int y, int w, int h) : Entity(color){
     data = new model::Healthbar(x, y, w, h, hpMax)
+}
+
+model::Healthbar* Healthbar::getData(){
+    return data;
 }
 
 int Healthbar::getHp(){

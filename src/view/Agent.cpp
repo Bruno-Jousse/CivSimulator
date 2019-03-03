@@ -7,11 +7,6 @@
 namespace view{
 
 Agent::Agent(QColor color) : Entity (color){
-
-}
-
-Agent::Agent(QColor color) : Entity(color){
-
 }
 
 Agent::~Agent(){

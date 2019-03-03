@@ -1,7 +1,7 @@
 #include "Soldier.h"
 
 #include <cmath>
-#include "../controller/RandomManager.h"
+#include "../model/RandomManager.h"
 
 namespace model{
 

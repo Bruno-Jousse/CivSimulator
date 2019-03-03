@@ -22,7 +22,7 @@ public:
     static const int AVG_LIVING;
     static const int STDDEV_LIVING;
     static const int RANGE_SHOOT;
-    void action(int phase) override;
+    void action(int phase);
 
     // global enum to choose a strategy
     enum StrategyEnum { PROTECTION, ATTACK, KAMIKAZE };

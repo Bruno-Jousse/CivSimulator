@@ -3,6 +3,7 @@
 namespace view{
 
 World::World(int nbCivs, int w, int h) :  Entity(Qt::transparent){
+
     data = new model::World(nbCivs, w, h);
     /*
     for(Headquarter* h : factions){
@@ -63,6 +64,10 @@ bool World::collider(QRect r1, QRect r2){
       );
 }
 */
+
+model::World* World::getData(){
+    return data;
+}
 
 QRectF World::boundingRect() const{
     return QRectF();

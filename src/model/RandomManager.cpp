@@ -6,7 +6,7 @@ namespace model{
 
 RandomManager::RandomManager()
 {
-    seed = time(0);
+    seed = time(nullptr);
     distribReal = std::bind(uniform_real_distribution<double> (0.0, 1.0), mt19937(seed));
     distribInt = std::bind(uniform_int_distribution<int> (0, VAL_MAX), mt19937(seed));
 }

@@ -49,6 +49,7 @@ Soldier* FactoryViewItem::createSoldier(QColor color, int x, int y, int w, int h
 
 Healthbar* FactoryViewItem::createHealthbar(QColor color, int hpMax, int x, int y, int w, int h){
     Healthbar *a = new Healthbar(color, hpMax, x, y ,w , h);
+    //father->childItems().append(a);
     scene->addItem(a);
     return a;
 }

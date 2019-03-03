@@ -10,7 +10,7 @@ public:
     Entity() = delete;
     Entity(Entity const&) = delete;
     
-    Entity(int x, int y);
+    Entity(int x, int y, int w=1, int h=1);
     virtual ~Entity();
 
     /**
@@ -26,8 +26,20 @@ public:
     QPoint searchAvailablePlaceAround(Entity &r);
     QPoint searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r);
     // inline getters
-    int getX() const { return x; };
-    int getY() const { return y; };
+    int getX() const { return x; }
+    int getY() const { return y; }
+    int getW() const { return w; }
+    int getH() const { return h; }
+    void setX(int a){ x = a;}
+    void setY(int a){ y = a;}
+    void setW(int a){ w = a;}
+    void setH(int a){ h = a;}
+
+    //View conversion
+    int getPosX() const { return x*30; }
+    int getPosY() const { return y*30; }
+    int getWidth() const { return w*30; }
+    int getHeight() const { return h*30; }
 
 protected:
     int x;

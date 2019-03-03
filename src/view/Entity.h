@@ -52,6 +52,8 @@ public:
     QSizeF getSize() ;
     void setSize(QSizeF r);
 
+    model::Entity* getData();
+
 };
 }
 #endif //_FIGURE_H

@@ -22,11 +22,13 @@ public:
     static const int AVG_LIVING;
     static const int STDDEV_LIVING;
 
-    void action(int phase) override;
-protected:
-    int stock;
-    bool willHarvest;
+    void action(int phase);
+    void setMetalAmount(int a){ metalStockBar->setHp(a); }
+    int getMetalAmount(int a){ return metalStockbar->getHp();}
 
+protected:
+    bool willHarvest;
+    Healthbar* metalStockBar;
 private:
 
 

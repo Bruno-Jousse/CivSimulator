@@ -14,12 +14,6 @@ namespace view{
 class Machine: public Agent {
 protected:
     Healthbar healthbar;
-    //Usure de la machine
-    Healthbar wearbar;
-    //Movement speed
-    int ms;
-
-    //void moveTo(int, int);
 
 public:
     Machine(QColor color);

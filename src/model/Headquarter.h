@@ -1,8 +1,9 @@
 #ifndef Headquarter_HPP
 #define Headquarter_HPP
 
-#include "Entity.h"
+#include "Agent.h"
 #include "Grid.h"
+#include "Healthbar.h"
 
 namespace model{
 
@@ -27,14 +28,21 @@ public:
 
     // global constant
     static const int STARTING_HP;
+    static const int MAX_STOCK_METAL;
 
     void spawnMachine();
 
-    void action(int phase) override;
+    void action(int phase);
+    int getHp(){ return healthbar.getHp(); }
+    int getMetalAmount(){ return metalStockBar.getHp(); }
+    void setHealthbar(Healthbar h){ healthbar = b;}
+    void setMetalStockBar(Healthbar h){ metalStockBar = h; }
 
 protected:
     int hp;
     // the grids
+    Healthbar* metalStockBar;
+    Healthbar* healthbar;
     Grid gridAllyHeadquarter;
     Grid gridAllyAgents;
     Grid gridEnemies;
