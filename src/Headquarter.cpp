@@ -108,3 +108,31 @@ void Headquarter::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     painter->setBrush(Qt::black);
     painter->drawText(QRectF(mapFromParent(pos()), size), Qt::AlignCenter, "HQ");
 }
+
+
+
+void Headquarter::updateGrids(World& world)
+{
+	gridAllyHeadquarter = Grid(100, x, y);
+
+	Grid tmpGridEnemies;
+	for (Agent* a : world.getEnemiesVisibleBy(this))
+	{
+		tmpGridEnemies += Grid(100, a->getX(), a->getY());
+	}
+	gridEnemies = tmpGridEnemies;
+
+	Grid tmpGridResources;
+	for (Resource* r : world.getResourcesVisibleBy(this))
+	{
+		tmpGridResources += Grid(100, r->getX(), r->getY());
+	}
+	gridResources = tmpGridResources;
+
+	Grid tmpGridAllyAgents;
+	for (Agent* a : world.getAgentOf(this))
+	{
+		tmpGridAllyAgents += Grid(100, a->getX(), a->getY());
+	}
+	gridAllyAgents = tmpGridAllyAgents;
+}

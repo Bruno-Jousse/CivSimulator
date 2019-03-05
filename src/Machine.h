@@ -13,7 +13,7 @@ class Machine: public Agent {
 protected:
     Healthbar healthbar;
     //Usure de la machine
-    Healthbar wearbar;
+    Healthbar stockMetalMax;
     int ms;
 
     void moveTo(int, int);

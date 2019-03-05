@@ -25,10 +25,6 @@ void Machine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget
     painter->drawEllipse(QRectF(mapFromParent(pos()), size));
 }
 
-void Machine::moveTo(int, int) {
-    return;
-}
-
 int Machine::getHp(){
     return healthbar.getHp();
 }

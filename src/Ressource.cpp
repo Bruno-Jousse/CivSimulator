@@ -33,3 +33,13 @@ int Ressource::getAmount(){
 Ressource::~Ressource(){
 
 }
+
+
+int Resource::takeRessources(int amount) {
+	if (amount > this->amount) {
+		amount = this->amount;
+	}
+
+	this->amount -= amount;
+	return amount;
+}

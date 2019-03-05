@@ -9,6 +9,7 @@
 #include "Building.h"
 #include "Soldier.h"
 #include "Worker.h"
+#include "Grid.h"
 #include <vector>
 
 class Headquarter: public Building {
@@ -23,6 +24,11 @@ private:
     
     void createAWorker();
     void createASoldier();
+
+	Grid gridAllyHeadquarter;
+	Grid gridAllyAgents;
+	Grid gridEnemies;
+	Grid gridResources;
 
 public:
     Headquarter(QColor color, int x, int y, int w, int h, int metalAmount=100, int aggressivity=1, int hp=100);
@@ -45,6 +51,19 @@ public:
 
     void spawnMachine();
     void action() override;
+
+	// create agent and choose a strategy
+	void simulate(unsigned date, World& world) override;
+
+	void updateGrids(World& world);
+	// inline grid getters
+	const Grid& getGridAllyHeadquarter() const { return gridAllyHeadquarter; }
+	const Grid& getGridAllyAgents() const { return gridAllyAgents; }
+	const Grid& getGridEnemies() const { return gridEnemies; }
+	const Grid& getGridResources() const { return gridResources; }
+
+	// global constant
+	static const int STARTING_HP;
 
 };
 

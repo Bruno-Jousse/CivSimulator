@@ -20,6 +20,10 @@ public:
     virtual ~Ressource() = 0;
     int getAmount();
     int takeRessources(int amount);
+	bool isEmpty() { return quantity <= 0; }
+	void simulate(unsigned date, World& world) override;
+
+	int takeRessources(int amount);
 };
 
 #endif //_RESSOURCE_H

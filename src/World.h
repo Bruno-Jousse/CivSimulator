@@ -10,6 +10,8 @@
 #include <iostream>
 #include "Entity.h"
 #include <time.h>
+#include <algorithm>
+
 using namespace std;
 
 static mt19937::result_type seed = time(0);
@@ -36,6 +38,20 @@ public:
     bool collider(QRect r1, QRect r2);
     bool isOccupied(QRect obj);
     void init();
+
+	void simulateOneTurn(unsigned date);
+
+	// Manhattan distance
+	int distanceBetween(const Entity& a, const Entity& b);
+
+	bool isNextToResource(const Entity& e);
+
+	std::vector<Agent*> getAgentOf(Headquarter* hq);
+	int distanceMin(Entity* e, std::vector<Agent*>& vect);
+	std::vector<Agent*> getEnemiesVisibleBy(Headquarter* hq);
+	std::vector<Headquarter*> getHeadquartersVisibleBy(Headquarter* hq);
+	std::vector<Resource*> getResourcesVisibleBy(Headquarter* hq);
+	std::vector<Agent*> getAgentsTargetableBy(const Soldier& soldier);
 
 };
 
