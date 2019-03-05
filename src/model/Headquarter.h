@@ -4,6 +4,7 @@
 #include "Agent.h"
 #include "Grid.h"
 #include "Healthbar.h"
+#include <QColor>
 
 namespace model{
 
@@ -13,7 +14,7 @@ public:
     Headquarter() = delete;
     Headquarter(Headquarter const&) = delete;
     
-    Headquarter(int x, int y);
+    Headquarter(int x, int y, QColor color);
     virtual ~Headquarter();
 
     // create agent and choose a strategy
@@ -37,8 +38,11 @@ public:
     int getMetalAmount(){ return metalStockBar.getHp(); }
     void setHealthbar(Healthbar h){ healthbar = b;}
     void setMetalStockBar(Healthbar h){ metalStockBar = h; }
+	void setColor(QColor c);
+	QColor getColor();
 
 protected:
+	QColor color;
     int hp;
     // the grids
     Healthbar* metalStockBar;

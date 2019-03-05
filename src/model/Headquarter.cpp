@@ -5,7 +5,7 @@ namespace model{
 const int Headquarter::STARTING_HP = 50;
 const int Headquarter::MAX_STOCK_METAL = 1000;
 
-Headquarter::Headquarter(int x, int y): Entity(x, y), hp(Headquarter::STARTING_HP)
+Headquarter::Headquarter(int x, int y, QColor color): Entity(x, y), color(color), hp(Headquarter::STARTING_HP)
 {
 }
 
@@ -109,4 +109,11 @@ void Headquarter::action(){
     }
 }
 
+void Headquarter::setColor(QColor c) {
+	color = c;
+}
+
+QColor Headquarter::getColor(){
+	return color;
+}
 }
