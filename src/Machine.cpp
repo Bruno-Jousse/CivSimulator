@@ -9,16 +9,10 @@
  * Machine implementation
  */
 
-Machine::Machine(QColor color, int x, int y, int w, int h, int hp, int ms, int wearMax) : Agent(color, x, y, w, h), healthbar(Qt::green, 0, 0, w, 5, hp, true), wearbar(Qt::gray, 0, h-5, w, 5, wearMax, true), ms(ms){
+Machine::Machine(Headquarter* creator, QColor color, int x, int y, int hp) : Agent(color, x, y), healthbar(Qt::green, 0, 0, getW(), 5, hp){
+    hq = creator;
     healthbar.setParentItem(this);
-    wearbar.setParentItem(this);
 }
-
-Machine::Machine(int hp, int ms, int wearMax) : Agent(), healthbar(Qt::green, 0, 0, 30, 5, hp, true), wearbar(Qt::gray, 0, 6, 30, 5, wearMax, true), ms(ms){
-    healthbar.setParentItem(this);
-    wearbar.setParentItem(this);
-}
-
 
 void Machine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
     painter->setBrush(color);
@@ -33,10 +27,42 @@ void Machine::setHp(int hp){
     healthbar.setHp(hp);
 }
 
-int Machine::getWear(){
-    return wearbar.getHp();
+bool Machine::isDead(unsigned date)
+{
+    return (date>=deathDate) || (hp<=0);
 }
 
-void Machine::setWear(int hp){
-    wearbar.setHp(hp);
+bool doesBelongTo(Headquarter* headquarter)
+{
+    return headquarter == hq;
+}
+
+void Machine::chooseBestNeighbor(const Grid& decisionGrid, int x, int y, int& nextX, int& nextY)
+{
+    double maxValue = -1000000;
+    nextX = x;
+    nextY = y;
+
+    if(decisionGrid.isInGrid(x-1, y) && decisionGrid(x-1, y) > maxValue)
+    {
+        maxValue = decisionGrid(x-1, y);
+        nextX = x-1;
+    }
+    if(decisionGrid.isInGrid(x+1, y) && decisionGrid(x+1, y) > maxValue)
+    {
+        maxValue = decisionGrid(x+1, y);
+        nextX = x+1;
+    }
+    if(decisionGrid.isInGrid(x, y-1) && decisionGrid(x, y-1) > maxValue)
+    {
+        maxValue = decisionGrid(x, y-1);
+        nextX = x;
+        nextY = y-1;
+    }
+    if(decisionGrid.isInGrid(x, y+1) && decisionGrid(x, y+1) > maxValue)
+    {
+        maxValue = decisionGrid(x, y+1);
+        nextX = x;
+        nextY = y+1;
+    }
 }

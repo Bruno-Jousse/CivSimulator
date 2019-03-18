@@ -16,20 +16,12 @@ const int Soldier::STDDEV_LIVING = 20;
 const int Soldier::RANGE_SHOOT = 3;
 const int Soldier::DMG = 1;
 
-Soldier::Soldier(int x, int y, Headquarter* creator, unsigned currentDate) :
-	Agent(x, y, currentDate + (int)round(RandomManager::getInstance().getGaussian(Soldier::AVG_LIVING,
-		Soldier::STDDEV_LIVING)), Soldier::STARTING_HP, creator)
-{
-	strategy = new StrategyProtection();
+
+Soldier::Soldier(Headquarter* creator, QColor color, int x, int y) : Machine(creator, color, x, y, STARTING_HP){
+    deathDate = TimeManager::getInstance().getMonth() +  static_cast<int>(round(RandomManager::getInstance().getGaussian(Soldier::AVG_LIVING, Soldier::STDDEV_LIVING)));
+    strategy = new StrategyProtection();
 }
 
-Soldier::Soldier(QColor color, int x, int y, int w, int h, int dmg, bool mustAttack, int hp, int ms, int wearMax) : Machine(color, x, y, w, h, hp, ms, wearMax), dmg(dmg), mustAttack(mustAttack){
-
-}
-
-Soldier::Soldier(int dmg, bool mustAttack, int hp, int ms, int wearMax) : Machine(hp, ms, wearMax), dmg(dmg), mustAttack(mustAttack){
-
-}
 
 void Soldier::suppression() {
 	Entity::suppression();

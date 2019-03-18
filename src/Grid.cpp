@@ -1,9 +1,5 @@
 #include "Grid.h"
 
-using namespace std;
-
-namespace model{
-
 Grid::Grid(): grid(valarray<double>(0.0, World::NB_COL), World::NB_ROW)
 {}
 
@@ -111,5 +107,3 @@ Grid operator*(const double& scalar, const Grid& g)
     copy.grid = multiplier * g.grid;
     return copy;
 }
-
-} // namespace model

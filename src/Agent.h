@@ -12,7 +12,7 @@
 class Agent: public Entity {
 public:
 
-    Agent(QColor color, int x, int y, int w, int h);
+    Agent(QColor color, int x=0, int y=0);
     Agent();
     virtual ~Agent()=0;
 

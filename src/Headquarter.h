@@ -1,27 +1,22 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _HEADQUARTER_H
 #define _HEADQUARTER_H
 
+//#include "World.h"
+//#include "Grid.h"
 #include "Building.h"
 #include "Soldier.h"
 #include "Worker.h"
-#include "Grid.h"
 #include <vector>
 
 class Headquarter: public Building {
 private: 
 
-    int metalAmount;
-    int aggressivity;
     QVector<Soldier*> soldiers;
     QVector<Worker*> workers;
     //1st int is number of month to wait, 2nd int represent: 0=worker, 1=soldier
     QVector< pair<int, int> > productionLine;
-    
+    Healthbar metalStockBar;
+
     void createAWorker();
     void createASoldier();
 
@@ -31,9 +26,8 @@ private:
 	Grid gridResources;
 
 public:
-    Headquarter(QColor color, int x, int y, int w, int h, int metalAmount=100, int aggressivity=1, int hp=100);
-    Headquarter(int metalAmount=100, int aggressivity=1, int hp=100);
-    void suppression() override{
+    Headquarter(QColor color, int x=0, int y=0);
+    virtual void suppression() override{
         Entity::suppression();
         for(int i=0; i<soldiers.size(); i++){
             soldiers.at(i)->suppression();
@@ -42,6 +36,7 @@ public:
             workers.at(i)->suppression();
         }
     }
+
     int getMetalAmount() const;
     void setMetalAmount(int value);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -52,9 +47,6 @@ public:
     void spawnMachine();
     void action() override;
 
-	// create agent and choose a strategy
-	void simulate(unsigned date, World& world) override;
-
 	void updateGrids(World& world);
 	// inline grid getters
 	const Grid& getGridAllyHeadquarter() const { return gridAllyHeadquarter; }
@@ -64,7 +56,8 @@ public:
 
 	// global constant
 	static const int STARTING_HP;
+    static const int METAL_STOCK_MAX;
 
 };
 
-#endif //_HEADQUARTER_H
+#endif

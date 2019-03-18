@@ -3,8 +3,8 @@
  */
 
 
-#ifndef _FIGURE_H
-#define _FIGURE_H
+#ifndef _ENTITY_H
+#define _ENTITY_H
 
 #include "QGraphicsItem"
 #include "QGraphicsScene"
@@ -12,18 +12,10 @@
 #include "QVector"
 #include "QImage"
 #include <iostream>
+#include "TimeManager.h"
+#include "RandomManager.h"
 
 using namespace std;
-
-/****** Portée globale ******/
-//One month = 60 frames
-static int frame=0;
-
-static int getMonth(){
-    return static_cast<int>(frame/60);
-}
-
-/****************************/
 
 class Entity : public QGraphicsItem {
 protected:
@@ -31,7 +23,7 @@ protected:
     QSizeF size;
 
 public:
-    Entity(QColor color=QColor(0,0,0,255), int x=0, int y=0, int w=30, int h=30);
+    Entity(QColor color, int x=0, int y=0);
     virtual ~Entity() override{
         suppression();
     }
@@ -52,14 +44,19 @@ public:
     void setColor(const QColor &value);
     int getX();
     void setX(int value);
+    void setXView(int value);
     int getY() ;
     void setY(int value);
+    void setYView(int value);
     int getW() ;
     void setW(int value);
     int getH() ;
     void setH(int value);
     QSizeF getSize() ;
     void setSize(QSizeF r);
+
+    static const QSizeF SIZE;
+    static const int MODELTOVIEW;
 
 };
 #endif //_FIGURE_H

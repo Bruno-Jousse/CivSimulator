@@ -3,9 +3,7 @@
 
 #include <valarray>
 
-#include "World.h"
-
-namespace model{
+using namespace std;
 
 class Grid final
 {
@@ -38,6 +36,6 @@ Grid operator+(const Grid& a, const Grid& b);
 Grid operator-(const Grid& a, const Grid& b);
 Grid operator*(const double& scalar, const Grid& g);
 
-}
+#include "World.h"
 
 #endif // Grid_HPP

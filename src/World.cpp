@@ -3,7 +3,7 @@
 const int World::VISIBILITY_RANGE = 3;
 
 
-World::World(int nbCivs, int w, int h) :  Entity(Qt::transparent, 0, 0, w, h), nbCivs(nbCivs){
+World::World(int nbCivs, int w, int h) :  Entity(Qt::transparent, 0, 0), nbCivs(nbCivs){
 
 }
 
@@ -17,8 +17,8 @@ void World::init(){
     for(int i=0; i<nbCivs; i++){
         hq = new Headquarter();
         do{
-            hq->setX(distribInt()%(getW()-hq->getW()));
-            hq->setY(distribInt()%(getH()-hq->getH()));
+            hq->setXView(distribInt()%(getW()-hq->getW()));
+            hq->setYView(distribInt()%(getH()-hq->getH()));
             cout << distribInt() << " " << hq->getX() << " " << hq->getY() << endl;
         }while(!scene()->collidingItems(hq).isEmpty());
         if(i%3==0){
@@ -42,8 +42,8 @@ void World::init(){
     for(int i=0; i <nbCivs*3; i++){
         ress = new Metal();
         do{
-            ress->setX(distribInt()%(getW()-ress->getW()));
-            ress->setY(distribInt()%(getH()-ress->getH()));
+            ress->setXView(distribInt()%(getW()-ress->getW()));
+            ress->setYView(distribInt()%(getH()-ress->getH()));
         }while(!scene()->collidingItems(ress).isEmpty());
 
         ress->setParentItem(this);
@@ -55,9 +55,7 @@ void World::init(){
 
 void World::advance(int phase){
     if(phase != 1){
-        if(frame%60 == 0){
-            cout << "One more month pasted. This is the " << getMonth() << "th month.";
-        }
+
         cout << "Suppression of all dead units.";
         auto it = factions.begin();
         while(it!=factions.end()){
@@ -101,7 +99,7 @@ void World::advance(int phase){
             }
         }
         cout << "." << endl;
-        frame+=1;
+        frame+=0.01;
     }
 }
 

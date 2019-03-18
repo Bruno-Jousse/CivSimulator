@@ -14,13 +14,13 @@ protected:
     Healthbar healthbar;
 
 public:
-    Building(QColor color, int x, int y, int w, int h, int hp=100);
-    Building(int hp=100);
+    Building(int hpMax, QColor color, int x=0, int y=0);
 
     virtual ~Building()=0;
 
     int getHp();
     void setHp(int value);
+
 };
 
 #endif //_BUILDING_H

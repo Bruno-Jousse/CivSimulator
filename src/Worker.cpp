@@ -14,20 +14,11 @@ const int Worker::STARTING_HP = 5;
 const int Worker::AVG_LIVING = 100;
 const int Worker::STDDEV_LIVING = 10;
 
-Worker::Worker(int x, int y, Headquarter* creator, unsigned currentDate) :
-	Agent(x, y, currentDate + (int)round(RandomManager::getInstance().getGaussian(Worker::AVG_LIVING,
-		Worker::STDDEV_LIVING)), Worker::STARTING_HP, creator), stock(0)
-{}
 
-Worker::Worker(QColor color, int x, int y, int w, int h, int metalStockMax, bool mustMine, int hp, int ms, int wearMax) : Machine(color, x, y, w, h, hp, ms, wearMax), metalStockMax(metalStockMax), mustMine(mustMine) {
-    metalStock = 0;
-}
-
-Worker::Worker(int metalStockMax, bool mustMine, int hp, int ms, int wearMax) : Machine(hp, ms, wearMax), metalStockMax(metalStockMax), mustMine(mustMine) {
-    metalStock = 0;
-}
-
-void Worker::mine(Ressource&) {
+Worker::Worker(Headquarter * creator, QColor color, int x, int y) : Machine(creator, color, x, y, STARTING_HP) {
+    deathDate = TimeManager::getInstance().getMonth() + static_cast<int>(round(RandomManager::getInstance().getGaussian(Worker::AVG_LIVING, Worker::STDDEV_LIVING) ));
+    metalStockBar = Healthbar(Qt::gray, 0, getH()-10, getW(), 10, STOCK_MAX);
+    metalStockBar.setParentItem(this);
 }
 
 void Worker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){

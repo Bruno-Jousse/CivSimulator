@@ -12,20 +12,17 @@ private:
 
     int hpMax;
     int hp;
-    bool isActive;
 
 public:
-    Healthbar(QColor color = Qt::green, int x=0, int y=0, int w=30, int h=5, int hpMax=100, bool isActive = false);
-    Healthbar(QColor color, int hpMax, bool isActive);
-    int getHp();
+    Healthbar(QColor color = Qt::green, int x=0, int y=0, int w=30, int h=5, int hpMax=100);
+    int getHp() const;
     void setHp(int);
-    bool getIsActive();
-    void setIsActive(bool);
-/*
+
+
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-*/
+
 };
 
 #endif // HEALTHBAR_H

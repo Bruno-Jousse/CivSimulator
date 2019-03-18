@@ -10,7 +10,7 @@ int const Headquarter::STARTING_HP = 100;
 int const Headquarter::METAL_STOCK_MAX = 1000;
 
 Headquarter::Headquarter(QColor color, int x, int y) : Building(STARTING_HP, color, x, y){
-    metalStockBar = Healthbar(color, 0, getH()-10, getW(), 10, METAL_STOCK_MAX);
+    metalStockBar = Healthbar(Qt::gray, 0, getH()-10, getW(), 10, METAL_STOCK_MAX);
     metalStockBar.setParentItem(this);
 }
 

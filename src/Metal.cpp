@@ -9,9 +9,11 @@
  * Metal implementation
  */
 
-Metal::Metal(QColor color, int x, int y, int w, int h, int amount) : Ressource(color, x, y, w, h, amount){
+int const Metal::AMOUNT = 400;
+
+Metal::Metal(QColor color, int x, int y) : Resource(color, x, y, AMOUNT){
     img.load(":/images/Metal_Ingot.png");
-    img = img.scaled(w, h, Qt::KeepAspectRatio);
+    img = img.scaled(getW(), getH(), Qt::KeepAspectRatio);
 }
 
 void Metal::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){

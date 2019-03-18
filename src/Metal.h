@@ -6,11 +6,13 @@
 #ifndef _METAL_H
 #define _METAL_H
 
-#include "Ressource.h"
+#include "Resource.h"
 
-class Metal: public Ressource {
+class Metal: public Resource {
 public:
-    Metal(QColor color=Qt::gray, int x=0, int y=0, int w=30, int h=30, int amount=50);
+    Metal(QColor color=Qt::gray, int x=0, int y=0);
+
+    static int const AMOUNT;
 private:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 

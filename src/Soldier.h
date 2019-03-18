@@ -58,10 +58,11 @@ protected:
 	friend class StrategyKamikaze;
 
 public:
-	Soldier(int x, int y, Headquarter* creator, unsigned currentDate);
 
-    Soldier(QColor color, int x, int y, int w, int h, int dmg=1, bool mustAttack=false, int hp=10, int ms=1, int wearMax=10);
-    Soldier(int dmg=1, bool mustAttack=false, int hp=10, int ms=1, int wearMax=10);
+    // global enum to choose a strategy
+    enum StrategyEnum { PROTECTION, ATTACK, KAMIKAZE };
+
+    Soldier( Headquarter* creator, QColor color, int x=0, int y=0);
     void action() override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
@@ -76,8 +77,7 @@ public:
 	static const int RANGE_SHOOT;
 	static const int DMG;
 
-	// global enum to choose a strategy
-	enum StrategyEnum { PROTECTION, ATTACK, KAMIKAZE };
+
 
 };
 

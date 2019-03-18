@@ -14,17 +14,14 @@
 
 using namespace std;
 
-static mt19937::result_type seed = time(0);
-static auto distribReal = std::bind(uniform_real_distribution<double> (0.0, 1.0), mt19937(seed));
-static auto distribInt = std::bind(uniform_int_distribution<int> (0, 100000), mt19937(seed));
-//double randomRealBetweenZeroAndOne = distrib(generator);
-
 class World : public Entity
 {
 protected:
     int nbCivs;
-    QVector<Ressource*> ressources;
+    QVector<Resource*> ressources;
     QVector<Headquarter*> factions;
+    std::vector<Machine*> agents;
+    std::vector<Headquarter*> headquarters;
 
 public:
     World(int nbCivs, int w, int h);
@@ -39,8 +36,6 @@ public:
     bool isOccupied(QRect obj);
     void init();
 
-	void simulateOneTurn(unsigned date);
-
 	// Manhattan distance
 	int distanceBetween(const Entity& a, const Entity& b);
 
@@ -52,6 +47,15 @@ public:
 	std::vector<Headquarter*> getHeadquartersVisibleBy(Headquarter* hq);
 	std::vector<Resource*> getResourcesVisibleBy(Headquarter* hq);
 	std::vector<Agent*> getAgentsTargetableBy(const Soldier& soldier);
+
+    // global constants
+       static const int NB_ROW;
+       static const int NB_COL;
+       static const int VISIBILITY_RANGE;
+
+       int getWidth(){ return NB_COL*30; }
+       int getHeight(){ return NB_ROW*30;}
+
 
 };
 

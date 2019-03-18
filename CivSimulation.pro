@@ -24,14 +24,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
-SOURCES += main.cpp src/World.cpp src/Agent.cpp src/Building.cpp src/Machine.cpp src/Metal.cpp src/Ressource.cpp src/Soldier.cpp src/Worker.cpp \
-    src/Entity.cpp \
-    src/Headquarter.cpp \
-    src/Healthbar.cpp
+SOURCES += main.cpp src/World.cpp src/Agent.cpp src/Building.cpp src/Machine.cpp src/Metal.cpp src/Soldier.cpp src/Worker.cpp \
+    src/Entity.cpp src/Headquarter.cpp src/Healthbar.cpp src/Grid.cpp \
+    src/Resource.cpp \
+    src/TimeManager.cpp \
+    src/RandomManager.cpp
 
-HEADERS += src/World.h src/Agent.h src/Building.h src/Headquarter.h src/Machine.h src/Metal.h src/Ressource.h src/Soldier.h src/Worker.h \
-    src/Entity.h \
-    src/Healthbar.h
+
+HEADERS += src/World.h src/Agent.h src/Building.h src/Headquarter.h src/Machine.h src/Metal.h src/Soldier.h src/Worker.h \
+    src/Entity.h src/Healthbar.h src/Grid.h \
+    src/Resource.h \
+    src/TimeManager.h \
+    src/RandomManager.h
 
 FORMS +=
 
