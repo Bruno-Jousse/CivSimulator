@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _SOLDIER_H
 #define _SOLDIER_H
 

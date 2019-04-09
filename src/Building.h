@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _BUILDING_H
 #define _BUILDING_H
 

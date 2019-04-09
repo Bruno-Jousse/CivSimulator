@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _RESSOURCE_H
 #define _RESSOURCE_H
 

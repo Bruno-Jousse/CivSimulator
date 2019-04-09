@@ -1,14 +1,9 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _MACHINE_H
 #define _MACHINE_H
 
 #include "Agent.h"
 #include "Healthbar.h"
-//#include "Headquarter.h"
+#include "Headquarter.h"
 
 class Machine: public Agent {
 protected:

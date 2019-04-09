@@ -12,15 +12,14 @@ int const Headquarter::METAL_STOCK_MAX = 1000;
 Headquarter::Headquarter(QColor color, int x, int y) : Building(STARTING_HP, color, x, y){
     metalStockBar = Healthbar(color, 0, getH()-10, getW(), 10, METAL_STOCK_MAX);
     metalStockBar.setParentItem(this);
+	initStrategy();
 }
 
 void Headquarter::action(){
-    if(frame%60==0){
+    if(TimeManager.getInstance().isNewMonth()){
         spawnMachine();
     }
-    while(getMetalAmount()>=10){
-        createAWorker();
-    }
+	strategy.CreateUnit();
 }
 
 int Headquarter::getMetalAmount() const
