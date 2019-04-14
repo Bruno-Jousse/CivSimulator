@@ -39,8 +39,12 @@ void TimeManager::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     painter->drawText(QRectF(0, 0, 20, 10), Qt::AlignHCenter, QString::fromStdString("Month " + std::to_string(getMonth())) );
 }
 
-void TimeManager::isNewMonth(){
-    if(fmod(frame, 1) == 0.0){
+bool TimeManager::isNewMonth(){
+    bool nM = false;
+    if(std::fmod(frame, 1) == 0.0){
         std::cout << "One more month passed. This is the " << getMonth() << "th month.\n";
+        nM = true;
     }
+
+    return nM;
 }

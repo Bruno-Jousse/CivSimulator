@@ -1,7 +1,7 @@
 #ifndef _HQ_H
 #define _HQ_H
 
-#include "World.h"
+//#include "World.h"
 #include "Grid.h"
 #include "Building.h"
 #include "Soldier.h"
@@ -10,7 +10,9 @@
 #include "RandomManager.h"
 #include "TimeManager.h"
 
-class Headquarter: public Building {
+//class World;
+
+class Headquarter : public Building{
 private: 
 
     QVector<Soldier*> soldiers;
@@ -29,57 +31,67 @@ private:
 
 public:
 	class IHQStrategy{
-		private float i;
-		public virtual createUnit() = 0;
-		public IHQStrategy(){ i=0.0;}
+    protected:
+        uint i;
+        Headquarter* hq;
+    public:
+        virtual void createUnit(int metalAmount) = 0;
+        IHQStrategy(Headquarter* hq) : i(0), hq(hq) {}
+        virtual ~IHQStrategy();
 	};
 	class HQAggroStrategy : public IHQStrategy{
-		public HQAggroStrategy() : IHQStrategy() {}
-		public final createUnit(){
-			while (metalStockBar.getMetalAmount() >= 25) {
-				if(i%0.3==0){
-					createAWorker();
+    public:
+        ~HQAggroStrategy() override;
+        HQAggroStrategy(Headquarter* hq) : IHQStrategy(hq) {}
+        void createUnit(int metalAmount) override{
+            while (metalAmount >= 25) {
+                if(i%3==0){
+                    hq->createAWorker();
 				}
 				else{
-					createASoldier();
+                    hq->createASoldier();
 				}
-				i+=0.01;
+                i+=1;
 			}
 		}
 	};
 	
 	class HQDevelopmentStrategy : public IHQStrategy{
-		public HQDevelopmentStrategy() : IHQStrategy() {}
-		public final createUnit(){
-			while (metalStockBar.getMetalAmount() >= 25) {
-				if(i%0.3==0){
-					createASoldier();
+    public:
+        ~HQDevelopmentStrategy() override;
+        HQDevelopmentStrategy(Headquarter* hq) : IHQStrategy(hq) {}
+        void createUnit(int metalAmount) override{
+            while (metalAmount >= 25) {
+                if(i%3==0){
+                    hq->createASoldier();
 				}
 				else{
-					createAWorker();
+                    hq->createAWorker();
 				}
-				i+=0.01;
+                i+=1;
 			}
 		}
 	};
 	
 	class HQNeutralStrategy : public IHQStrategy{
-		public HQNeutralStrategy() : IHQStrategy() {}
-		public final createUnit(){
-			while (metalStockBar.getMetalAmount() >= 25) {
-				if(i%0.2==0){
-					createAWorker();
+    public:
+        ~HQNeutralStrategy() override;
+        HQNeutralStrategy(Headquarter* hq) : IHQStrategy(hq) {}
+        void createUnit(int metalAmount) override{
+            while (metalAmount >= 25) {
+                if(i%2==0){
+                    hq->createAWorker();
 				}
 				else{
-					createASoldier();
+                    hq->createASoldier();
 				}
-				i+=0.01;
+                i+=1;
 			}
 		}
 	};
 	
-    Headquarter(QColor color, int x=0, int y=0);
-    virtual void suppression() override{
+    Headquarter(World* w, QColor color, int x=0, int y=0);
+    void suppression() override{
         Entity::suppression();
         for(int i=0; i<soldiers.size(); i++){
             soldiers.at(i)->suppression();
@@ -99,28 +111,29 @@ public:
     void spawnMachine();
     void action() override;
 
-	void updateGrids(World& world);
+    void updateGrids();
 	// inline grid getters
 	const Grid& getGridAllyHeadquarter() const { return gridAllyHeadquarter; }
 	const Grid& getGridAllyAgents() const { return gridAllyAgents; }
-	const Grid& getGridEnemies() const { return gridEnemies; }
+    Grid& getGridEnemies() { return gridEnemies; }
 	const Grid& getGridResources() const { return gridResources; }
 
 	// global constant
 	static const int STARTING_HP;
     static const int METAL_STOCK_MAX;
+
 private:
-	IHQStrategy strategy;
+    IHQStrategy* strategy;
 	void initStrategy(){
-		int r = RandomManager.getInstance().getRandomInt(3);
+        int r = RandomManager::getInstance().getRandomInt(3);
 		if(r == 0){
-			strategy = HQAggroStrategy();
+            strategy = new HQAggroStrategy(this);
 		}
 		else if (r == 1){
-			strategy = HQDevelopmentStrategy();
+            strategy = new HQDevelopmentStrategy(this);
 		}
 		else{
-			strategy = HQNeutralStrategy();
+            strategy = new HQNeutralStrategy(this);
 		}
 	}
 };

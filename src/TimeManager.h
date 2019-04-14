@@ -5,6 +5,7 @@
 #include "QPainter"
 #include <string>
 #include <iostream>
+#include <cmath>
 
 class TimeManager : QGraphicsItem
 {
@@ -23,7 +24,7 @@ public:
     virtual QPainterPath shape() const override;
     //Draw the object
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-    void isNewMonth();
+    bool isNewMonth();
 
 };
 

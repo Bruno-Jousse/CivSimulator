@@ -14,7 +14,7 @@ private:
     int hp;
 
 public:
-    Healthbar(QColor color = Qt::green, int x=0, int y=0, int w=30, int h=5, int hpMax=100);
+    Healthbar(QColor color, int x=0, int y=0, int w=30, int h=5, int hpMax=100);
     int getHp() const;
     void setHp(int);
 

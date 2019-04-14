@@ -4,10 +4,12 @@
 #include "Entity.h"
 #include <QColor>
 
+class World;
+
 class Agent: public Entity {
 public:
 
-    Agent(QColor color, int x=0, int y=0);
+    Agent(World* w, QColor color, int x=0, int y=0);
     Agent();
     virtual ~Agent()=0;
 
@@ -15,6 +17,10 @@ public:
     void advance(int phase) final;
     //Our method called every frames to interact
     virtual void action() =0;
+
+protected:
+    World * world;
+
 };
 
 #endif //_AGENT_H

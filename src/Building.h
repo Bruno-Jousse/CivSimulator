@@ -9,7 +9,7 @@ protected:
     Healthbar healthbar;
 
 public:
-    Building(int hpMax, QColor color, int x=0, int y=0);
+    Building(World* w, int hpMax, QColor color, int x=0, int y=0);
 
     virtual ~Building()=0;
 

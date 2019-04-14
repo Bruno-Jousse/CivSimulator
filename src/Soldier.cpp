@@ -1,13 +1,6 @@
-/**
- * Project Untitled
- */
-
-
 #include "Soldier.h"
-
-/**
- * Soldier implementation
- */
+#include "World.h"
+#include "Headquarter.h"
 
  // init constants
 const int Soldier::STARTING_HP = 10;
@@ -17,9 +10,9 @@ const int Soldier::RANGE_SHOOT = 3;
 const int Soldier::DMG = 1;
 
 
-Soldier::Soldier(Headquarter* creator, QColor color, int x, int y) : Machine(creator, color, x, y, STARTING_HP){
-    deathDate = TimeManager::getInstance().getMonth() +  static_cast<int>(round(RandomManager::getInstance().getGaussian(Soldier::AVG_LIVING, Soldier::STDDEV_LIVING)));
-    strategy = new StrategyProtection();
+Soldier::Soldier(World* w, Headquarter* creator, QColor color, int x, int y) : Machine(w, creator, color, x, y, STARTING_HP){
+    deathDate = TimeManager::getInstance().getFrame() +  static_cast<int>(round(RandomManager::getInstance().getGaussian(Soldier::AVG_LIVING, Soldier::STDDEV_LIVING)));
+    strategy = new StrategyProtection(world, this);
 }
 
 
@@ -29,7 +22,23 @@ void Soldier::suppression() {
 }
 
 void Soldier::action(){
+    if (isDead()) // simulate only for living agents
+        return;
 
+    attackTarget = nullptr;
+    QVector<Machine*> enemies = world->getAgentsTargetableBy(*this);
+    if (enemies.isEmpty()) // move
+        strategy->simulate();
+    else // shoot
+    {
+        Machine* weakest = enemies[0];
+        for (Machine* a : enemies)
+        {
+            if (a->getHp() < weakest->getHp())
+                weakest = a;
+        }
+        attackTarget = weakest;
+    }
 }
 
 
@@ -46,36 +55,15 @@ void Soldier::defineStrategy(StrategyEnum type)
 	switch (type)
 	{
 	case PROTECTION:
-		strategy = new StrategyProtection();
+        strategy = new StrategyProtection(world, this);
 		break;
 
 	case ATTACK:
-		strategy = new StrategyAttack();
+        strategy = new StrategyAttack(world, this);
 		break;
 
 	default:
-		strategy = new StrategyKamikaze();
-	}
-}
-
-void Soldier::simulate(unsigned date, World& world)
-{
-	if (isDead(date)) // simulate only for living agents
-		return;
-
-	attackTarget = nullptr;
-	vector<Agent*> enemies = world.getAgentsTargetableBy(*this);
-	if (vector.isEmpty()) // move
-		strategy->simulate(date, world);
-	else // shoot
-	{
-		Agent* weakest = enemies[0];
-		for (Agent* a : enemies)
-		{
-			if (a->getHp() < weakest->getHp())
-				weakest = a;
-		}
-		attackTarget = weakest;
+        strategy = new StrategyKamikaze(world, this);
 	}
 }
 
@@ -85,16 +73,15 @@ Soldier::StrategyProtection::~StrategyProtection() {}
 Soldier::StrategyAttack::~StrategyAttack() {}
 Soldier::StrategyKamikaze::~StrategyKamikaze() {}
 
-void Soldier::StrategyProtection::simulate(unsigned date, World& world)
+void Soldier::StrategyProtection::simulate()
 {
-	Grid decisionGrid = 0.6*hq->getGridAllyAgents() + 0.4*hq->getGridAllyHeadquarter();
-	Agent::chooseBestNeighbor(decisionGrid, x, y, nextX, nextY);
+    Grid decisionGrid = 0.6*owner->getHeadquarter()->getGridAllyAgents() + 0.4*owner->getHeadquarter()->getGridAllyHeadquarter();
+    chooseBestNeighbor(decisionGrid, owner->getX(), owner->getY(), owner->nextX, owner->nextY);
 }
-void Soldier::StrategyAttack::simulate(unsigned date, World& world)
-{
-	Agent::chooseBestNeighbor(hq->getGridEnemies(), x, y, nextX, nextY);
+void Soldier::StrategyAttack::simulate(){
+    chooseBestNeighbor(owner->getHeadquarter()->getGridEnemies(), owner->getX(),owner->getY(), owner->nextX, owner->nextY);
 }
-void Soldier::StrategyKamikaze::simulate(unsigned date, World& world)
+void Soldier::StrategyKamikaze::simulate()
 {
-	Agent::chooseBestNeighbor(hq->getGridEnemies(), x, y, nextX, nextY);
+    chooseBestNeighbor(owner->getHeadquarter()->getGridEnemies(), owner->getX(),owner->getY(), owner->nextX, owner->nextY);
 }

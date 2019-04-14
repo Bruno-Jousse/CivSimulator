@@ -1,10 +1,12 @@
 #include "World.h"
+#include "QApplication"
 
 const int World::VISIBILITY_RANGE = 3;
 
 
 World::World(int nbCivs, int w, int h) :  Entity(Qt::transparent, 0, 0), nbCivs(nbCivs){
-
+    setW(w);
+    setH(h);
 }
 
 
@@ -15,11 +17,11 @@ void World::init(){
     Metal* ress;
 
     for(int i=0; i<nbCivs; i++){
-        hq = new Headquarter();
+        hq = new Headquarter(this, Qt::white);
         do{
-            hq->setXView(distribInt()%(getW()-hq->getW()));
-            hq->setYView(distribInt()%(getH()-hq->getH()));
-            cout << distribInt() << " " << hq->getX() << " " << hq->getY() << endl;
+            hq->setXView(RandomManager::getInstance().getRandomInt()%(getW()-hq->getW()));
+            hq->setYView(RandomManager::getInstance().getRandomInt()%(getH()-hq->getH()));
+            cout << " x=" << hq->getX() << " y=" << hq->getY() << endl;
         }while(!scene()->collidingItems(hq).isEmpty());
         if(i%3==0){
             hq->setColor(QColor(255, g, b, 255));
@@ -42,13 +44,13 @@ void World::init(){
     for(int i=0; i <nbCivs*3; i++){
         ress = new Metal();
         do{
-            ress->setXView(distribInt()%(getW()-ress->getW()));
-            ress->setYView(distribInt()%(getH()-ress->getH()));
+            ress->setXView(RandomManager::getInstance().getRandomInt()%(getW()-ress->getW()));
+            ress->setYView(RandomManager::getInstance().getRandomInt()%(getH()-ress->getH()));
         }while(!scene()->collidingItems(ress).isEmpty());
 
         ress->setParentItem(this);
         //scene()->addItem(ress);
-        ressources.push_back(ress);
+        resources.push_back(ress);
     }
     cout << "." << endl;
 }
@@ -66,7 +68,7 @@ void World::advance(int phase){
             else{
                 auto it2 = (*it)->getWorkers().begin();
                 while(it2!=(*it)->getWorkers().end()){
-                    if((*it2)->getHp() <=0){
+                    if((*it2)->isDead()){
                         (*it2)->suppression();
                         it2=(*it)->getWorkers().erase(it2);
                     }
@@ -76,7 +78,7 @@ void World::advance(int phase){
                 }
                 auto it3 = (*it)->getSoldiers().begin();
                 while(it3!=(*it)->getSoldiers().end()){
-                    if((*it3)->getHp() <=0){
+                    if((*it3)->isDead()){
                         (*it3)->suppression();
                         it3=(*it)->getSoldiers().erase(it3);
                     }
@@ -88,62 +90,60 @@ void World::advance(int phase){
             }
         }
         cout << ".";
-        auto it3 = ressources.begin();
-        while(it3!=ressources.end()){
+        auto it3 = resources.begin();
+        while(it3!=resources.end()){
             if((*it3)->getAmount() <= 0){
                 (*it3)->suppression();
-                it3=ressources.erase(it3);
+                it3=resources.erase(it3);
             }
             else{
                 it3++;
             }
         }
         cout << "." << endl;
-        frame+=0.01;
+
+        if(factions.size() <= 1){
+            cout << "End of simulation" << endl;
+            if (factions.size() == 0)
+                cout << "No winning civilisation" << endl;
+            else
+                cout << "The winning civilisation is: " << factions[0]->getColor().name().toStdString() << " colored faction." << endl;
+            cout << "Press any key to close the window" << endl;
+            char c;
+            cin >> c;
+            QApplication::quit();
+        }
+
     }
 }
 
-void World::simulateOneTurn(unsigned date)
-{
-	random_shuffle(headquarters.begin(), headquarters.end());
-	for (auto& hq : headquarters)
-		hq->simulate(date, *this);
-
-	random_shuffle(agents.begin(), agents.end()); // TODO : if we still use the PRNG from std use it as third argument
-	for (auto & a : agents)
-		a->simulate(date, *this);
-
-	// TODO : if there is new entities add them here and remove the dead ones
-}
-
-
-int World::distanceBetween(const Entity& a, const Entity& b)
+int World::distanceBetween(Entity& a, Entity& b)
 {
 	return abs(a.getX() - b.getX()) + abs(a.getY() - b.getY());
 }
 
-bool World::isNextToResource(const Entity& e)
+bool World::isNextToResource(Entity& e)
 {
-	for (const Resource& r : resources)
+    for (Resource*r : resources)
 	{
-		if (distanceBetween(r, e) == 1)
+        if (distanceBetween(*r, e) == 1)
 			return true;
 	}
 	return false;
 }
 
-vector<Agent*> World::getEntitiesOf(Headquarter* hq)
+QVector<Machine*> World::getEntitiesOf(Headquarter* hq)
 {
-	vector<Agent*> ret;
-	for (Agent* e : agents)
+    QVector<Machine*> ret;
+    for (Machine* e : agents)
 	{
-		if (e.doesBelongTo(hq))
+        if (e->doesBelongTo(hq))
 			ret.push_back(e);
 	}
 	return ret;
 }
 
-int World::distanceMin(Entity* e, vector<Agent*>& vect)
+int World::distanceMin(Entity* e, QVector<Machine*>& vect)
 {
 	int minDist = 100000;
 	for (Agent* a : vect)
@@ -155,23 +155,23 @@ int World::distanceMin(Entity* e, vector<Agent*>& vect)
 	return minDist;
 }
 
-vector<Agent*> World::getEnemiesVisibleBy(Headquarter* hq)
+QVector<Machine*> World::getEnemiesVisibleBy(Headquarter* hq)
 {
-	vector<Agent*> enemies;
-	vector<Agent*> ally = getEntitiesOf(hq);
-	for (Agent* a : agents)
+    QVector<Machine*> enemies;
+    QVector<Machine*> ally = getEntitiesOf(hq);
+    for (Machine* a : agents)
 	{
-		if (!a.doesBelongTo(hq) && distanceMin(a, ally) <= VISIBILITY_RANGE)
+        if (!a->doesBelongTo(hq) && distanceMin(a, ally) <= VISIBILITY_RANGE)
 			enemies.push_back(a);
 	}
 	return enemies;
 }
 
-std::vector<Headquarter*> World::getHeadquartersVisibleBy(Headquarter* hq)
+QVector<Headquarter*> World::getHeadquartersVisibleBy(Headquarter* hq)
 {
-	vector<Headquarter*> enemyHq;
-	vector<Agent*> ally = getEntitiesOf(hq);
-	for (Headquarter* h : headquarters)
+    QVector<Headquarter*> enemyHq;
+    QVector<Machine*> ally = getEntitiesOf(hq);
+    for (Headquarter* h : factions)
 	{
 		if (distanceMin(h, ally) <= VISIBILITY_RANGE)
 			enemyHq.push_back(h);
@@ -179,10 +179,10 @@ std::vector<Headquarter*> World::getHeadquartersVisibleBy(Headquarter* hq)
 	return enemyHq;
 }
 
-std::vector<Resource*> World::getResourcesVisibleBy(Headquarter* hq)
+QVector<Resource*> World::getResourcesVisibleBy(Headquarter* hq)
 {
-	vector<Resource*> res;
-	vector<Agent*> ally = getEntitiesOf(hq);
+    QVector<Resource*> res;
+    QVector<Machine*> ally = getEntitiesOf(hq);
 	for (Resource* r : resources)
 	{
 		if (distanceMin(r, ally) <= VISIBILITY_RANGE)
@@ -191,13 +191,13 @@ std::vector<Resource*> World::getResourcesVisibleBy(Headquarter* hq)
 	return res;
 }
 
-vector<Agent*> World::getAgentsTargetableBy(const Soldier& soldier)
+QVector<Machine*> World::getAgentsTargetableBy(Soldier& soldier)
 {
-	vector<Agent*> possibleTargets;
-	for (Agent* a : agents)
+    QVector<Machine*> possibleTargets;
+    for (Machine* a : agents)
 	{
 		int dist = distanceBetween(*a, soldier);
-		if (dist != 0 && dist <= Soldier::RANGE_SHOOT && !a->doesBelongTo(Soldier.getHeadquarter()))
+        if (dist != 0 && dist <= Soldier::RANGE_SHOOT && !a->doesBelongTo(soldier.getHeadquarter()))
 			possibleTargets.push_back(a);
 	}
 	return possibleTargets;

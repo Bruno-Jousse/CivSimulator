@@ -2,45 +2,48 @@
 #define _SOLDIER_H
 
 #include "Machine.h"
-#include "Building.h"
-
 
 class Soldier: public Machine {
-private: 
+protected:
 
 	// nested classes
 	class StrategySoldier // interface
 	{
 	public:
-		StrategySoldier() = delete;
+        World* w;
+        Soldier* owner;
+        StrategySoldier(World* w, Soldier* hq) : w(w), owner(hq){}
 		StrategySoldier(StrategySoldier const&) = delete;
 		virtual ~StrategySoldier();
 
-		virtual void simulate(unsigned date, World& world) = 0;
+        virtual void simulate() = 0;
 	};
-	class StrategyProtection : public Soldier::StrategySoldier
+    class StrategyProtection : public Soldier::StrategySoldier
 	{
 	public:
+        StrategyProtection(World* w, Soldier* hq) : StrategySoldier(w, hq){}
 		StrategyProtection(StrategyProtection const&) = delete;
-		virtual ~StrategyProtection();
+        virtual ~StrategyProtection() override;
 
-		void simulate(unsigned date, World& world) override;
+        void simulate() override;
 	};
 	class StrategyAttack : public Soldier::StrategySoldier
 	{
 	public:
+        StrategyAttack(World* w, Soldier* hq) : StrategySoldier(w, hq){}
 		StrategyAttack(StrategyAttack const&) = delete;
-		virtual ~StrategyAttack();
+        virtual ~StrategyAttack() override;
 
-		void simulate(unsigned date, World& world) override;
+        void simulate() override;
 	};
 	class StrategyKamikaze : public Soldier::StrategySoldier
 	{
 	public:
+        StrategyKamikaze(World* w, Soldier* hq) : StrategySoldier(w, hq){}
 		StrategyKamikaze(StrategyKamikaze const&) = delete;
-		virtual ~StrategyKamikaze();
+        virtual ~StrategyKamikaze() override;
 
-		void simulate(unsigned date, World& world) override;
+        void simulate() override;
 	};
 
 protected:
@@ -57,13 +60,12 @@ public:
     // global enum to choose a strategy
     enum StrategyEnum { PROTECTION, ATTACK, KAMIKAZE };
 
-    Soldier( Headquarter* creator, QColor color, int x=0, int y=0);
+    Soldier(World* w, Headquarter* creator, QColor color, int x=0, int y=0);
     void action() override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 	void defineStrategy(StrategyEnum type);
 	void suppression() override;
-	void simulate(unsigned date, World& world) override;
 
 	// global constants
 	static const int STARTING_HP;
@@ -71,7 +73,6 @@ public:
 	static const int STDDEV_LIVING;
 	static const int RANGE_SHOOT;
 	static const int DMG;
-
 
 
 };

@@ -1,15 +1,6 @@
-/**
- * Project Untitled
- */
-
-
 #include "Machine.h"
 
-/**
- * Machine implementation
- */
-
-Machine::Machine(Headquarter* creator, QColor color, int x, int y, int hp) : Agent(color, x, y), healthbar(Qt::green, 0, 0, getW(), 5, hp){
+Machine::Machine(World* w,Headquarter* creator, QColor color, int x, int y, int hp) : Agent(w, color, x, y), healthbar(Qt::green, 0, 0, getW(), 5, hp){
     hq = creator;
     healthbar.setParentItem(this);
 }
@@ -27,17 +18,17 @@ void Machine::setHp(int hp){
     healthbar.setHp(hp);
 }
 
-bool Machine::isDead(unsigned date)
+bool Machine::isDead()
 {
-    return (date>=deathDate) || (hp<=0);
+    return (TimeManager::getInstance().getFrame()>=deathDate) || (getHp()<=0);
 }
 
-bool doesBelongTo(Headquarter* headquarter)
+bool Machine::doesBelongTo(Headquarter* headquarter)
 {
     return headquarter == hq;
 }
 
-void Machine::chooseBestNeighbor(const Grid& decisionGrid, int x, int y, int& nextX, int& nextY)
+void Machine::chooseBestNeighbor(Grid& decisionGrid, int x, int y, int& nextX, int& nextY)
 {
     double maxValue = -1000000;
     nextX = x;

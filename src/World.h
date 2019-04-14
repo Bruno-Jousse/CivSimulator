@@ -18,10 +18,9 @@ class World : public Entity
 {
 protected:
     int nbCivs;
-    QVector<Resource*> ressources;
+    QVector<Resource*> resources;
     QVector<Headquarter*> factions;
-    std::vector<Machine*> agents;
-    std::vector<Headquarter*> headquarters;
+    QVector<Machine*> agents;
 
 public:
     World(int nbCivs, int w, int h);
@@ -37,26 +36,25 @@ public:
     void init();
 
 	// Manhattan distance
-	int distanceBetween(const Entity& a, const Entity& b);
+    int distanceBetween(Entity& a, Entity& b);
 
-	bool isNextToResource(const Entity& e);
+    bool isNextToResource(Entity& e);
 
-	std::vector<Agent*> getAgentOf(Headquarter* hq);
-	int distanceMin(Entity* e, std::vector<Agent*>& vect);
-	std::vector<Agent*> getEnemiesVisibleBy(Headquarter* hq);
-	std::vector<Headquarter*> getHeadquartersVisibleBy(Headquarter* hq);
-	std::vector<Resource*> getResourcesVisibleBy(Headquarter* hq);
-	std::vector<Agent*> getAgentsTargetableBy(const Soldier& soldier);
+    QVector<Machine*> getAgentOf(Headquarter* hq);
+    int distanceMin(Entity* e, QVector<Machine*>& vect);
+    QVector<Machine*> getEnemiesVisibleBy(Headquarter* hq);
+    QVector<Headquarter*> getHeadquartersVisibleBy(Headquarter* hq);
+    QVector<Resource*> getResourcesVisibleBy(Headquarter* hq);
+    QVector<Machine*> getAgentsTargetableBy(Soldier& soldier);
+    QVector<Machine*> getEntitiesOf(Headquarter* hq);
 
     // global constants
        static const int NB_ROW;
        static const int NB_COL;
        static const int VISIBILITY_RANGE;
 
-       int getWidth(){ return NB_COL*30; }
-       int getHeight(){ return NB_ROW*30;}
-
-
+       int getWView(){ return NB_COL*30; }
+       int getHView(){ return NB_ROW*30;}
 };
 
 #endif // WORLD_H

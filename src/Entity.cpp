@@ -5,7 +5,7 @@
  */
 
 const QSizeF Entity::SIZE(30, 30);
-const int MODELTOVIEW = 30;
+const int Entity::MODELTOVIEW = 30;
 
 Entity::Entity(QColor color, int x, int y) : color(color){
     setXView(x);

@@ -2,7 +2,7 @@
 #include <QtWidgets>
 #include <string>
 #include <iostream>
-#include "Model/World.h"
+#include "src/World.h"
 using namespace std;
 
 int main(int argc, char *argv[])

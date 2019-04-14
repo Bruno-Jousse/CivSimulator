@@ -4,7 +4,7 @@
  * Agent implementation
  */
 
-Agent::Agent(QColor color, int x, int y) : Entity(color, x, y){
+Agent::Agent(World* w, QColor color, int x, int y) : Entity(color, x, y), world(w){
 
 }
 

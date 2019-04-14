@@ -1,12 +1,12 @@
 #include "Grid.h"
 
-Grid::Grid(): grid(valarray<double>(0.0, World::NB_COL), World::NB_ROW)
+Grid::Grid(int nbCol, int nbRow): grid(valarray<double>(0.0, nbCol), nbRow)
 {}
 
-Grid::Grid(const Grid& g): grid(g.grid)
+Grid::Grid(int nbCol, int nbRow, const Grid& g): grid(g.grid)
 {}
 
-Grid::Grid(double seed, int x, int y, double coef): grid(valarray<double>(0.0, World::NB_COL), World::NB_ROW)
+Grid::Grid(int nbCol, int nbRow, double seed, int x, int y, double coef): grid(valarray<double>(0.0, nbCol),nbRow)
 {
     // fill the grid
     grid[x][y] = seed;
@@ -26,12 +26,12 @@ double& Grid::operator()(int x, int y)
     return grid[x][y];
 }
 
-Grid& Grid::operator+=(const Grid& other)
+Grid* Grid::operator+=(const Grid& other)
 {
     grid += other.grid;
     return this;
 }
-Grid& Grid::operator-=(const Grid& other)
+Grid* Grid::operator-=(const Grid& other)
 {
     grid -= other.grid;
     return this;
@@ -56,7 +56,7 @@ void Grid::propagate(int x, int y, double coef)
 
 bool Grid::isInGrid(int x, int y)
 {
-    return !(x<0 || x>=World::NB_ROW || y<0 || y>=World::NB_COL);
+    return !(x<0 || x>=nbRow || y<0 || y>=nbCol);
 }
 
 void Grid::tryDiffuse(int xt, int yt, double coef)
@@ -102,8 +102,8 @@ Grid operator-(const Grid& a, const Grid& b)
 
 Grid operator*(const double& scalar, const Grid& g)
 {
-    Grid copy;
-    valarray<double> multiplier = valarray<double>(scalar, World::NB_COL);
+    Grid copy(g.nbCol, g.nbRow);
+    valarray<double> multiplier = valarray<double>(scalar, g.nbCol);
     copy.grid = multiplier * g.grid;
     return copy;
 }

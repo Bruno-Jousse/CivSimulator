@@ -7,10 +7,11 @@
 class Worker: public Machine {
 private:
     Healthbar metalStockBar;
+    bool willHarvest;
 
 public:
 
-    Worker(QColor color, int x=0, int y=0);
+    Worker(World* w, Headquarter* hq, QColor color, int x=0, int y=0);
     void action() override;
     void mine(Resource&);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -21,6 +22,12 @@ public:
 	static const int AVG_LIVING;
 	static const int STDDEV_LIVING;
 
+    int getMetalAmount(){
+        return metalStockBar.getHp();
+    }
+    void setMetalAmount(int v){
+        metalStockBar.setHp(v);
+    }
 };
 
 #endif //_WORKER_H

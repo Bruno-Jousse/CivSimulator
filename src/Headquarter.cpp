@@ -1,25 +1,20 @@
-/**
- * Project Untitled
- */
-
-
 #include "Headquarter.h"
+#include "World.h"
 
 
 int const Headquarter::STARTING_HP = 100;
 int const Headquarter::METAL_STOCK_MAX = 1000;
 
-Headquarter::Headquarter(QColor color, int x, int y) : Building(STARTING_HP, color, x, y){
-    metalStockBar = Healthbar(color, 0, getH()-10, getW(), 10, METAL_STOCK_MAX);
+Headquarter::Headquarter(World* w, QColor color, int x, int y) : Building(w, STARTING_HP, color, x, y), metalStockBar(Qt::gray, 0, getH()-10, getW(), 10, METAL_STOCK_MAX), gridAllyHeadquarter(world->getW(), world->getH()), gridAllyAgents(world->getW(), world->getH()), gridEnemies(world->getW(), world->getH()), gridResources(world->getW(), world->getH()), strategy(new HQNeutralStrategy(this)){
     metalStockBar.setParentItem(this);
 	initStrategy();
 }
 
 void Headquarter::action(){
-    if(TimeManager.getInstance().isNewMonth()){
+    if(TimeManager::getInstance().isNewMonth()){
         spawnMachine();
     }
-	strategy.CreateUnit();
+    strategy->createUnit(getMetalAmount());
 }
 
 int Headquarter::getMetalAmount() const
@@ -70,7 +65,7 @@ void Headquarter::spawnMachine(){
             QPoint pos;
             switch(it->second){
                 case 0:{
-                    Worker *w = new Worker(color, 1, 1, 30, 30, 5, false, 5, 1, 10);
+                    Worker *w = new Worker(world, this, color);
                     pos=searchAvailablePlaceAround(*w);
                     if(pos.x()==-1 || pos.y()== -1){
                         it->first++;
@@ -83,7 +78,7 @@ void Headquarter::spawnMachine(){
                     break;
                 }
                 case 1:{
-                    Soldier* s = new Soldier(color, 1, 1, 30, 30, 1, false, 10, 1, 10);
+                    Soldier* s = new Soldier(world, this, color);
                     pos=searchAvailablePlaceAround(*s);
                     if(pos.x()==-1 || pos.y()== -1){
                         it->first++;
@@ -108,28 +103,42 @@ void Headquarter::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 
 
-void Headquarter::updateGrids(World& world)
+void Headquarter::updateGrids()
 {
-	gridAllyHeadquarter = Grid(100, x, y);
+    gridAllyHeadquarter = Grid(world->getW(), world->getH(), 100, getX(), getY());
 
-	Grid tmpGridEnemies;
-	for (Agent* a : world.getEnemiesVisibleBy(this))
+    Grid tmpGridEnemies(world->getW(), world->getH());
+    for (Agent* a : world->getEnemiesVisibleBy(this))
 	{
-		tmpGridEnemies += Grid(100, a->getX(), a->getY());
+        tmpGridEnemies += Grid(world->getW(), world->getH(),100, a->getX(), a->getY());
 	}
 	gridEnemies = tmpGridEnemies;
 
-	Grid tmpGridResources;
-	for (Resource* r : world.getResourcesVisibleBy(this))
+    Grid tmpGridResources(world->getW(), world->getH());
+    for (Resource* r : world->getResourcesVisibleBy(this))
 	{
-		tmpGridResources += Grid(100, r->getX(), r->getY());
+        tmpGridResources += Grid(world->getW(), world->getH(),100, r->getX(), r->getY());
 	}
 	gridResources = tmpGridResources;
 
-	Grid tmpGridAllyAgents;
-	for (Agent* a : world.getAgentOf(this))
+    Grid tmpGridAllyAgents(world->getW(), world->getH());
+    for (Machine* a : world->getEntitiesOf(this))
 	{
-		tmpGridAllyAgents += Grid(100, a->getX(), a->getY());
+        tmpGridAllyAgents += Grid(world->getW(), world->getH(),100, a->getX(), a->getY());
 	}
 	gridAllyAgents = tmpGridAllyAgents;
 }
+
+Headquarter::HQAggroStrategy::~HQAggroStrategy() {
+}
+
+Headquarter::HQNeutralStrategy::~HQNeutralStrategy() {
+}
+
+Headquarter::HQDevelopmentStrategy::~HQDevelopmentStrategy() {
+}
+
+Headquarter::IHQStrategy::~IHQStrategy() {
+}
+
+

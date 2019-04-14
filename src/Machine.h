@@ -3,10 +3,15 @@
 
 #include "Agent.h"
 #include "Healthbar.h"
-#include "Headquarter.h"
+#include "Grid.h"
+//#include "Headquarter.h"
+
+class Headquarter;
 
 class Machine: public Agent {
 protected:
+    int nextX;
+    int nextY;
     Healthbar healthbar;
     Headquarter* hq;
     float deathDate;
@@ -16,20 +21,20 @@ protected:
     void moveTo(int, int);
 
 public:
-    Machine(Headquarter* creator, QColor color, int x, int y, int hp);
+    Machine(World* w,Headquarter* creator, QColor color, int x, int y, int hp);
     //virtual ~Machine() = 0;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
     int getHp();
     void setHp(int hp);
 
 
-    virtual bool isDead(unsigned date);
+    virtual bool isDead();
     bool doesBelongTo(Headquarter* headquarter);
 
     // inline getters
     Headquarter* getHeadquarter() const { return hq; }
 
-    static void chooseBestNeighbor(const Grid& decisionGrid, int x, int y, int& nextX, int& nextY);
+    static void chooseBestNeighbor(Grid& decisionGrid, int x, int y, int& nextX, int& nextY);
 
 };
 
