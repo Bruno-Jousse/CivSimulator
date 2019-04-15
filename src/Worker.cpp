@@ -21,6 +21,7 @@ void Worker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 void Worker::action(){
     if (isDead()) // simulate only for living agents
         return;
+    cout << "A soldier is doing his action"  << endl;
 
     // the AI of the worker
     willHarvest = false;

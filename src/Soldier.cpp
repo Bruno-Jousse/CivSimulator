@@ -25,6 +25,7 @@ void Soldier::action(){
     if (isDead()) // simulate only for living agents
         return;
 
+    cout << "A soldier is doing his action"  << endl;
     attackTarget = nullptr;
     QVector<Machine*> enemies = world->getAgentsTargetableBy(*this);
     if (enemies.isEmpty()) // move

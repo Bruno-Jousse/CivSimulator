@@ -19,9 +19,8 @@ void World::init(){
     for(int i=0; i<nbCivs; i++){
         hq = new Headquarter(this, Qt::white);
         do{
-            hq->setXView(RandomManager::getInstance().getRandomInt()%(getW()-hq->getW()));
-            hq->setYView(RandomManager::getInstance().getRandomInt()%(getH()-hq->getH()));
-            cout << " x=" << hq->getX() << " y=" << hq->getY() << endl;
+            hq->setXView(RandomManager::getInstance().getRandomInt()%(getW()-hq->getW() - 31));
+            hq->setYView(RandomManager::getInstance().getRandomInt()%(getH()-hq->getH() - 31));
         }while(!scene()->collidingItems(hq).isEmpty());
         if(i%3==0){
             hq->setColor(QColor(255, g, b, 255));
@@ -44,8 +43,8 @@ void World::init(){
     for(int i=0; i <nbCivs*3; i++){
         ress = new Metal();
         do{
-            ress->setXView(RandomManager::getInstance().getRandomInt()%(getW()-ress->getW()));
-            ress->setYView(RandomManager::getInstance().getRandomInt()%(getH()-ress->getH()));
+            ress->setXView(RandomManager::getInstance().getRandomInt()%(getW()-ress->getW() - 31));
+            ress->setYView(RandomManager::getInstance().getRandomInt()%(getH()-ress->getH() - 31));
         }while(!scene()->collidingItems(ress).isEmpty());
 
         ress->setParentItem(this);

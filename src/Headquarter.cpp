@@ -3,7 +3,7 @@
 
 
 int const Headquarter::STARTING_HP = 100;
-int const Headquarter::METAL_STOCK_MAX = 1000;
+int const Headquarter::METAL_STOCK_MAX = 150;
 
 Headquarter::Headquarter(World* w, QColor color, int x, int y) : Building(w, STARTING_HP, color, x, y), metalStockBar(Qt::gray, 0, getH()-10, getW(), 10, METAL_STOCK_MAX), gridAllyHeadquarter(world->getW(), world->getH()), gridAllyAgents(world->getW(), world->getH()), gridEnemies(world->getW(), world->getH()), gridResources(world->getW(), world->getH()), strategy(new HQNeutralStrategy(this)){
     metalStockBar.setParentItem(this);
@@ -11,10 +11,11 @@ Headquarter::Headquarter(World* w, QColor color, int x, int y) : Building(w, STA
 }
 
 void Headquarter::action(){
+    cout << "A headquarter is doing its action" << endl;
     if(TimeManager::getInstance().isNewMonth()){
         spawnMachine();
     }
-    strategy->createUnit(getMetalAmount());
+    strategy->createUnit(metalStockBar.getHpRef());
 }
 
 int Headquarter::getMetalAmount() const
@@ -62,16 +63,13 @@ void Headquarter::spawnMachine(){
         it->first--;
 
         if(it->first == 0){
-            QPoint pos;
             switch(it->second){
                 case 0:{
                     Worker *w = new Worker(world, this, color);
-                    pos=searchAvailablePlaceAround(*w);
-                    if(pos.x()==-1 || pos.y()== -1){
+                    if(!searchAvailablePlaceAround(*w)){
                         it->first++;
                     }
                     else{
-                        w->setPos(pos);
                         w->setParentItem(parentItem());
                         workers.push_back(w);
                     }
@@ -79,8 +77,7 @@ void Headquarter::spawnMachine(){
                 }
                 case 1:{
                     Soldier* s = new Soldier(world, this, color);
-                    pos=searchAvailablePlaceAround(*s);
-                    if(pos.x()==-1 || pos.y()== -1){
+                    if(!searchAvailablePlaceAround(*s)){
                         it->first++;
                     }
                     else{

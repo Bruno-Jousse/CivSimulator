@@ -35,7 +35,7 @@ public:
         uint i;
         Headquarter* hq;
     public:
-        virtual void createUnit(int metalAmount) = 0;
+        virtual void createUnit(int &metalAmount) = 0;
         IHQStrategy(Headquarter* hq) : i(0), hq(hq) {}
         virtual ~IHQStrategy();
 	};
@@ -43,7 +43,7 @@ public:
     public:
         ~HQAggroStrategy() override;
         HQAggroStrategy(Headquarter* hq) : IHQStrategy(hq) {}
-        void createUnit(int metalAmount) override{
+        void createUnit(int &metalAmount) override{
             while (metalAmount >= 25) {
                 if(i%3==0){
                     hq->createAWorker();
@@ -60,7 +60,7 @@ public:
     public:
         ~HQDevelopmentStrategy() override;
         HQDevelopmentStrategy(Headquarter* hq) : IHQStrategy(hq) {}
-        void createUnit(int metalAmount) override{
+        void createUnit(int &metalAmount) override{
             while (metalAmount >= 25) {
                 if(i%3==0){
                     hq->createASoldier();
@@ -77,7 +77,7 @@ public:
     public:
         ~HQNeutralStrategy() override;
         HQNeutralStrategy(Headquarter* hq) : IHQStrategy(hq) {}
-        void createUnit(int metalAmount) override{
+        void createUnit(int &metalAmount) override{
             while (metalAmount >= 25) {
                 if(i%2==0){
                     hq->createAWorker();

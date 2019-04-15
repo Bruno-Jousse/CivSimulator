@@ -18,7 +18,7 @@ class World : public Entity
 {
 protected:
     int nbCivs;
-    QVector<Resource*> resources;
+    QVector<Metal*> resources;
     QVector<Headquarter*> factions;
     QVector<Machine*> agents;
 

@@ -17,7 +17,9 @@ public:
     Healthbar(QColor color, int x=0, int y=0, int w=30, int h=5, int hpMax=100);
     int getHp() const;
     void setHp(int);
-
+    int& getHpRef(){
+        return hp;
+    }
 
     QRectF boundingRect() const override;
     QPainterPath shape() const override;

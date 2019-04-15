@@ -31,9 +31,9 @@ public:
 
     virtual void suppression();
 
-    QPoint searchAvailablePlaceAround(Entity &r);
-    QPoint searchAvailableOnLine(int xSource, int y, int xDestination, Entity &r);
-
+    bool searchAvailablePlaceAround(Entity &r);
+    bool searchAvailableOnLineX(int xSource, int y, int xDestination, Entity &r);
+    bool searchAvailableOnLineY(int ySource, int x, int yDestination, Entity &r);
 
     QColor getColor() ;
     void setColor(const QColor &value);
